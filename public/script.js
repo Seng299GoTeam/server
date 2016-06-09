@@ -1,4 +1,3 @@
-
 /**
  * Requests a new board state from the server's /data route.
  * 
@@ -7,7 +6,9 @@
 function getData(cb){
     $.get("/data", function(data, textStatus, xhr){
         console.log("Response for /data: "+textStatus);  
-
+        
+        
+        
         // handle any errors here....
 
         // draw the board....
@@ -28,28 +29,45 @@ function getData(cb){
  * @param state {object} - an object representing the state of the board.  
  */ 
 function drawBoard(state){
+    console.log (state);
+    var nol = state.size;
+    var lw = 5;
+    var bw = 50;
+    var sw = lw + bw;
+    var frame = 40;
 
     var canvas = $("#canvas"); 
-
-    // Change the height and width of the board here...
-    // everything else should adapt to an adjustable
-    // height and width.
-    var W = 600, H = 600; 
+    var W = (sw*(nol-1))+(2*frame), H = (sw*(nol-1))+(2*frame); 
     canvas.css("height", H); 
     canvas.css("width", W); 
-
-    // The actual SVG element to add to. 
-    // we make a jQuery object out of this, so that 
-    // we can manipulate it via calls to the jQuery API. 
     var svg = $(makeSVG(W, H));
-
-    // TODO: Implement board drawing. 
     
-    //  You will want to append elements to the 
-    //  svg variable using the svg.append(....) 
-    //  method. 
-
-    // append the svg object to the canvas object.
+    
+    
+    svg.append ( makeRectangle( 0 , 0 , frame , (sw*(nol-1))+(2*frame) ,"#2F80ED"));
+    svg.append ( makeRectangle( 0 , 0 , (sw*(nol-1))+(2*frame) , frame ,"#2F80ED"));
+    svg.append ( makeRectangle( (sw*(nol-1))+frame , 0 , frame , (sw*(nol-1))+(2*frame) ,"#2F80ED"));
+    svg.append ( makeRectangle( 0 , (sw*(nol-1))+frame , (sw*(nol-1))+(2*frame), frame ,"#2F80ED"));
+    
+    
+    svg.append ( makeRectangle( frame , frame , (sw*(nol-1)) , (sw*(nol-1)) ,"#2F80ED"));
+    for ( var i=0 ; i < nol ; i++){
+        var x = (sw*i)+lw/2;
+        svg.append ( makeLine(  x+frame , 0+frame , x+frame , (sw*(nol-1))+lw+frame ,"#012B4B",5));
+        svg.append ( makeLine(  0+frame,  x+frame , (sw*(nol-1))+lw+frame , x+frame  , "#012B4B" , 5 ) );
+    }
+    
+    var loc = (frame+(lw/2));
+    for ( var i=0 ; i < nol;i++){
+        for ( var j=0 ; j < nol ; j++ ){
+            if ( state.board[i][j] == 1){
+                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"white"));
+            }
+            else if ( state.board[i][j] == 2){
+                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"black"));
+            }
+        }
+    }
     canvas.append(svg);
 
 }

@@ -1,6 +1,14 @@
 #canvas{
-    border:1px solid grey; 
-    width:800px;
-    height:800px;
+
     margin:0 auto;
+}
+body{
+    background-color:#012B4B;
+}
+h1{
+    color:white;
+}
+#logo{
+    width: 200px;
+    margin:0 auto 40px auto;
 }
