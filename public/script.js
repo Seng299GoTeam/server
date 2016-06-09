@@ -29,12 +29,12 @@ function getData(cb){
  * @param state {object} - an object representing the state of the board.  
  */ 
 function drawBoard(state){
-    console.log (state);
-    var nol = state.size;
-    var lw = 5;
-    var bw = 50;
+    var nol = state.size;       // How many lines are needed in the baord
+    var lw = 5;                 // The width of lines in the board
+    var bw = 50;                // The size of squares in the board
+    var frame = 40;             // The size of the frame around the board
     var sw = lw + bw;
-    var frame = 40;
+    
 
     var canvas = $("#canvas"); 
     var W = (sw*(nol-1))+(2*frame), H = (sw*(nol-1))+(2*frame); 
@@ -61,10 +61,10 @@ function drawBoard(state){
     for ( var i=0 ; i < nol;i++){
         for ( var j=0 ; j < nol ; j++ ){
             if ( state.board[i][j] == 1){
-                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"white"));
+                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"#FFFFFF"));
             }
             else if ( state.board[i][j] == 2){
-                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"black"));
+                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"#000000"));
             }
         }
     }

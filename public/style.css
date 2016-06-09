@@ -7,8 +7,15 @@ body{
 }
 h1{
     color:white;
+    font-family: 'Fira sans', sans-serif;
+    font-weight: 300;
+    margin:20px;
+}
+#go-word{
+    font-weight: 700;
+    display:inline;
 }
 #logo{
     width: 200px;
-    margin:0 auto 40px auto;
+    margin:40px auto 40px auto;
 }
