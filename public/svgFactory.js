@@ -1,29 +1,7 @@
-/** 
- * This file contains functions for creating new SVG objects.
- * 
- * You must implement the required functions. 
- * 
- * You are encouraged to implement more helper functions here if you need to. 
- * 
- * You may find a tutorial on SVG at: http://www.w3schools.com/svg/ 
- */ 
 
-//  Namespace for SVG elements, different than normal HTML element namespace.
+
 var SVGNameSpace = "http://www.w3.org/2000/svg";
 
-/**
- * Makes a new SVG line object and returns it. 
- *
- * @param x1 {number} 
- * @param y1 {number}
- * @param x2 {number}
- * @param y2 {number}
- * @param color {string} the color of the line
- * @param stroke {number} the thickness of the line.
- * @returns {object}
- *
- * This has been implemented to provide an example. 
- */
 function makeLine(x1, y1, x2, y2, color, stroke) {
 
     var e = document.createElementNS(SVGNameSpace, "line");
@@ -39,17 +17,6 @@ function makeLine(x1, y1, x2, y2, color, stroke) {
 
 }
 
-/**
-* Makes and returns a new SVG rectange object. 
-* 
-* @param x {number} the x position of the rectangle.
-* @param y {number} the y position of the rectangle.
-* @param w {number} the width of the rectangle.
-* @param h {number} the height of the rectangle.
-* @param c {string} the color of the rectangle. 
-* 
-* @return {object} 
-*/ 
 function makeRectangle(x, y, w, h, c){
    var rect = document.createElementNS(SVGNameSpace, "rect"); 
     rect.setAttribute("x", x);
@@ -58,23 +25,9 @@ function makeRectangle(x, y, w, h, c){
     rect.setAttribute("height", h);
 
     rect.style.fill = c ;
-
-
-   // TODO: Implement me. Checkout docs at: http://www.w3schools.com/svg/svg_rect.asp
-
-   return rect; 
+    return rect; 
 }
 
-/**
-* Makes and returns a new SVG circle object. 
-* 
-* @param x {number} the x position of the circle.
-* @param y {number} the y position of the circle.
-* @param r {number} the radius 
-* @param c {number} the color 
-* 
-* @return {object} 
-*/
 function makeCircle(x, y, r, c){
     var circ = document.createElementNS(SVGNameSpace, "circle"); 
     circ.setAttribute("cx", x);
@@ -84,20 +37,26 @@ function makeCircle(x, y, r, c){
     return circ;
 }
 
-/**
-* Makes an SVG element. 
-* 
-* @param w {number} the width
-* @param h {number} the height 
-* 
-* @return {object} 
-*/
+function makeMapCircle(x, y, r, i, j){
+    var circ = document.createElementNS(SVGNameSpace, "circle"); 
+    circ.setAttribute("cx", x);
+    circ.setAttribute("cy", y);
+    circ.setAttribute("r", r);
+    circ.setAttribute("onclick", "boardClickHandler(" + i + "," + j + ")");
+    circ.style.fill = "red" ;
+    
+    circ.style.opacity = "0.0";
+
+    return circ;
+}
+
 function makeSVG(w, h){
     var s = document.createElementNS(SVGNameSpace, "svg"); 
     s.setAttribute("width", w); 
     s.setAttribute("height", w); 
     s.setAttribute('xmlns', SVGNameSpace);
     s.setAttribute('xmlns:xlink',"http://www.w3.org/1999/xlink");
+    s.setAttribute("id", "mainsvg");
     
     return s;
 }

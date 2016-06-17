@@ -1,41 +1,18 @@
-/**
- * Requests a new board state from the server's /data route.
- * 
- * @param cb {function} callback to call when the request comes back from the server.
- */
-function getData(cb){
-    $.get("/data", function(data, textStatus, xhr){
-        console.log("Response for /data: "+textStatus);  
-        
-        
-        
-        // handle any errors here....
-
-        // draw the board....
-        cb(data);  
-
-    }); 
-}
-
-/**
- * Draws the board to the #canvas element on the page. 
- *
- * You may find the following links helpful: 
- *  - https://api.jquery.com/
- *  - https://api.jquery.com/append/
- *  - http://www.tutorialspoint.com/jquery/
- *  - http://www.w3schools.com/jquery/ 
- *
- * @param state {object} - an object representing the state of the board.  
- */ 
-function drawBoard(state){
+function updateUI(state){
+    
+    // If a previous board exist, delete the old one before appending a new one.
+    if ($("#mainsvg").length === 1){
+        $( "#mainsvg" ).remove();
+    }
+    
+    
     var nol = state.size;       // How many lines are needed in the baord
     var lw = 5;                 // The width of lines in the board
     var bw = 50;                // The size of squares in the board
     var frame = 40;             // The size of the frame around the board
-    var sw = lw + bw;
     
-
+    
+    var sw = lw + bw;
     var canvas = $("#canvas"); 
     var W = (sw*(nol-1))+(2*frame), H = (sw*(nol-1))+(2*frame); 
     canvas.css("height", H); 
@@ -68,14 +45,17 @@ function drawBoard(state){
             }
         }
     }
+    
+    for ( var i=0 ; i < nol;i++){
+        for ( var j=0 ; j < nol ; j++ ){
+            if ( state.board[i][j] == 0){
+                svg.append ( makeMapCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20, i, j));
+            }
+        }
+    }
+    
+    
+    
     canvas.append(svg);
 
-}
-
-function init(){
-
-    // do page load things here...
-
-    console.log("Initalizing Page...."); 
-    getData(drawBoard); 
 }
