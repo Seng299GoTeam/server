@@ -1,28 +1,27 @@
-
 console.log("Initalizing Page...."); 
-var state = {
-    size : 9, 
-    board: [],
-}
-    
-    
-for ( var i=0 ; i < 9 ; i++){
-    var temp = [];
-    for ( var j=0 ; j < 9 ; j++){
-        temp.push(0);
-    }
-    state.board.push(temp);
-}
+var game = new Game(); 
+var ui = new UI();
 
-updateUI(state);
+ui.board(game.getGrid());
     
 
 
 function boardClickHandler(x,y){
-    console.log ( state.board[x][y]);
-    //alert("x: "+x+" y:"+y);
-    state.board[x][y] = 2;
-    updateUI(state);
+    game.attemptMove(x,y);
+    ui.board(game.getGrid());
+    
+}
+function pass(){
+    var success = game.attemptPass();
+    
+    
+    if ( success ){
+        ui.board(game.getGrid());
+    }
+    else {
+        ui.end ();
+    }
+    
 }
 
 

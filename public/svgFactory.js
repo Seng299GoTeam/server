@@ -42,7 +42,7 @@ function makeMapCircle(x, y, r, i, j){
     circ.setAttribute("cx", x);
     circ.setAttribute("cy", y);
     circ.setAttribute("r", r);
-    circ.setAttribute("onclick", "boardClickHandler(" + i + "," + j + ")");
+    circ.setAttribute("onclick", 'boardClickHandler(' + i + "," + j + ')');
     circ.style.fill = "red" ;
     
     circ.style.opacity = "0.0";

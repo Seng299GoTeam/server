@@ -1,12 +1,14 @@
-function updateUI(state){
-    
+class UI {
+
+board(state){
+
     // If a previous board exist, delete the old one before appending a new one.
     if ($("#mainsvg").length === 1){
         $( "#mainsvg" ).remove();
     }
     
     
-    var nol = state.size;       // How many lines are needed in the baord
+    var nol = state.length;       // How many lines are needed in the baord
     var lw = 5;                 // The width of lines in the board
     var bw = 50;                // The size of squares in the board
     var frame = 40;             // The size of the frame around the board
@@ -35,12 +37,14 @@ function updateUI(state){
     }
     
     var loc = (frame+(lw/2));
+    
+    
     for ( var i=0 ; i < nol;i++){
         for ( var j=0 ; j < nol ; j++ ){
-            if ( state.board[i][j] == 1){
+            if ( state[i][j] == 1){
                 svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"#FFFFFF"));
             }
-            else if ( state.board[i][j] == 2){
+            else if ( state[i][j] == 2){
                 svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"#000000"));
             }
         }
@@ -48,14 +52,19 @@ function updateUI(state){
     
     for ( var i=0 ; i < nol;i++){
         for ( var j=0 ; j < nol ; j++ ){
-            if ( state.board[i][j] == 0){
+            //if ( state[i][j] == 0){
                 svg.append ( makeMapCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20, i, j));
-            }
+            //}
         }
     }
     
     
     
     canvas.append(svg);
+
+}
+end(){
+    alert("game over");
+}
 
 }
