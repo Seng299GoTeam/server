@@ -7,8 +7,11 @@ ui.board(game.getGrid());
 
 
 function boardClickHandler(x,y){
-    game.attemptMove(x,y);
-    ui.board(game.getGrid());
+    var success = game.attemptMove(x,y);
+    
+    if (success){
+        ui.board(game.getGrid());
+    }
     
 }
 function pass(){

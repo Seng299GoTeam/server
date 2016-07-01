@@ -11,18 +11,22 @@ class Game {
     
     
     attemptMove (x,y){
-        
-        
-        if ( this.currentPlayer == "black" ){
-            this.board.grid[x][y] = 2;
-            this.currentPlayer = "white";
+        if ( this.board.grid[x][y] != 0){
+            return false;
         }
-        else if ( this.currentPlayer == 'white' ) {
-            this.board.grid[x][y] = 1;
-            this.currentPlayer = "black";
-        }
-        this.prevMoveWasPass = x + " " + y;
+        else{
         
+            if ( this.currentPlayer == "black" ){
+                this.board.grid[x][y] = 2;
+                this.currentPlayer = "white";
+            }
+            else if ( this.currentPlayer == 'white' ) {
+                this.board.grid[x][y] = 1;
+                this.currentPlayer = "black";
+            }
+            this.prevMoveWasPass = x + " " + y;
+            return true;
+        }
     }
     
     attemptPass (){
