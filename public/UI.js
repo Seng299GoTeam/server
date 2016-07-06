@@ -1,5 +1,23 @@
 class UI {
 
+show( page ){
+    
+    if ( page == "startPage" ){
+        $( "#board_page" ).hide();
+        $( "#start_page" ).show();
+    }
+    else if ( page == "boardPage" ){
+        $( "#start_page" ).hide();
+        $( "#board_page" ).show();
+    }
+}
+
+/*
+Updates the board
+
+@parameters:
+state: A 2D array that has the 0,1,2 for empty, black, white respectively
+*/
 board(state){
 
     // If a previous board exist, delete the old one before appending a new one.
@@ -62,9 +80,29 @@ board(state){
     
     canvas.append(svg);
 
+}  
+
+
+
+/*
+Ends the game and show score
+
+@parameters:
+state: A 2D array that has the 0,1,2 for empty, black, white respectively
+*/
+invalid ( message ){
+     alert( message );
 }
+
+
+/*
+Ends the game and show score
+
+@parameters:
+state: A 2D array that has the 0,1,2 for empty, black, white respectively
+*/
 end(){
     alert("game over");
-}
+}          
 
 }

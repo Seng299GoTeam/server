@@ -1,3 +1,16 @@
+body {
+      font-family: 'Fira sans', sans-serif;  
+}
+
+/*****************************************/
+            /* Board page */
+/*****************************************/
+#board_page{
+    width:100%;
+    text-align: center;
+    display: none;
+}
+
 #canvas{
 
     margin:0 auto;
@@ -23,7 +36,96 @@ h1{
     margin:10px auto;
     
 }
-#main_container{
-    width:100%;
+
+/*****************************************/
+/* Board Size Radio Buttons in this first page */
+/*****************************************/
+
+#start_page{
+    margin:0 auto;
+    width: 500px;
+    display: none;
+}
+
+.board-size {
+     list-style-type:none;
+     margin:25px 0 0 0;
+     padding:0;
+}
+
+.board-size li {
+    float:left;
+    margin:0 5px 0 0;
+    width:150px;
+    height:90px;
+    position:relative;
+}
+
+.board-size label, .board-size input {
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.board-size input[type="radio"] {
+    opacity:0.011;
+    z-index:100;
+}
+
+.board-size input[type="radio"]:checked + label {
+    background:#2F80ED;
+    color:#012B4B;
+}
+
+.board-size label {
     text-align: center;
+    color: #2F80ED;
+    font-size: 40px;
+    font-family: 'Fira sans', sans-serif;
+    font-weight: 400;
+    padding-top: 20px;
+    border:3px solid #2F80ED; 
+    border-radius:4px;
+    cursor:pointer;
+    z-index:90;
+}
+
+/*
+.board-size label:hover {
+     background:#DDD;
+}
+*/
+
+/*****************************************/
+/* Start game button of the first page */
+/*****************************************/
+
+#start_game_button {
+    display: inline-block;
+    width: 150px;
+    padding: 15px 20px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 80px;
+    cursor: pointer;
+    
+    border: 3px solid #2F80ED;
+    border-radius: 4px;
+    
+    background-color: #012B4B;
+    color:#2F80ED;
+    text-align: center;
+
+    font-size: 24px;
+    font-family: 'Fira sans', sans-serif;;
+    font-weight: 400;
+    
+    
+}
+#start_game_button:hover{
+    background-color: #2F80ED; 
+    color:#012B4B;
 }

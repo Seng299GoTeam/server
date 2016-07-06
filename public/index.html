@@ -6,16 +6,45 @@
         <meta content="utf-8" http-equiv="encoding">
     </head>
     <body>
-        
+        <div id="main_container">
         <div id="logo">
             <h1><div id="go-word">GO</div>GAME</h1>
         </div>
-        <div id="main_container">
+        
+        <!----------------> 
+        <!-- Start Page -->
+        <div id= "start_page">
+        
+            <ul class="board-size">
+                <li>
+                    <input type="radio" id="9" name="selected_size" checked="checked" />
+                    <label for="9"> 9 </label>
+                </li>
+                <li>
+                    <input type="radio" id="13" name="selected_size" />
+                    <label for="13"> 13 </label>
+                </li>
+                <li>
+                    <input type="radio" id="19" name="selected_size"  />
+                    <label for="19"> 19 </label>
+                </li>
+            </ul>
+            
+            <div id="start_game_button" onclick="startNewGame()"> Start Game </div>
+        
+        </div>
+        
+        <!----------------> 
+        <!-- Board Page -->
+        
+
+        <div id="board_page">
             <button onclick="pass()"  id='pass' name="pass"> Pass </button>
             <div id='canvas'>
                 
             </div>
         </div>
+        
         <script src="jquery.min.js"></script>
         <script src="svgFactory.js"></script>
         
@@ -25,6 +54,6 @@
         <script src="main.js"></script>
         
         
-
+        </div>
     </body>
 </html>
