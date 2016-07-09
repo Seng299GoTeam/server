@@ -34,8 +34,6 @@ app.post("/ai",function (req,res){
     //  (we'll just error check whether this request comes back as valid)
     var options = req.body.options;
     var moveData = req.body.moveData;
-    
-    //console.log(req.body);
 
     //in case data comes back in multiple chunks
     //   (it shouldn't, though, so this is kinda overkill)
@@ -52,8 +50,7 @@ app.post("/ai",function (req,res){
             //res.json(newreq.body);
         });
     }//callback
-    
-    //var newreq = http.request(options,callback);
+
     var newreq = http.request(options,callback);
     newreq.setHeader('Content-Type','application/json');
     newreq.write(JSON.stringify(moveData));
