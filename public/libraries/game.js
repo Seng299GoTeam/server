@@ -1,8 +1,8 @@
+//Require dependency, but not if already defined
+// (this makes it work in browser as well as in a node context).
 if (typeof go === 'undefined'){
     go = require("./go.js");
 }
-
-//const go = require("./go.js");
 
 //create a new game, specifying type of game & size of board
 var Game = function Game(type, size){
