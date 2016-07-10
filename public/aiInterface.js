@@ -1,6 +1,5 @@
 //For use on client-side
 //Assumes go and Game have been included.
-//Also asssumes access to global Game object named "game" and the global aiInterface object named ai
 
 
 //Is used to send AI requests to server.js, which relays them to the actual AI server.
@@ -24,7 +23,7 @@ var aiInterface = function aiInterface(host, path, port){
     //Also takes a callback and errback, because that's kinda necessary given how the request works.
     //The callback should take a go.Move object
     //The errback should take err as an argument.
-    this.getMove = function(n,cb,eb){
+    this.getMove = function(game,n,cb,eb){
         
         if(n == 0){
             //just pass
@@ -45,6 +44,8 @@ var aiInterface = function aiInterface(host, path, port){
         postXhr.setRequestHeader("Content-Type", "application/json");
         postXhr.send(postData);
         
+        var thisAI = this;
+        
         postXhr.onreadystatechange = function(){
             if (postXhr.readyState == 4 && postXhr.status == 200){
                 var response = postXhr.responseText;
@@ -55,7 +56,7 @@ var aiInterface = function aiInterface(host, path, port){
                     if(game.board.validateMove(move)[0]){
                         cb(move);
                     }else{
-                        ai.getMove(n-1,cb,eb);
+                        thisAI.getMove(n-1,cb,eb);
                     }
                 }catch(err){
                     eb(err);

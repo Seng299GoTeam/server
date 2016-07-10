@@ -10,6 +10,7 @@ ui.show ( "startPage");
 var game;
 
 //TEMP:
+var isAiGame = true;
 var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
 
 
@@ -33,7 +34,9 @@ function boardClickHandler(x,y){
 
 function successfulMove (){          // What should happen if a move is successfull
     ui.board(game.board.grid);
-    getAiMoveTemp();
+    if(isAiGame){
+        ai.getMove(game,10,aiMoveTemp,function(){});
+    }
 }
 
 function invalidMove ( message ){    // What should happen if a move is invalid
@@ -47,11 +50,6 @@ function gameEnds (){               // What should happen if the move results to
 function pass(){
     var move = new go.Move (-1, -1, game.currentPlayer , true);
     game.attemptMove(move,successfulMove,invalidMove, gameEnds);
-}
-
-//TEMP: This is just for testing that we can deal with ai moves.
-function getAiMoveTemp(){
-    ai.getMove(10,aiMoveTemp,function(){});
 }
 
 //TEMP: This is just for testing that we can deal with ai moves.
