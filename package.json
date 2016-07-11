@@ -1,13 +1,13 @@
 {
-  "name": "lab4",
+  "name": "GoWebapp",
   "version": "1.0.0",
-  "description": "lab 4 exercises",
+  "description": "Web App for the game of Go",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "testGame": "mocha ./testing/gameunittest.js -r blanket -R html-cov > ./testing/coverage.html"
   },
-  "author": "sdiemert",
+  "author": "Multiple",
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4"
