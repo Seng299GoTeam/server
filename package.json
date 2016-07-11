@@ -4,7 +4,8 @@
   "description": "lab 4 exercises",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "testGame": "mocha ./testing/gameunittest.js -r blanket -R html-cov > ./testing/coverage.html"
   },
   "author": "sdiemert",
   "license": "ISC",
@@ -13,5 +14,11 @@
   },
   "devDependencies": {
     "body-parser": "^1.15.2"
+  },
+  "config": {
+    "blanket": {
+        "pattern": ["public/libraries/Game.js"],
+        "data-cover-never": "node_modules"
+    }
   }
 }
