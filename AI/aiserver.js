@@ -4,6 +4,9 @@ var express    = require("express");
 var http = require("http");
 var bodyparser = require("body-parser");
 
+//Load from ai.js
+var ai = require("./ai.js");
+
 var app = express();
 
 //body parser for parsing requests
@@ -26,14 +29,13 @@ app.get("/data", function (req, res) {
 
 app.post("/moron",function (req,res){
     console.log("POST Request to: /moron");
-
-    var moveData = req.body;
-	var retMove = moveData["last"];
-	retMove.pass = true;
-	retMove.c = (retMove.c == 1 ? 2 : 1);
-
+	
+	var moronAI = new ai.basicAI();	
+	//moronAI.test();
+	var move = moronAI.getMove(req.body);
+	
 	//always pass
-	res.send(JSON.stringify(retMove));
+	res.send(JSON.stringify(move));
 	
 });// post to ai
 

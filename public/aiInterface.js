@@ -24,11 +24,12 @@ var aiInterface = function aiInterface(host, path, port){
     //The callback should take a go.Move object
     //The errback should take err as an argument.
     this.getMove = function(game,n,cb,eb){
-        
-        if(n == 0){
+        console.log("DEBUG: ai getMove called " + n + " times");
+        if(n <= 0){
             //just pass
 			console.log("DEBUG: AI passes");
             cb(new go.Move(0,0,game.currentPlayer,true));
+			return;
         }
         
         //will get a move for the current player
