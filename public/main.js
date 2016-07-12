@@ -9,8 +9,6 @@ var ui = new UI();
 ui.show ( "startPage");
 var game;
 
-//TEMP:
-var isAiGame = true;
 var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
 
 
@@ -20,7 +18,7 @@ function startNewGame(){
     var selected = $('input[type=radio][name=selected_size]:checked').attr('id');  
 
     
-    game = new Game ( "hotseat", selected );
+    game = new Game ( "ai", selected );
     ui.board(game.board.grid );
     ui.show ( "boardPage" );
 }
@@ -34,7 +32,7 @@ function boardClickHandler(x,y){
 
 function successfulMove (){          // What should happen if a move is successfull
     ui.board(game.board.grid);
-    if(isAiGame){
+    if(game.gameType == "ai"){
         ai.getMove(game,10,aiMoveTemp,function(){});
     }
 }

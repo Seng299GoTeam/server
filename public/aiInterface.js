@@ -27,7 +27,7 @@ var aiInterface = function aiInterface(host, path, port){
         
         if(n == 0){
             //just pass
-            return new go.Move(0,0,game.currentPlayer,true);
+            cb(go.Move(0,0,game.currentPlayer,true));
         }
         
         //will get a move for the current player
@@ -56,6 +56,10 @@ var aiInterface = function aiInterface(host, path, port){
                     if(game.board.validateMove(move)[0]){
                         cb(move);
                     }else{
+						if(n <= 1){
+							move.pass = true;
+							cb(move);
+						}
                         thisAI.getMove(n-1,cb,eb);
                     }
                 }catch(err){
