@@ -44,8 +44,6 @@ var Game = function Game(type, size){
             
             this.board = this.board.play(move);
             this.changeCurrentTurn();
-			//Debug:
-			console.log("DEBUG: Move succeeded: " + JSON.stringify(move) + " " + game.currentPlayer);
             callback();
         }
     }//attemptMove

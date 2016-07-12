@@ -57,14 +57,7 @@ var aiInterface = function aiInterface(host, path, port){
                     if(game.board.validateMove(move)[0]){
                         cb(move);
                     }else{
-						/*
-						if(n <= 1){
-							//just pass
-							console.log("EBUG: AI passes");
-							move.pass = true;
-							cb(move);
-						}*/
-						console.log("DEBUG: calling for " + n + "th time");
+						//console.log("DEBUG: calling for " + n + "th time");
                         thisAI.getMove(game,n-1,cb,eb);
                     }
                 }catch(err){

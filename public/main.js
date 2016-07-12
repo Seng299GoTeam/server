@@ -9,7 +9,8 @@ var ui = new UI();
 ui.show ( "startPage");
 var game;
 
-var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
+//var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
+var ai = new aiInterface('localhost','/moron','3001');
 
 
 
