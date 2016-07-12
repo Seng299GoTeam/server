@@ -23,6 +23,12 @@ var Game = function Game(type, size){
     //  Errback should take a string containing the error message
     //  Winback (optional) is called if a player wins.
     this.attemptMove = function(move, callback, errback,winback){
+        
+        if(move.colour != this.currentPlayer){
+            errback("Player attempted to play out of order");
+            return;
+        }
+    
         var result = this.board.validateMove(move);
         if(!result[0]){
             errback(result[1]); // result[1] contains informative error message
@@ -33,7 +39,7 @@ var Game = function Game(type, size){
                 this.endGame(); //Default; should not be used in practice.
             }
         }else{
-            this.previousboard = this.board;
+            this.previousBoard = this.board;
             this.previousMove = move;
             
             this.board = this.board.play(move);
@@ -49,6 +55,45 @@ var Game = function Game(type, size){
         var scores = this.board.score();
         console.log("Black's score: " + scores[0] + "\nWhite's Score: " + scores[1]);
         console.log("Winner is: " + (scores[0] > scores[1]?"Black":"White"));
+    }
+    
+    //Convert to a specific JSON format for use in network games.
+    //Converts only some relevant information.
+    this.toJSON = function(){
+        var jsonObj = {
+            "board": this.board.grid,
+            "previousBoard": (this.previousBoard?this.previousBoard.grid:-1),
+            "previousMove": this.board.previousMove,
+            "currentPlayer": this.board.currentPlayer
+        }
+        
+        return JSON.stringify(jsonObj);
+    }
+    
+    //Update from a database record, overwriting only certain information.
+    //Returns true if successful, false otherwise.
+    this.updateFromJSON = function(jsonString){
+        var data = {};
+        try{
+            data = JSON.parse(jsonString);
+        }catch(err){
+            //console.log("Invalid json game data");
+            return false;
+        }
+        
+        //Should probably add more error checking in the future
+        this.board = new go.Board(data["board"]);
+        this.board.parse();
+        this.previousMove = data["previousMove"];
+        this.currentPlayer = data["currentPlayer"];
+        if(data["previousBoard"] == -1){
+            this.previousBoard = null;
+        }else{
+            this.previousBoard = new go.Board(data["previousBoard"]);
+            this.previousBoard.parse();
+        }
+        
+        return true;
     }
     
     
