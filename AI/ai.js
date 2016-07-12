@@ -52,7 +52,7 @@ ai.basicAI.prototype.getMove = function(data){
 		for(var j in board.grid){
 			var move = new go.Move(i,j,player,false);
 			if(board.validateMove(move)[0]){
-				console.log("DEBUG: Valid move: " + JSON.stringify(move));
+				//console.log("DEBUG: Valid move: " + JSON.stringify(move));
 				validMoves.push(move);
 			}
 		}//for j

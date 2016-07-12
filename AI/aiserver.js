@@ -27,16 +27,25 @@ app.get("/data", function (req, res) {
 });
 
 
+app.post("/pass",function (req,res){
+    console.log("POST Request to: /pass");
+	
+	//Passes every time
+	var moronAI = new ai.AI();	
+	var move = moronAI.getMove(req.body);
+	
+	res.send(JSON.stringify(move));
+	
+});// post to ai
+
 app.post("/moron",function (req,res){
     console.log("POST Request to: /moron");
 	
+	//Plays in the first valid spot from top left
 	var moronAI = new ai.basicAI();	
-	//moronAI.test();
 	var move = moronAI.getMove(req.body);
 	
-	//always pass
 	res.send(JSON.stringify(move));
-	
 });// post to ai
 
 
