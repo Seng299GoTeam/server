@@ -1,13 +1,6 @@
 //For use on client-side
 //Assumes go and Game have been included.
 
-if (typeof go === 'undefined'){
-    go = require("../public/libraries/go.js");
-}
-if (typeof Game === 'undefined'){
-    Game = require("../public/libraries/Game.js");
-}
-
 
 //Is used to send AI requests to server.js, which relays them to the actual AI server.
 //Has one function, getMove, which returns a go move object.
@@ -27,11 +20,17 @@ var aiInterface = function aiInterface(host, path, port){
     }
     
     //takes a game, and a number (n) of times to try to get a move from server, before just returning a pass
-    this.getMove = function(game,n){
+    //Also takes a callback and errback, because that's kinda necessary given how the request works.
+    //The callback should take a go.Move object
+    //The errback should take err as an argument.
+    this.getMove = function(game,n,cb,eb){
+        
         if(n == 0){
             //just pass
-            return new go.Move(0,0,game.currentPlayer,true);
+			console.log("DEBUG: AI passes");
+            cb(new go.Move(0,0,game.currentPlayer,true));
         }
+        
         //will get a move for the current player
         var moveData = {
             "size": game.board.size,
@@ -39,9 +38,42 @@ var aiInterface = function aiInterface(host, path, port){
             "last": game.previousMove
         }//postData
         
-        var postData = JSON.stringify({"options":options,"moveData":moveData});
+        var postData = JSON.stringify({"options":this.options,"moveData":moveData});
         
-        //send {options,postdata} to server.
+        var postXhr = new XMLHttpRequest();
+        postXhr.open("POST","http://localhost:3000/ai", true);
+        postXhr.setRequestHeader("Content-Type", "application/json");
+        postXhr.send(postData);
         
-    }
-}
+        var thisAI = this;
+        
+        postXhr.onreadystatechange = function(){
+            if (postXhr.readyState == 4 && postXhr.status == 200){
+                var response = postXhr.responseText;
+                try{
+                    var parsedMove = JSON.parse(response);
+                    var move = new go.Move(parsedMove["x"],parsedMove["y"],parsedMove["c"],parsedMove["pass"]);
+                    //ensure it's a valid move
+                    if(game.board.validateMove(move)[0]){
+                        cb(move);
+                    }else{
+						/*
+						if(n <= 1){
+							//just pass
+							console.log("EBUG: AI passes");
+							move.pass = true;
+							cb(move);
+						}*/
+						console.log("DEBUG: calling for " + n + "th time");
+                        thisAI.getMove(game,n-1,cb,eb);
+                    }
+                }catch(err){
+                    eb(err);
+                }
+            }else if(postXhr.readyState == 4 && postXhr.status !== 200){
+                //do some sort of error handling
+                alert("error: " + postXhr.status);
+            }
+        }//onreadystatechange
+    }//getMove
+}//aiInterface

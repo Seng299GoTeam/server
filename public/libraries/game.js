@@ -6,7 +6,7 @@ if (typeof go === 'undefined'){
 
 //create a new game, specifying type of game & size of board
 var Game = function Game(type, size){
-    this.gameType = type;   //hotseat, network, or AI
+    this.gameType = type;   //"hotseat", "network", or "ai"
     this.currentPlayer = 1; //1 for black, 2 for white
     this.previousMove = null;   //the previous move
     
@@ -44,6 +44,8 @@ var Game = function Game(type, size){
             
             this.board = this.board.play(move);
             this.changeCurrentTurn();
+			//Debug:
+			console.log("DEBUG: Move succeeded: " + JSON.stringify(move) + " " + game.currentPlayer);
             callback();
         }
     }//attemptMove
