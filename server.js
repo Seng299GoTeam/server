@@ -3,6 +3,7 @@
 var express    = require("express");
 var http = require("http");
 var bodyparser = require("body-parser");
+var mongo = require("./mongoDB");
 
 var app = express();
 
@@ -23,6 +24,24 @@ app.get("/data", function (req, res) {
     console.log("GET Request to: /data");
     res.json(generateBoard()); 
 });
+
+app.get("/checkGame", function(req, res) {
+	console.log("GET Request to: /checkGame");
+	
+	// Get the game id from the 
+	var gameid = req.body();
+	
+	mongo.getGamePlayer(gameid, function(player, err) {
+		if(!err)
+			res.send(player);
+		else {
+			console.log("ERROR: " + err);
+			res.send(err);
+		}
+	});
+});
+
+app.get("/getGame")
 
 
 app.post("/ai",function (req,res){
