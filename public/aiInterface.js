@@ -11,7 +11,7 @@ if (typeof Game === 'undefined'){
 
 //Is used to send AI requests to server.js, which relays them to the actual AI server.
 //Has one function, getMove, which returns a go move object.
-//Takes data about the target AI server, plus a Game object to get moves for.
+//Takes data about the target AI server
 var aiInterface = function aiInterface(host, path, port){
     /*
     //Example of valid options:
@@ -26,14 +26,22 @@ var aiInterface = function aiInterface(host, path, port){
         "method": 'POST'
     }
     
-    this.getMove = function(game){
+    //takes a game, and a number (n) of times to try to get a move from server, before just returning a pass
+    this.getMove = function(game,n){
+        if(n == 0){
+            //just pass
+            return new go.Move(0,0,game.currentPlayer,true);
+        }
         //will get a move for the current player
-        var postData = {
+        var moveData = {
             "size": game.board.size,
             "board": game.board.grid,
             "last": game.previousMove
         }//postData
         
+        var postData = JSON.stringify({"options":options,"moveData":moveData});
+        
         //send {options,postdata} to server.
+        
     }
 }
