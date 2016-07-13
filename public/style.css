@@ -1,5 +1,6 @@
 
 
+
 .board_boxes {
     fill: #2F80ED;
 }
@@ -82,13 +83,14 @@ h1{
     display: none;
 }
 
-.board-size {
+.board-size, .game-type {
      list-style-type:none;
      margin: 0 0 0 0;
      padding:0;
 }
 
-.board-size li {
+
+.board-size li, .game-type li {
     float:left;
     margin:0 5px 0 0;
     width:150px;
@@ -96,9 +98,13 @@ h1{
     position:relative;
 }
 
+.game-type{
+    padding-top:120px;
+}
 
 
-.board_size {
+
+.board_size , .game_type{
     display:block;
     position:absolute;
     top:0;
@@ -119,11 +125,19 @@ h1{
     z-index:90;
 }
 
-.game_type{
-    padding-top: 120px;
+
+.game_type svg{
+    fill: #2F80ED;
+}
+.game_type_clicked svg{
+    fill: #C3D8F0;
 }
 
-.board_size_clicked {
+.board_size_clicked{
+    background-color: #2F80ED;     /* medium color */
+    color:#C3D8F0;                 /* light color */
+}
+.game_type_clicked {
     background-color: #2F80ED;     /* medium color */
     color:#C3D8F0;                 /* light color */
 }

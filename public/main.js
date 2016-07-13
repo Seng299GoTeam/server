@@ -10,6 +10,7 @@ var theme = new Theme();
 var game;
 
 var boardSize = 9;
+var gameType = "hotseat";
 
 ui.show ( "startPage");
 
@@ -63,9 +64,15 @@ function boardSizeChoser ( boardSizeOption ){
 
 }
 
-
-
-        
+function gameTypeChoser ( gameTypeOption ){
+    ui.updateTypeButton( gameTypeOption );
+    
+    /*
+    if  ( gameTypeOption == "ai" ){
+        ui.showUIoptions();
+    }
+    */
+}
     
     
 

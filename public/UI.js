@@ -107,10 +107,24 @@ end(){
 
 updateSizeButton(boardSizeOption){
     $("#size_" + boardSize).removeClass ( "board_size_clicked");
-    theme.buttonSelectorUpdator();
+
     boardSize = boardSizeOption;
     $("#size_" + boardSize).addClass ( "board_size_clicked"  );
     theme.buttonSelectorUpdator();
+}
+
+updateTypeButton(gameTypeOption){
+
+    $("#type_" + gameType ).removeClass ( "game_type_clicked");
+    gameType = gameTypeOption;
+    $("#type_" + gameType ).addClass ( "game_type_clicked"  );
+    
+    theme.gameTypeUpdator();
+    
+}
+
+showaiOptions(){
+    
 }
 
 }

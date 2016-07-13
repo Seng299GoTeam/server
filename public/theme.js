@@ -41,6 +41,7 @@ var Theme = function Theme(){
         this.updateWorker();
         this.buttonSelectorUpdator();
         this.buttonStartGameUpdator();
+        this.gameTypeUpdator();
     }
     this.buttonStartGameUpdator = function(){
         $("#start_game_button").css("background-color", this.lightColor);
@@ -52,8 +53,16 @@ var Theme = function Theme(){
         
         $(".board_size_clicked").css("color", this.lightColor);
         $(".board_size_clicked").css("background-color", this.mediumColor);
-
         
+    }
+    this.gameTypeUpdator = function(){
+        $(".game_type").css("color", this.mediumColor);
+        $(".game_type").css("background-color", this.lightColor);
+        $(".game_type svg").css("fill", this.mediumColor);
+
+        $(".game_type_clicked").css("color", this.lightColor);
+        $(".game_type_clicked").css("background-color", this.mediumColor);
+        $(".game_type_clicked svg").css("fill", this.lightColor);
     }
     
     this.updateWorker= function( ){
@@ -73,6 +82,14 @@ var Theme = function Theme(){
         $(".board_size_clicked").css("background-color", medium);
 
 
+        $(".game_type").css("color", this.mediumColor);
+        $(".game_type").css("border-color", this.mediumColor);
+        $(".game_type svg").css("fill", medium);
+        
+        $(".game_type_clicked").css("color", light);
+        $(".game_type_clicked").css("background-color", medium);
+        $(".game_type_clicked svg").css("fill", light);
+        
         
         $(".board_boxes").css("fill", this.mediumColor);
         $(".board_lines").css("stroke", this.darkColor);
@@ -94,6 +111,7 @@ var Theme = function Theme(){
 
         
     }
+    
 }
 
 
