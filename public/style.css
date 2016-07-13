@@ -119,6 +119,10 @@ h1{
     z-index:90;
 }
 
+.game_type{
+    padding-top: 120px;
+}
+
 .board_size_clicked {
     background-color: #2F80ED;     /* medium color */
     color:#C3D8F0;                 /* light color */
