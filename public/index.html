@@ -5,11 +5,25 @@
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
     </head>
-    <body>
+    <body class="blue-thme">
         <div id="main_container">
-        <div id="logo">
-            <h1><div id="go-word">GO</div>GAME</h1>
+            <div id="first_menu">
+                <div class="small_container">
+                    <div id="logo">
+                        <h1><div id="go-word">GO</div>GAME</h1>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div id= "second_menu">
+            <div class="small_container">
+                <img class="circle_chooser" onclick="colorChanger('blue')" src="icons/orange.png">
+                <img class="circle_chooser" onclick="colorChanger('pink')" src="icons/orange.png">
+                <img class="circle_chooser" onclick="colorChanger('purple')" src="icons/orange.png">
+            </div>
         </div>
+        
+
         
         <!----------------> 
         <!-- Start Page -->
@@ -17,18 +31,17 @@
         
             <ul class="board-size">
                 <li>
-                    <input type="radio" id="9" name="selected_size" checked="checked" />
-                    <label for="9"> 9 </label>
+                    <div id= "size_9" onclick="boardSizeChoser(9)" class="board_size board_size_clicked" > 9 </div>
                 </li>
                 <li>
-                    <input type="radio" id="13" name="selected_size" />
-                    <label for="13"> 13 </label>
+                    <div id= "size_13" onclick="boardSizeChoser(13)" class="board_size"> 13 </div>
                 </li>
                 <li>
-                    <input type="radio" id="19" name="selected_size"  />
-                    <label for="19"> 19 </label>
+                    <div id= "size_19" onclick="boardSizeChoser(19)" class="board_size "> 19 </div>
                 </li>
             </ul>
+
+            
             
             <div id="start_game_button" onclick="startNewGame()"> Start Game </div>
         
@@ -51,7 +64,9 @@
         <script src="libraries/go.js"></script>
         <script src="libraries/game.js"></script>
         <script src="UI.js"></script>
+        <script src="theme.js"></script>
         <script src="main.js"></script>
+       
         
         
         </div>

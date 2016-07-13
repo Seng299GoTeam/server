@@ -10,7 +10,9 @@ function makeLine(x1, y1, x2, y2, color, stroke) {
     e.setAttribute("x2", x2);
     e.setAttribute("y2", y2);
 
-    e.style.stroke      = color || "#000000";
+    e.setAttribute("class", color );
+    e.style.stroke = theme.darkColor;
+    
     e.style.strokeWidth = stroke || 2;
 
     return e;
@@ -23,9 +25,10 @@ function makeRectangle(x, y, w, h, c){
     rect.setAttribute("y", y);
     rect.setAttribute("width", w);
     rect.setAttribute("height", h);
-
-    rect.style.fill = c ;
-    return rect; 
+    
+    rect.style.fill = theme.mediumColor ;
+    rect.setAttribute("class", c );
+    return rect;  
 }
 
 function makeCircle(x, y, r, c){

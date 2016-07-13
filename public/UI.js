@@ -41,17 +41,17 @@ board(state){
     
     
     
-    svg.append ( makeRectangle( 0 , 0 , frame , (sw*(nol-1))+(2*frame) ,"#2F80ED"));
-    svg.append ( makeRectangle( 0 , 0 , (sw*(nol-1))+(2*frame) , frame ,"#2F80ED"));
-    svg.append ( makeRectangle( (sw*(nol-1))+frame , 0 , frame , (sw*(nol-1))+(2*frame) ,"#2F80ED"));
-    svg.append ( makeRectangle( 0 , (sw*(nol-1))+frame , (sw*(nol-1))+(2*frame), frame ,"#2F80ED"));
+    svg.append ( makeRectangle( 0 , 0 , frame , (sw*(nol-1))+(2*frame) ,"board_boxes"));
+    svg.append ( makeRectangle( 0 , 0 , (sw*(nol-1))+(2*frame) , frame ,"board_boxes"));
+    svg.append ( makeRectangle( (sw*(nol-1))+frame , 0 , frame , (sw*(nol-1))+(2*frame) ,"board_boxes"));
+    svg.append ( makeRectangle( 0 , (sw*(nol-1))+frame , (sw*(nol-1))+(2*frame), frame ,"board_boxes"));
     
     
-    svg.append ( makeRectangle( frame , frame , (sw*(nol-1)) , (sw*(nol-1)) ,"#2F80ED"));
+    svg.append ( makeRectangle( frame , frame , (sw*(nol-1)) , (sw*(nol-1)) ,"board_boxes"));
     for ( var i=0 ; i < nol ; i++){
         var x = (sw*i)+lw/2;
-        svg.append ( makeLine(  x+frame , 0+frame , x+frame , (sw*(nol-1))+lw+frame ,"#012B4B",5));
-        svg.append ( makeLine(  0+frame,  x+frame , (sw*(nol-1))+lw+frame , x+frame  , "#012B4B" , 5 ) );
+        svg.append ( makeLine(  x+frame , 0+frame , x+frame , (sw*(nol-1))+lw+frame ,"board_lines",5));
+        svg.append ( makeLine(  0+frame,  x+frame , (sw*(nol-1))+lw+frame , x+frame  , "board_lines" , 5 ) );
     }
     
     var loc = (frame+(lw/2));
@@ -103,6 +103,14 @@ state: A 2D array that has the 0,1,2 for empty, black, white respectively
 */
 end(){
     alert("game over");
-}          
+}    
+
+updateSizeButton(boardSizeOption){
+    $("#size_" + boardSize).removeClass ( "board_size_clicked");
+    theme.buttonSelectorUpdator();
+    boardSize = boardSizeOption;
+    $("#size_" + boardSize).addClass ( "board_size_clicked"  );
+    theme.buttonSelectorUpdator();
+}
 
 }
