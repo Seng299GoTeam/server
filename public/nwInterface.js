@@ -1,3 +1,4 @@
+//This is comment to try and git commit
 //For use on client-side
 //Assumes go and Game have been included.
 //checkGame,getGame,setGame
