@@ -3,6 +3,7 @@
 var express    = require("express");
 var http = require("http");
 var bodyparser = require("body-parser");
+var numeric = require("numeric");
 
 //Load from ai.js
 var ai = require("./ai.js");
@@ -43,6 +44,18 @@ app.post("/moron",function (req,res){
 	
 	//Plays in the first valid spot from top left
 	var moronAI = new ai.basicAI();	
+	var move = moronAI.getMove(req.body);
+	
+	res.send(JSON.stringify(move));
+});// post to ai
+
+app.post("/untrained",function (req,res){
+    console.log("POST Request to: /untrained");
+	
+	//An ANN which has not been trained:
+    var layer1 = numeric.random([81,81]);
+    
+	var moronAI = new ai.ANN();
 	var move = moronAI.getMove(req.body);
 	
 	res.send(JSON.stringify(move));

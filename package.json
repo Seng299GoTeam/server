@@ -13,12 +13,15 @@
     "express": "^4.13.4"
   },
   "devDependencies": {
-    "body-parser": "^1.15.2"
+    "body-parser": "^1.15.2",
+    "numeric": "^1.2.6"
   },
   "config": {
     "blanket": {
-        "pattern": ["public/libraries/Game.js"],
-        "data-cover-never": "node_modules"
+      "pattern": [
+        "public/libraries/Game.js"
+      ],
+      "data-cover-never": "node_modules"
     }
   }
 }
