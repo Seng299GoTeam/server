@@ -31,7 +31,7 @@ describe("Game tester",function(){
         game.attemptMove(move,callback,errback);
        
         assert(!successful,"Errback callback was not called");
-        assert(game.board.grid[0][0] == 0, "Board invalid move was applied");
+        assert(game.board.grid[0][0] == 0, "Invalid move was applied to board");
     });
     
     it("should detect the end of a game",function(){
@@ -49,6 +49,20 @@ describe("Game tester",function(){
         game.attemptMove(move,callback2,errback2,endOfGame);
        
         assert(gameover,"Game over callback was not called");
+    });
+    
+    it("should still work if optional endgame callback was not specified",function(){
+        var game = new Game("hotseat",9);
+       
+        var gameover = false;
+        var callback2 = ()=>(gameover=false);
+        var errback2 = (err)=>(gameover=false);
+       
+        var move = new go.Move(0,0,1,true);
+        game.attemptMove(move,callback2,errback2);
+       
+        var move = new go.Move(0,0,2,true);
+        game.attemptMove(move,callback2,errback2);
     });
     
     it("should not allow player to play out of order",function(){
