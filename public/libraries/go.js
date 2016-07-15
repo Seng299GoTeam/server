@@ -530,6 +530,9 @@ go.Move = function Move(x,y,c,p){
     this.y = y;      //integer
     this.colour = c; //colour, 1 or 2
     this.pass = p;   //pass, true or false
+    
+    //Just realized we need a Move.c, but I'm too lazy to go and find it.
+    this.c = c;      
 }
 
 module.exports = go;
