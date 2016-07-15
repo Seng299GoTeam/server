@@ -76,7 +76,6 @@ ai.ANN.prototype.getMove = function(data){
     
     //Deal with input
     var grid = data.board;
-    console.log(grid);
     var board = new go.Board(data.board);
     board.parse();
 	var player = (data.last.c == 1 ? 2: 1);
@@ -87,15 +86,12 @@ ai.ANN.prototype.getMove = function(data){
     for (var i = 0; i < grid.length; i++){
         for (var j = 0; j < grid.length; j++){
             var cur = grid[i][j];
-            console.log(grid[i][j]);
             if(cur != 0){
                 cur = (cur == player? 1 : -1);  //AI sees own pieces as 1, enemy as -1
             }
             boardVec[9*j + i] = cur;
         }//for j
     }//for i
-    
-    console.log("board converted: " + boardVec);
     
     var layer1 = numeric.random([81,81]);
     //console.log(layer1);
