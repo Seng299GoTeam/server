@@ -14,7 +14,9 @@
   },
   "devDependencies": {
     "body-parser": "^1.15.2",
-    "numeric": "^1.2.6"
+    "node-random-name": "^1.0.1",
+    "numeric": "^1.2.6",
+    "random-name": "^0.1.1"
   },
   "config": {
     "blanket": {

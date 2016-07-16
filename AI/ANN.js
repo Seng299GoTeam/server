@@ -2,6 +2,7 @@ var go = require("../public/libraries/go.js");
 var Game = require("../public/libraries/Game.js");
 var numeric = require("numeric");
 var ai = require("./ai.js");
+var randomName = require("node-random-name");
 
 /*Note to self: this is expected format of the input
 {
@@ -29,11 +30,29 @@ ANN.prototype.constructor = function ANNCon(){
 }*/
 //Can't get constructor to work;
 ANN.prototype.postConstructor = function(){
+    this.gender = (Math.random() > 0.5? "male" : "female");
+    this.firstName = randomName({random:Math.random,first:true,gender:this.gender});
+    this.lastName = randomName({random:Math.random,last:true});
+    this.patronymic = ""; //Son/Daughter of ..., for tracking ancestry somewhat
+    this.title = "";      //i.e. "The first Gomega, he of many generations, etc.
+    this.generationsSurvived = 0;
+    
     var layers = [];
     for(var i = 0; i < 4; i++){
         layers[i] = balancedRandomMatrix(83,81);
     }
     this.layers = layers;
+}
+//Takes a (parsed) json object and updates ANN to match it.
+ANN.prototype.restoreFromJSON = function(jsonObject){
+    this.gender = jsonObject.gender;
+    this.firstName = jsonObject.firstName;
+    this.lastName = jsonObject.lastName;
+    this.patronymic = jsonObject.patronymic;
+    this.title = jsonObject.title;
+    this.generationsSurvived = jsonObject.title;
+    
+    this.layers = jsonObject.layers;
 }
 ANN.prototype.getMove = function(data){
     //Do some error checking at some point in future

@@ -25,7 +25,6 @@ var ai = {};
 
 //"Abstract" class
 ai.AI = function AI(){
-	this.name = "Nameless AI";
 	
 	//Take the input from the request, return a move.
 	this.getMove = function(data){
