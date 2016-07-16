@@ -7,6 +7,7 @@ var numeric = require("numeric");
 
 //Load from ai.js
 var ai = require("./ai.js");
+var ANN = require("./ANN.js");
 
 var app = express();
 
@@ -55,8 +56,10 @@ app.post("/untrained",function (req,res){
 	//An ANN which has not been trained:
     var layer1 = numeric.random([81,81]);
     
-	var moronAI = new ai.ANN();
-	var move = moronAI.getMove(req.body);
+	//var moronAI = new ai.ANN();
+    var untrainedAI = new ANN();
+    untrainedAI.postConstructor();
+	var move = untrainedAI.getMove(req.body);
 	
 	res.send(JSON.stringify(move));
 });// post to ai
