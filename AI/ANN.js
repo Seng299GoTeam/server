@@ -42,7 +42,22 @@ ANN.prototype.getMove = function(data){
     var grid = data.board;
     var board = new go.Board(data.board);
     board.parse();
-	var player = (data.last.c == 1 ? 2: 1);
+    var player = 1;
+    if(data.last != null){
+        player = (data.last.c == 1 ? 2: 1);
+    }
+    var otherPlayer = (player == 1 ? 2 : 1);
+    
+    //If opponent passed and you have high score, also pass
+    //   (I didn't want to specify this, but the game never ends otherwise.)
+    if(data.last != null && data.last.pass){
+        board.score();
+        if(board.scores[player - 1] > board.scores[otherPlayer - 1]){
+            return new go.Move(0,0,player,true); //just pass, guaranteed to win
+        }
+    }
+    
+    
     
     //Convert board to 1D vector/array in correct input format:
     var boardVec = new Array(81); //Apparently this syntax is not ideal, but whatevs.
@@ -70,7 +85,7 @@ ANN.prototype.getMove = function(data){
     //Find highest value
     var highest = {value:-100000000,move:null} //value, move
     for (var i in result){
-        //Convery i to x and y coords
+        //Convert i to x and y coords
         var x = i % grid.length;
         var y = Math.floor(i / grid.length); //
         
@@ -85,11 +100,11 @@ ANN.prototype.getMove = function(data){
     }//for i in result
     
     numeric.largeArray = Infinity;
-    console.log(numeric.prettyPrint(result));
+    //console.log(numeric.prettyPrint(result));
     
     //Not going into production yet:
     if(highest.move != null){
-        console.log(JSON.stringify(highest.move));
+        //console.log(JSON.stringify(highest.move));
         return highest.move;
     }
     

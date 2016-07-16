@@ -30,9 +30,14 @@ var Game = function Game(type, size){
         }
     
         var result = this.board.validateMove(move);
+        
+        if(this.previousBoard){
+            result = this.board.validateMove(move,this.previousBoard.grid);
+        }
+        
         if(!result[0]){
             errback(result[1]); // result[1] contains informative error message
-        }else if (move.pass && (this.previousMove && this.previousMove.pass)){
+        }else if (move.pass && (this.previousMove != null && this.previousMove.pass)){
             if(winback){
                 winback();
             }else{
@@ -96,6 +101,17 @@ var Game = function Game(type, size){
         return true;
     }
     
+    
+    //Automatically generate the appropriate data for a request to the ai:
+    this.getMoveRequest = function(){
+        var data = {
+            size: this.board.size,
+            board: this.board.grid,
+            last: this.previousMove
+        }
+        
+        return data;
+    }//getMoveRequest
     
     
     //switch whose turn it is

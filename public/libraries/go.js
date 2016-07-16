@@ -54,6 +54,34 @@ go.Board = function Board(grid){
         console.log(s);
     }//drawBoard
     
+    this.toString = function(){
+        s = "";
+        //add horizontal index labels
+        for (var i = 0; i < this.size; i++){
+            s += i%10; //must only be one digit
+        }
+        s += "\n";
+    
+        // Draw actual board
+        for(var i = 0; i < this.size; i++){
+            for(var j = 0; j < this.size; j++){
+                switch(grid[j][i]){     //Draw as transpose to align with expectations
+                    case 1:
+                        s += "@"; // black
+                        break;
+                    case 2:
+                        s += "O"; // white
+                        break;
+                    default:
+                        s +="+";  //empty
+                }//switch
+            }
+            s += " " + i; // vertical index labels;
+            s += "\n";
+        }//outer For
+        return s;
+    }
+    
     //Analyze grid, overwriting "armies" and "stones" with up-to-date values
     this.parse = function(){
         this.stones = [];
@@ -141,9 +169,9 @@ go.Board = function Board(grid){
             }//for j
         }//for i
         
-        //Also divide into territories and get score
-        // (might be nice for live stats/territory highlighting or something)
-        this.score();
+        //I've decided to only call score when necessary,
+        //  To cut down on overhead.
+        //this.score();
     }//parse
     
     
@@ -352,7 +380,9 @@ go.Board = function Board(grid){
     
     //Return [true,""] if move is valid,
     // [false,errormessage] otherwise
-    this.validateMove = function(move){
+    //  prevBoard should be a grid (not a Board object), and is optional
+    //    (ko rule will not be evaluated without prevBoard);
+    this.validateMove = function(move,prevBoard){
         var x = move.x;
         var y = move.y;
         var colour = (move.colour == 1?"black":"white");
@@ -374,7 +404,26 @@ go.Board = function Board(grid){
             return [false,"Invalid move: Suicide"];
         }
         
-        //Could check for Ko rule here, if we have some sort of game history somewhere.
+        //Check ko rule if possible:
+        //   (note that just checking whether the previous stone was captured is not sufficient)
+        if(prevBoard){
+            var identical = true;
+            for(var i = 0; i < prevBoard.length; i++){
+                for(var j = 0; j < prevBoard.length; j++){
+                    if(resultingBoard.grid[i][j] != prevBoard[i][j]){
+                        identical = false;
+                        break;
+                    }
+                }//for j
+                if(!identical){
+                    break;
+                }
+            }//for i
+            
+            if(identical){
+                return [false,"Invalid move: Ko rule"];
+            }
+        }//if evaluate ko rule
         
         return [true,""];
     }//validateMvoe
