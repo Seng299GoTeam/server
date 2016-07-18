@@ -21,7 +21,7 @@ app.use(express.static('public'));
 //Load up whatever the current best ANN AI is.
 var mainAI = new ANN();
 mainAI.postConstructor;
-AIwrangler.poolFromFile("mainGenePoolBackup.json",function(pool){
+AIwrangler.poolFromFile("mainGenePool.json",function(pool){
     mainAI = pool[0];
 });
 
