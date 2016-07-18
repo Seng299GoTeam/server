@@ -8,6 +8,7 @@ var numeric = require("numeric");
 //Load from ai.js
 var ai = require("./ai.js");
 var ANN = require("./ANN.js");
+var AIwrangler = require("./evolution.js");
 
 var app = express();
 
@@ -17,6 +18,12 @@ app.use(bodyparser.json());
 // server static files from the public/ directory.
 app.use(express.static('public'));
 
+//Load up whatever the current best ANN AI is.
+var mainAI = new ANN();
+mainAI.postConstructor;
+AIwrangler.poolFromFile("mainGenePoolBackup.json",function(pool){
+    mainAI = pool[0];
+});
 
 
 
@@ -53,13 +60,17 @@ app.post("/moron",function (req,res){
 app.post("/untrained",function (req,res){
     console.log("POST Request to: /untrained");
 	
-	//An ANN which has not been trained:
-    var layer1 = numeric.random([81,81]);
-    
-	//var moronAI = new ai.ANN();
     var untrainedAI = new ANN();
     untrainedAI.postConstructor();
 	var move = untrainedAI.getMove(req.body);
+	
+	res.send(JSON.stringify(move));
+});// post to ai
+
+app.post("/neuralnetwork",function (req,res){
+    console.log("POST Request to: /neuralnetwork");
+	
+	var move = mainAI.getMove(req.body);
 	
 	res.send(JSON.stringify(move));
 });// post to ai

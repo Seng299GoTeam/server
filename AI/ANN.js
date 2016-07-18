@@ -50,7 +50,7 @@ ANN.prototype.restoreFromJSON = function(jsonObject){
     this.lastName = jsonObject.lastName;
     this.patronymic = jsonObject.patronymic;
     this.title = jsonObject.title;
-    this.generationsSurvived = jsonObject.title;
+    this.generationsSurvived = jsonObject.generationsSurvived;
     
     this.layers = jsonObject.layers;
 }
@@ -128,6 +128,9 @@ ANN.prototype.getMove = function(data){
     }
     
     return new go.Move(0,0,player,true); //just pass
+}
+ANN.prototype.fullName = function(){
+    return this.firstName + " " + this.lastName + this.title + this.patronymic;
 }
 
 module.exports = ANN;

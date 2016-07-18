@@ -4,9 +4,21 @@ var numeric = require("numeric");
 var go = require("../public/libraries/go.js");
 var Game = require("../public/libraries/Game.js");
 var fs = require("fs");
+var randomName = require("node-random-name");
 //Load AI stuff:
 var ai = require("./ai.js");
 var ANN = require("./ANN.js");
+
+
+var AIwrangler = {}
+AIwrangler.conductGame = conductGame;
+AIwrangler.tournament = tournament;
+AIwrangler.poolFromFile = poolFromFile;
+AIwrangler.poolToFile = poolToFile;
+AIwrangler.listNames = listNames;
+AIwrangler.createPool = createPool;
+AIwrangler.reproduce = reproduce;
+module.exports = AIwrangler;
 
 //Conduct a game, passing in two AIs and a callback, and optionally logging the successive boards
 //   Callback should take a Board object, for information about the game result
@@ -59,7 +71,7 @@ function conductGame(p1,p2,callback,logOutput){
 
 //Conduct a round-robin tournament;
 // Takes an array of AIs.
-// Ranks them by average score as % vs. opponents.
+// Ranks them by number of wins.
 function tournament(players){
     var numPlayers = players.length;
     
@@ -75,14 +87,18 @@ function tournament(players){
         }
     }
     
-    
+    var numGames = ((numPlayers)*(numPlayers - 1))/2;
+    var gamesCompleted = 0;
     //Actually play the tournament
     for(var i = 0; i < numPlayers - 1; i++){
         for(var j = i + 1; j < numPlayers; j++){
-            console.log("Player " + i + " vs. Player " + j + ":");
             //Two games so neither player has the play first advantage.
             conductGame(players[i],players[j],updateScores(i,j),false);
             conductGame(players[j],players[i],updateScores(j,i),false);
+            gamesCompleted += 1;
+            if(gamesCompleted % 10 == 0){
+                console.log(gamesCompleted + "/" + numGames + " completed");
+            }
         }
     }//tournamentBody
     
@@ -121,13 +137,9 @@ function tournament(players){
         return bratio - aratio;
     }//compare
     
+    //Return the full results, in sorted order.
     participants.sort(compare);
-    //List results:
-    for(var i in participants){
-        var item = participants[i];
-        var s = item.ai.firstName + " " + item.ai.lastName + ": " + item.wins + " wins, ratio: " + item.ratio;
-        console.log(s);
-    }
+    return participants;
 }//tournament
 
 
@@ -152,12 +164,14 @@ function poolFromFile(path,callback){
 }
 
 //Save a gene pool to a path:
-function poolToFile(pool,path){
+function poolToFile(pool,path,callback){
     var data = JSON.stringify(pool);
     
     fs.writeFile(path,data,function(err) {
         if(err){
             console.log("Error writing to file.");
+        }else if(callback){
+            callback();
         }
     });
 }
@@ -178,26 +192,72 @@ function listNames(genePool){
 }
 
 //Create a pool of size n, save to files
-function createPool(poolName, n){
+function createPool(n){
     var genePool = [];
     for (var i = 0; i < n; i++){
         genePool[i] = new ANN();
         genePool[i].postConstructor();
     }
     
-    poolToFile(genePool,poolName + ".txt");
-    
-    
-    fs.writeFile(poolName + "names.txt", listNames(genePool));
-    
     return genePool;
 }
+
+//Return a new ANN that is the offspring of parentA and parentB
+function reproduce(parentA,parentB){
+    var child = {};
+    child.gender = (Math.random() > 0.5? "male" : "female");
+    
+    //Name stuff:
+    child.firstName = randomName({random:Math.random,first:true,gender:child.gender});
+    child.lastName = parentA.lastName;
+    //Chance of hyphenated last name:
+    if(Math.random() < 0.05){
+        child.lastName = parentA.lastName + "-" + parentB.lastName;
+    }
+    
+    child.title = "";
+    child.patronymic = ", " + (child.gender == "male"? "son" : "daughter") + " of " + parentA.fullName();
+    child.generationsSurvived = 0;
+    
+    child.layers = [];
+    
+    //The important part - combine the actual neural networks.
+    for(var i = 0; i < parentA.layers.length; i++){
+        //combine each row by random midpoint selection.
+        var mutationRate = 0.01; //1% mutation rate
+        var A = parentA.layers[i];
+        var B = parentB.layers[i];
+        
+        var curLayer = [];
+        for (var j = 0; j < A.length; j++){
+            curLayer[j] = [];
+            //Choose a random midpoint:
+            var mid = Math.floor(Math.random()*A.length);
+            for(var k = 0; k < A[0].length; k++){
+                //Choose which parent's genome to use
+                curLayer[j][k] = (k < mid? A[j][k] : B[j][k]);
+                
+                //Possible mutation:
+                if(Math.random() < mutationRate){
+                    curLayer[j][k] = Math.random()*2 - 1;
+                }
+            }//For columns
+        }//For rows
+        
+        child.layers[i] = curLayer;
+    }//for each layer
+    
+    var finalChild = new ANN();
+    finalChild.restoreFromJSON(child);
+    return finalChild;
+}//Reproduce
+
 
 //main, for testing:
 function main(){
     poolFromFile("contestants.txt",(pool) => (console.log(listNames(pool))) );
     
-    //createPool("contestants",15);
+    //createPool(15);
     //conductEvolution(genePool);
 }
-main();
+//main();
