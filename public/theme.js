@@ -12,9 +12,9 @@ var Theme = function Theme(){
         },
         
         purple: {
-            lightColor: "#D2CCDC" ,
+            lightColor: "#D2CCDC"  ,
             mediumColor: "#6D4F99",
-            darkColor: "#36274C", 
+            darkColor: "#36274C" , 
         },
     }
     
