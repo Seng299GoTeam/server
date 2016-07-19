@@ -49,7 +49,7 @@ var Game = function Game(type, size){
             
             this.board = this.board.play(move);
             this.changeCurrentTurn();
-            callback();
+            callback(move);
         }
     }//attemptMove
     
