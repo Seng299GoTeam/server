@@ -12,11 +12,15 @@ var game;
 //var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
 var ai = new aiInterface('localhost','/okai','3001');
 
+
+// Used by startgame
 var boardSize = 9;
 var gameType = "hotseat";
 
-ui.show ( "startPage");
 
+
+// Show the default Page
+ui.show ( "startPage");
 
 
 
@@ -33,6 +37,9 @@ function boardClickHandler(x,y){
     game.attemptMove(move,successfulMove,invalidMove);
 }
 
+
+
+
 function successfulMove (){          // What should happen if a move is successfull
     ui.board(game.board.grid);
     if(game.gameType == "ai"){
@@ -47,6 +54,9 @@ function invalidMove ( message ){    // What should happen if a move is invalid
 function gameEnds (){               // What should happen if the move results to end the game
     ui.end()
 }
+
+
+
 function pass(){
     function successfulMove (){          // What should happen if a move is successfull
         ui.board(game.board.grid);
@@ -80,6 +90,13 @@ function aiMoveTemp(move){
 function successfulAiMove(){
     ui.board(game.board.grid);
 }
+
+
+
+
+
+
+
 
 function colorChanger( themeName ){
     theme.update ( themeName );
