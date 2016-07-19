@@ -3,7 +3,6 @@ main.js is reponsible for handling all user's events of any page.
 */
 
 
-
 console.log("Initalizing Page...."); 
 var ui = new UI();
 var theme = new Theme();
@@ -23,7 +22,7 @@ ui.show ( "startPage");
 
 
 function startNewGame(){
-    game = new Game ( "hotseat", selected );
+    game = new Game ( "ai", boardSize );
     ui.board(game.board.grid );
     ui.show ( "boardPage" );
 }
@@ -51,6 +50,9 @@ function gameEnds (){               // What should happen if the move results to
 function pass(){
     function successfulMove (){          // What should happen if a move is successfull
         ui.board(game.board.grid);
+		if(game.gameType == "ai"){
+			ai.getMove(game,10,aiMoveTemp,function(){});
+		}
     }
     function invalidMove ( message ){    // What should happen if a move is invalid
         ui.invalid( message );
@@ -61,6 +63,10 @@ function pass(){
     
     var move = new go.Move (-1, -1, game.currentPlayer , true);
     game.attemptMove(move,successfulMove,invalidMove, gameEnds);
+	
+    if(game.gameType == "ai"){
+        ai.getMove(game,10,aiMoveTemp,function(){});
+    }
 }
 
 //TEMP: This is just for testing that we can deal with ai moves.
