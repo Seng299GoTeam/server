@@ -45,7 +45,6 @@ var Theme = function Theme(){
     }
     this.buttonStartGameUpdator = function(){
         $("#start_game_button").css("background-color", this.lightColor);
-
     }
     this.buttonSelectorUpdator = function(){
         $(".board_size").css("color", this.mediumColor);
@@ -55,6 +54,20 @@ var Theme = function Theme(){
         $(".board_size_clicked").css("background-color", this.mediumColor);
         
     }
+    this.dropDownUpdator = function(){
+        console.log ( "xxxx")
+        
+        $(".drop_down_item").css("color", this.mediumColor);
+        $(".drop_down_item").css("background-color", this.lightColor);
+        
+        $(".drop_down_chosen").css("color", this.lightColor);
+        $(".drop_down_chosen").css("background-color", this.mediumColor);
+        
+    }
+    
+    
+    
+    
     this.gameTypeUpdator = function(){
         $(".game_type").css("color", this.mediumColor);
         $(".game_type").css("background-color", this.lightColor);
@@ -71,7 +84,7 @@ var Theme = function Theme(){
         
         $("#first_menu").css("background-color", this.darkColor);
         $("#second_menu").css("background-color", this.mediumColor);
-          $("body").css("background-color", this.lightColor); 
+         $("body").css("background-color", this.lightColor); 
 
         $("h1").css("color", this.lightColor);
         
@@ -108,8 +121,13 @@ var Theme = function Theme(){
             $(this).css("color", medium);
             $(this).css("background-color", light);
         });
-
         
+        
+        $(".drop_down").css("fill", this.mediumColor);
+        $(".drop_down_item").css("color", this.mediumColor);
+        $(".drop_down_item").css("background-color", this.lightColor);
+        $(".drop_down_chosen").css("background-color", this.mediumColor);
+        $(".drop_down_chosen").css("color", this.lightColor);
     }
     
 }

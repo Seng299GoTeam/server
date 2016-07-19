@@ -16,6 +16,7 @@ var ai = new aiInterface('localhost','/neuralnetwork','3001');
 // Used by startgame
 var boardSize = 9;
 var gameType = "hotseat";
+var aiType = "simonAI"
 
 
 
@@ -110,14 +111,17 @@ function boardSizeChoser ( boardSizeOption ){
 function gameTypeChoser ( gameTypeOption ){
     ui.updateTypeButton( gameTypeOption );
     
-    /*
+    
     if  ( gameTypeOption == "ai" ){
-        ui.showUIoptions();
+        ui.showAIoptions();
     }
-    */
+    
 }
     
+function aiTypeChoser ( aiType ){
     
+    ui.updateAItype( aiType );
+}
 
 
 

@@ -114,17 +114,34 @@ updateSizeButton(boardSizeOption){
 }
 
 updateTypeButton(gameTypeOption){
-
+    $(".drop_down").css('display','none');
+    $(".drop_down_text_group").css('display','none');
+    $(".drop_down_item").css('display','none');
+    $(".drop_down_chosen").css('display','none');
+    
+    
     $("#type_" + gameType ).removeClass ( "game_type_clicked");
     gameType = gameTypeOption;
     $("#type_" + gameType ).addClass ( "game_type_clicked"  );
     
     theme.gameTypeUpdator();
-    
 }
 
-showaiOptions(){
+showAIoptions(){
+    $(".drop_down").css('display','block');
+    $(".drop_down_text_group").css('display','block');
+    $(".drop_down_item").css('display','block');
+    $(".drop_down_chosen").css('display','block');
+
+}
+
+
+updateAItype( aiTypeOption ){
+    $("#type_" + aiType ).removeClass ( "drop_down_chosen");
+    aiType = aiTypeOption;
+    $("#type_" + aiType ).addClass ( "drop_down_chosen"  );
     
+    theme.dropDownUpdator();
 }
 
 }
