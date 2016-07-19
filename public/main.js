@@ -10,7 +10,7 @@ var game;
 
 
 //var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
-var ai = new aiInterface('localhost','/neuralnetwork','3001');
+var ai = new aiInterface('localhost','/okai','3001');
 
 var boardSize = 9;
 var gameType = "hotseat";
