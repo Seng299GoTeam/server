@@ -69,7 +69,8 @@ class MongoDB {
 		var collection = this._db.collection("Games");
 		
 		collection.insertOne(game, function(err, result) {
-			if(err != null) {
+			if(err) {
+				console.log("ERROR adding game: " + err);
 				callback(null, err);
 			} else {
 				console.log("Create a game with an id equal to " + result.ops[0]._id);
@@ -94,6 +95,7 @@ class MongoDB {
 			if(result.result.ok == 1 && result.result.n == 1){
 				callback(null);
 			} else {
+				console.log("ERROR: Did not update any games");
 				callback("Did not update any games");
 			}
 		});
@@ -111,11 +113,13 @@ class MongoDB {
 		
 		collection.find({"_id": id}).toArray(function(err,items){
 			if(err) {
+				console.log("ERROR getting game: " + err);
 				callback(null, err);
 			} else if(items[0] != null){
 				console.log("Retrieved game with id: " + items[0]._id);
 				callback(items[0], err);
 			} else {
+				console.log("Error: No games found with id: " + id);
 				callback(null, "No games found");
 			}
         });
@@ -132,9 +136,11 @@ class MongoDB {
 		var collection = this._db.collection("Games");
 		
 		collection.find({"_id": id}).toArray(function(err,items){
-			if(err) {	
+			if(err) {
+				console.log("ERROR: Could not get game player. " + err)
 				callback(null, err);
 			} else {
+				console.log("Items object: " + items);
 				callback(items[0].player, err);
 			}
         });
@@ -153,11 +159,11 @@ class MongoDB {
 		
 		collection.deleteOne({ "_id" : id }, function(err, result) {
 			
-			
-			
 			if(!err && (result.result.ok !== 1 || result.result.n !== 1)){
+				console.log("ERROR: Did not remove any games");
 				callback("Did not remove any games");
 			} else if(err) {
+				console.log("ERROR removing games: " + err);
 				callback(err);
 			}else {
 				console.log("Removed the document with the field _id equal to " + id);
