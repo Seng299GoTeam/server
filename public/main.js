@@ -8,9 +8,15 @@ var ui = new UI();
 var theme = new Theme();
 var game;
 
+var availableAIs = [];
+availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/maxLibs','30000'));
+availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/attackEnemy','30000'));
+availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/formEyes','30000'));
+availableAIs.push(new aiInterface('localhost','/okai','3001'));
+availableAIs.push(new aiInterface('localhost','/neuralnetwork','3001'));
 
 //var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
-var ai = new aiInterface('localhost','/okai','3001');
+var ai = availableAIs[4];
 
 
 // Used by startgame
