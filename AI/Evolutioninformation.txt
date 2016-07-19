@@ -1,93 +1,93 @@
 Previous generation fitnesses:
-Kasi Orzalli, daughter of Winford Orzalli, son of Porsha Orzalli, daughter of Marc Orzalli, son of Ok Orzalli, daughter of Pat Orzalli, son of Timothy Orzalli, son of Rene Orzalli, son of Shantelle Orzalli (2):
- 0.04482758620689655, 39 wins
-Douglass Hano, son of Felice Hano, daughter of Taisha Hano, daughter of Dannielle Hano, daughter of Tennille Hano, daughter of Alethia Hano (1):
- 0.041379310344827586, 36 wins
-Brent Kontogianis, son of Ariel Kontogianis, daughter of Horace Kontogianis (1):
- 0.041379310344827586, 36 wins
-Noel Pacini, son of Marty Pacini, son of Dione Pacini, daughter of Lita Pacini, daughter of Mirtha Pacini (0):
- 0.03908045977011494, 34 wins
-Lacy Mein, son of Herschel Mein, son of Bailey Mein (1):
- 0.03793103448275862, 33 wins
-Jorge Orzalli, son of Raquel Orzalli, daughter of Gretchen Orzalli, daughter of Drema Orzalli, daughter of Shalonda Orzalli, daughter of Dionna Orzalli, daughter of Morton Orzalli, son of Pat Orzalli, son of Timothy Orzalli, son of Rene Orzalli, son of Shantelle Orzalli (0):
- 0.03793103448275862, 33 wins
-Darnell Thornock, son of Riva Thornock, daughter of Ned Thornock, son of Marth Thornock, daughter of Stacey Thornock, daughter of Nenita Thornock, daughter of Ione Thornock, daughter of Sylvester Thornock, son of Denny Thornock, son of Lyle Thornock, son of Prudence Thornock (0):
- 0.0367816091954023, 32 wins
-Mika Mein, daughter of Lacy Mein, son of Herschel Mein, son of Bailey Mein (0):
- 0.0367816091954023, 32 wins
-Hosea Wintringham, son of Genaro Wintringham (0):
- 0.0367816091954023, 32 wins
-Sidney Pacini, son of Adam Pacini, son of Dione Pacini, daughter of Lita Pacini, daughter of Mirtha Pacini (0):
- 0.035632183908045977, 31 wins
-Kenya Hano, daughter of Felice Hano, daughter of Taisha Hano, daughter of Dannielle Hano, daughter of Tennille Hano, daughter of Alethia Hano (0):
- 0.035632183908045977, 31 wins
-Myles Kowalsky (0):
- 0.034482758620689655, 30 wins
-Laticia Mein, daughter of Lacy Mein, son of Herschel Mein, son of Bailey Mein (0):
- 0.034482758620689655, 30 wins
-Many Charles, daughter of Mohammed Charles, son of Damian Charles, son of Eleanora Charles, daughter of Rusty Charles, son of Vertie Charles, daughter of Eloisa Charles, daughter of Billi Charles, daughter of Solomon Charles, son of Leonard Charles, son of Hubert Charles, son of Cortney Charles, daughter of Frederick Charles, son of Art Charles, son of Jarod Charles, son of Tommy Charles, daughter of Tobias Charles, son of Apryl Charles, daughter of Deandre Charles, son of Jose Charles, daughter of Ciara Charles, daughter of Norman Charles (0):
- 0.03333333333333333, 29 wins
-Zona Hano, daughter of Felice Hano, daughter of Taisha Hano, daughter of Dannielle Hano, daughter of Tennille Hano, daughter of Alethia Hano (0):
- 0.03333333333333333, 29 wins
-Ayanna Eisele (0):
- 0.03218390804597701, 28 wins
-Stevie Orzalli, daughter of Kasi Orzalli, daughter of Winford Orzalli, son of Porsha Orzalli, daughter of Marc Orzalli, son of Ok Orzalli, daughter of Pat Orzalli, son of Timothy Orzalli, son of Rene Orzalli, son of Shantelle Orzalli (0):
- 0.03218390804597701, 28 wins
-Kelley Challen, son of Regenia Challen, daughter of Keely Challen, daughter of Jayna Challen, daughter of Mirella Challen (0):
- 0.03103448275862069, 27 wins
-Simonne Flanner (0):
- 0.03103448275862069, 27 wins
-Tom Charles, son of Shara Charles, daughter of Mohammed Charles, son of Damian Charles, son of Eleanora Charles, daughter of Rusty Charles, son of Vertie Charles, daughter of Eloisa Charles, daughter of Billi Charles, daughter of Solomon Charles, son of Leonard Charles, son of Hubert Charles, son of Cortney Charles, daughter of Frederick Charles, son of Art Charles, son of Jarod Charles, son of Tommy Charles, daughter of Tobias Charles, son of Apryl Charles, daughter of Deandre Charles, son of Jose Charles, daughter of Ciara Charles, daughter of Norman Charles (0):
- 0.03103448275862069, 27 wins
-Clinton Hagberg, son of Jackie Hagberg (0):
- 0.03103448275862069, 27 wins
-Linh Charles, daughter of Dennis Charles, daughter of Mohammed Charles, son of Damian Charles, son of Eleanora Charles, daughter of Rusty Charles, son of Vertie Charles, daughter of Eloisa Charles, daughter of Billi Charles, daughter of Solomon Charles, son of Leonard Charles, son of Hubert Charles, son of Cortney Charles, daughter of Frederick Charles, son of Art Charles, son of Jarod Charles, son of Tommy Charles, daughter of Tobias Charles, son of Apryl Charles, daughter of Deandre Charles, son of Jose Charles, daughter of Ciara Charles, daughter of Norman Charles (0):
- 0.029885057471264367, 26 wins
-Beatris Gabeline, daughter of Ethan Gabeline, son of Sirena Gabeline, daughter of Roman Gabeline, son of Hulda Gabeline, daughter of Avery Gabeline (0):
- 0.029885057471264367, 26 wins
-Courtney Wintringham, son of Genaro Wintringham (0):
- 0.029885057471264367, 26 wins
-Saul Thornock, son of Tera Thornock, daughter of Ned Thornock, son of Marth Thornock, daughter of Stacey Thornock, daughter of Nenita Thornock, daughter of Ione Thornock, daughter of Sylvester Thornock, son of Denny Thornock, son of Lyle Thornock, son of Prudence Thornock (0):
- 0.029885057471264367, 26 wins
-Valentin Thornock, son of Isiah Thornock, son of Ned Thornock, son of Marth Thornock, daughter of Stacey Thornock, daughter of Nenita Thornock, daughter of Ione Thornock, daughter of Sylvester Thornock, son of Denny Thornock, son of Lyle Thornock, son of Prudence Thornock (0):
- 0.028735632183908046, 25 wins
-Terina Thornock, daughter of Tera Thornock, daughter of Ned Thornock, son of Marth Thornock, daughter of Stacey Thornock, daughter of Nenita Thornock, daughter of Ione Thornock, daughter of Sylvester Thornock, son of Denny Thornock, son of Lyle Thornock, son of Prudence Thornock (0):
- 0.026436781609195402, 23 wins
-Lisa Cambria (0):
- 0.026436781609195402, 23 wins
-Lidia Challen, daughter of Duncan Challen, son of Leesa Challen, daughter of Mirella Challen (1):
- 0.02528735632183908, 22 wins
-Shawana Gabeline, daughter of Ethan Gabeline, son of Sirena Gabeline, daughter of Roman Gabeline, son of Hulda Gabeline, daughter of Avery Gabeline (0):
- 0.02528735632183908, 22 wins
+Lajuana Fouhy (1):
+Fitness 0.04482758620689655, 39 wins, for/against ratio: 1.3671738588176603
+Richard Poisso, son of Beau Poisso, son of Jerrie Poisso, daughter of Rayford Poisso, son of Numbers Poisso, son of Jae Poisso (3):
+Fitness 0.041379310344827586, 36 wins, for/against ratio: 1.2208442642499404
+Lawrence Gorley, daughter of Maureen Gorley (1):
+Fitness 0.040229885057471264, 35 wins, for/against ratio: 1.20162224797219
+Jewel Jewett, son of Amado Jewett (0):
+Fitness 0.040229885057471264, 35 wins, for/against ratio: 1.292441140024783
+Muoi Moline-Carethers, daughter of Shera Moline, daughter of Whitley Moline, daughter of Quinton Moline, son of Wyatt Moline, son of Alma Moline, daughter of Shenika Moline, daughter of Bobbie Moline, son of Alfred Moline, son of Isaura Moline, daughter of Kelle Moline, daughter of Sherill Moline, daughter of Ma Moline, daughter of Gus Moline, son of Morgan Moline (0):
+Fitness 0.040229885057471264, 35 wins, for/against ratio: 1.1683872447809132
+Lee Donnel (0):
+Fitness 0.03908045977011494, 34 wins, for/against ratio: 1.2057670126874278
+Sanford Jewett, son of Amado Jewett (0):
+Fitness 0.03793103448275862, 33 wins, for/against ratio: 1.1906516233018651
+Glennis Peers-Latella, daughter of Alina Peers-Latella, daughter of Jeffery Peers-Latella, son of Olin Peers-Latella, son of Shenika Peers-Latella, daughter of Tamatha Peers-Latella, daughter of Demetrius Peers-Latella, daughter of Lucia Peers (0):
+Fitness 0.0367816091954023, 32 wins, for/against ratio: 1.0593314146557449
+Ethelene Gorley, daughter of Maureen Gorley (0):
+Fitness 0.035632183908045977, 31 wins, for/against ratio: 1.0772797527047913
+Jaclyn Goold, daughter of Freida Goold, daughter of Paola Goold, daughter of Nilsa Goold, daughter of Madeline Goold, daughter of Buddy Goold, son of Elliot Goold, son of Cori Goold, daughter of Elvin Goold (0):
+Fitness 0.035632183908045977, 31 wins, for/against ratio: 1.147895335608646
+Gracia Nair, daughter of Renea Nair, daughter of Kathrin Nair (0):
+Fitness 0.034482758620689655, 30 wins, for/against ratio: 1.1305234534330388
+Bernadette Moline, daughter of Stephani Moline, daughter of Lavern Moline, son of Jules Moline, son of Wyatt Moline, son of Alma Moline, daughter of Shenika Moline, daughter of Bobbie Moline, son of Alfred Moline, son of Isaura Moline, daughter of Kelle Moline, daughter of Sherill Moline, daughter of Ma Moline, daughter of Gus Moline, son of Morgan Moline (0):
+Fitness 0.034482758620689655, 30 wins, for/against ratio: 1.0353219900926125
+Roosevelt Nair, son of Renea Nair, daughter of Kathrin Nair (0):
+Fitness 0.034482758620689655, 30 wins, for/against ratio: 0.9809926082365364
+Leann Marrotte (0):
+Fitness 0.03333333333333333, 29 wins, for/against ratio: 1.1012263099219621
+Elbert Rocca (0):
+Fitness 0.03333333333333333, 29 wins, for/against ratio: 1.0366892334570867
+Nathanael Goold, son of Chuck Goold, son of Freida Goold, daughter of Paola Goold, daughter of Nilsa Goold, daughter of Madeline Goold, daughter of Buddy Goold, son of Elliot Goold, son of Cori Goold, daughter of Elvin Goold (0):
+Fitness 0.03333333333333333, 29 wins, for/against ratio: 0.9479614833026019
+Ernesto Carethers, son of Kamala Carethers, daughter of Phil Carethers, son of Hulda Carethers, daughter of Franklin Carethers, son of Jessi Carethers, daughter of Guillermo Carethers (0):
+Fitness 0.03333333333333333, 29 wins, for/against ratio: 0.9379267535692116
+Shaneka Poisso-Montana, daughter of Eugenio Poisso-Montana, son of Beau Poisso, son of Jerrie Poisso, daughter of Rayford Poisso, son of Numbers Poisso, son of Jae Poisso (0):
+Fitness 0.03218390804597701, 28 wins, for/against ratio: 1.0833520053775487
+Colby Woulard, son of Raymon Woulard (0):
+Fitness 0.03103448275862069, 27 wins, for/against ratio: 0.8631895687061184
+Leslee Peers-Latella, daughter of Alina Peers-Latella, daughter of Jeffery Peers-Latella, son of Olin Peers-Latella, son of Shenika Peers-Latella, daughter of Tamatha Peers-Latella, daughter of Demetrius Peers-Latella, daughter of Lucia Peers (0):
+Fitness 0.03103448275862069, 27 wins, for/against ratio: 0.9015471167369902
+Dortha Peers-Latella, daughter of Alina Peers-Latella, daughter of Jeffery Peers-Latella, son of Olin Peers-Latella, son of Shenika Peers-Latella, daughter of Tamatha Peers-Latella, daughter of Demetrius Peers-Latella, daughter of Lucia Peers (0):
+Fitness 0.029885057471264367, 26 wins, for/against ratio: 0.8704180701406776
+Zenobia Peers-Latella, daughter of Vernie Peers-Latella, daughter of Marilyn Peers-Latella, daughter of Una Peers-Latella, daughter of Shenika Peers-Latella, daughter of Tamatha Peers-Latella, daughter of Demetrius Peers-Latella, daughter of Lucia Peers (0):
+Fitness 0.029885057471264367, 26 wins, for/against ratio: 0.8349572479618215
+Dee Carethers, son of Sidney Carethers, son of Phil Carethers, son of Hulda Carethers, daughter of Franklin Carethers, son of Jessi Carethers, daughter of Guillermo Carethers (0):
+Fitness 0.028735632183908046, 25 wins, for/against ratio: 0.8462773429660847
+Adriane Errico, daughter of Karole Errico (2):
+Fitness 0.028735632183908046, 25 wins, for/against ratio: 0.7944968250913989
+Burl Goold, son of Freida Goold, daughter of Paola Goold, daughter of Nilsa Goold, daughter of Madeline Goold, daughter of Buddy Goold, son of Elliot Goold, son of Cori Goold, daughter of Elvin Goold (0):
+Fitness 0.028735632183908046, 25 wins, for/against ratio: 0.7441904402040431
+Bong Carethers, daughter of Lenora Carethers, daughter of Milly Carethers, daughter of Phil Carethers, son of Hulda Carethers, daughter of Franklin Carethers, son of Jessi Carethers, daughter of Guillermo Carethers (0):
+Fitness 0.027586206896551724, 24 wins, for/against ratio: 0.9181310729791193
+Yvonne Goold, daughter of Omer Goold, son of Freida Goold, daughter of Paola Goold, daughter of Nilsa Goold, daughter of Madeline Goold, daughter of Buddy Goold, son of Elliot Goold, son of Cori Goold, daughter of Elvin Goold (1):
+Fitness 0.027586206896551724, 24 wins, for/against ratio: 0.8921078921078921
+Cordie Poisso, daughter of Morris Poisso, son of Richard Poisso, son of Beau Poisso, son of Jerrie Poisso, daughter of Rayford Poisso, son of Numbers Poisso, son of Jae Poisso (0):
+Fitness 0.026436781609195402, 23 wins, for/against ratio: 0.8040054442932141
+Kelley Poisso, daughter of Richard Poisso, son of Beau Poisso, son of Jerrie Poisso, daughter of Rayford Poisso, son of Numbers Poisso, son of Jae Poisso (0):
+Fitness 0.02528735632183908, 22 wins, for/against ratio: 0.9009861139062185
+Haywood Ebo-Moline, son of Sacha Ebo, daughter of Christie Ebo, daughter of Olin Ebo, son of Lanny Ebo, son of Tabetha Ebo, daughter of Myles Ebo, son of Aubrey Ebo, son of Johnathan Ebo, son of Elvera Ebo, daughter of Coy Ebo, son of Judie Ebo (0):
+Fitness 0.02413793103448276, 21 wins, for/against ratio: 0.8080313418217434
 
 New generation names:
-Kasi Orzalli, daughter of Winford Orzalli, son of Porsha Orzalli, daughter of Marc Orzalli, son of Ok Orzalli, daughter of Pat Orzalli, son of Timothy Orzalli, son of Rene Orzalli, son of Shantelle Orzalli
-Douglass Hano, son of Felice Hano, daughter of Taisha Hano, daughter of Dannielle Hano, daughter of Tennille Hano, daughter of Alethia Hano
-Brent Kontogianis, son of Ariel Kontogianis, daughter of Horace Kontogianis
-Derek Gabeline, son of Shawana Gabeline, daughter of Ethan Gabeline, son of Sirena Gabeline, daughter of Roman Gabeline, son of Hulda Gabeline, daughter of Avery Gabeline
-Marvin Hagberg, son of Clinton Hagberg, son of Jackie Hagberg
-Chi Mein, son of Mika Mein, daughter of Lacy Mein, son of Herschel Mein, son of Bailey Mein
-Mariella Challen, daughter of Lidia Challen, daughter of Duncan Challen, son of Leesa Challen, daughter of Mirella Challen
-Adan Challen, son of Lidia Challen, daughter of Duncan Challen, son of Leesa Challen, daughter of Mirella Challen
-Lillia Wintringham, daughter of Courtney Wintringham, son of Genaro Wintringham
-Craig Mein, son of Mika Mein, daughter of Lacy Mein, son of Herschel Mein, son of Bailey Mein
-Noma Mein, daughter of Laticia Mein, daughter of Lacy Mein, son of Herschel Mein, son of Bailey Mein
-Elmira Mein, daughter of Lacy Mein, son of Herschel Mein, son of Bailey Mein
-Gonzalo Mein, son of Mika Mein, daughter of Lacy Mein, son of Herschel Mein, son of Bailey Mein
-Tamara Wintringham, daughter of Courtney Wintringham, son of Genaro Wintringham
-Edda Eisele, daughter of Ayanna Eisele
-Matha Challen, daughter of Lidia Challen, daughter of Duncan Challen, son of Leesa Challen, daughter of Mirella Challen
-Nathanial Orzalli, son of Kasi Orzalli, daughter of Winford Orzalli, son of Porsha Orzalli, daughter of Marc Orzalli, son of Ok Orzalli, daughter of Pat Orzalli, son of Timothy Orzalli, son of Rene Orzalli, son of Shantelle Orzalli
-Joelle Mein, daughter of Mika Mein, daughter of Lacy Mein, son of Herschel Mein, son of Bailey Mein
-Gerald Orzalli, son of Kasi Orzalli, daughter of Winford Orzalli, son of Porsha Orzalli, daughter of Marc Orzalli, son of Ok Orzalli, daughter of Pat Orzalli, son of Timothy Orzalli, son of Rene Orzalli, son of Shantelle Orzalli
-Jayson Kowalsky, son of Myles Kowalsky
-Cyril Gabeline, son of Beatris Gabeline, daughter of Ethan Gabeline, son of Sirena Gabeline, daughter of Roman Gabeline, son of Hulda Gabeline, daughter of Avery Gabeline
-Sandy Charles, daughter of Linh Charles, daughter of Dennis Charles, daughter of Mohammed Charles, son of Damian Charles, son of Eleanora Charles, daughter of Rusty Charles, son of Vertie Charles, daughter of Eloisa Charles, daughter of Billi Charles, daughter of Solomon Charles, son of Leonard Charles, son of Hubert Charles, son of Cortney Charles, daughter of Frederick Charles, son of Art Charles, son of Jarod Charles, son of Tommy Charles, daughter of Tobias Charles, son of Apryl Charles, daughter of Deandre Charles, son of Jose Charles, daughter of Ciara Charles, daughter of Norman Charles
-Weston Kowalsky, son of Myles Kowalsky
-Dominique Orzalli, son of Stevie Orzalli, daughter of Kasi Orzalli, daughter of Winford Orzalli, son of Porsha Orzalli, daughter of Marc Orzalli, son of Ok Orzalli, daughter of Pat Orzalli, son of Timothy Orzalli, son of Rene Orzalli, son of Shantelle Orzalli
-Lou Wintringham, son of Hosea Wintringham, son of Genaro Wintringham
-Reid Gabeline, son of Shawana Gabeline, daughter of Ethan Gabeline, son of Sirena Gabeline, daughter of Roman Gabeline, son of Hulda Gabeline, daughter of Avery Gabeline
-Kiersten Kieger
-Nona Serapio
-Gerald Busacca
-Mel Cawley
+Lajuana Fouhy
+Richard Poisso, son of Beau Poisso, son of Jerrie Poisso, daughter of Rayford Poisso, son of Numbers Poisso, son of Jae Poisso
+Lawrence Gorley, daughter of Maureen Gorley
+Maritza Fouhy, daughter of Lajuana Fouhy
+Stanley Woulard, son of Colby Woulard, son of Raymon Woulard
+Hassie Woulard, daughter of Colby Woulard, son of Raymon Woulard
+Jan Jewett, son of Jewel Jewett, son of Amado Jewett
+Darrell Peers-Latella, son of Dortha Peers-Latella, daughter of Alina Peers-Latella, daughter of Jeffery Peers-Latella, son of Olin Peers-Latella, son of Shenika Peers-Latella, daughter of Tamatha Peers-Latella, daughter of Demetrius Peers-Latella, daughter of Lucia Peers
+Victor Carethers, son of Dee Carethers, son of Sidney Carethers, son of Phil Carethers, son of Hulda Carethers, daughter of Franklin Carethers, son of Jessi Carethers, daughter of Guillermo Carethers
+Aurelio Errico-Jewett, son of Adriane Errico, daughter of Karole Errico
+Gavin Peers-Latella, son of Zenobia Peers-Latella, daughter of Vernie Peers-Latella, daughter of Marilyn Peers-Latella, daughter of Una Peers-Latella, daughter of Shenika Peers-Latella, daughter of Tamatha Peers-Latella, daughter of Demetrius Peers-Latella, daughter of Lucia Peers
+Dylan Jewett, son of Jewel Jewett, son of Amado Jewett
+Ruthie Peers-Latella, daughter of Glennis Peers-Latella, daughter of Alina Peers-Latella, daughter of Jeffery Peers-Latella, son of Olin Peers-Latella, son of Shenika Peers-Latella, daughter of Tamatha Peers-Latella, daughter of Demetrius Peers-Latella, daughter of Lucia Peers
+Kris Peers-Latella, daughter of Glennis Peers-Latella, daughter of Alina Peers-Latella, daughter of Jeffery Peers-Latella, son of Olin Peers-Latella, son of Shenika Peers-Latella, daughter of Tamatha Peers-Latella, daughter of Demetrius Peers-Latella, daughter of Lucia Peers
+Larue Woulard, daughter of Colby Woulard, son of Raymon Woulard
+Hai Fouhy, son of Lajuana Fouhy
+Erin Carethers, son of Ernesto Carethers, son of Kamala Carethers, daughter of Phil Carethers, son of Hulda Carethers, daughter of Franklin Carethers, son of Jessi Carethers, daughter of Guillermo Carethers
+Kim Poisso, son of Kelley Poisso, daughter of Richard Poisso, son of Beau Poisso, son of Jerrie Poisso, daughter of Rayford Poisso, son of Numbers Poisso, son of Jae Poisso
+Karen Goold, daughter of Jaclyn Goold, daughter of Freida Goold, daughter of Paola Goold, daughter of Nilsa Goold, daughter of Madeline Goold, daughter of Buddy Goold, son of Elliot Goold, son of Cori Goold, daughter of Elvin Goold
+Zella Goold, daughter of Nathanael Goold, son of Chuck Goold, son of Freida Goold, daughter of Paola Goold, daughter of Nilsa Goold, daughter of Madeline Goold, daughter of Buddy Goold, son of Elliot Goold, son of Cori Goold, daughter of Elvin Goold
+Consuelo Poisso-Montana, daughter of Shaneka Poisso-Montana, daughter of Eugenio Poisso-Montana, son of Beau Poisso, son of Jerrie Poisso, daughter of Rayford Poisso, son of Numbers Poisso, son of Jae Poisso
+Soila Nair, daughter of Roosevelt Nair, son of Renea Nair, daughter of Kathrin Nair
+Angelo Goold, daughter of Jaclyn Goold, daughter of Freida Goold, daughter of Paola Goold, daughter of Nilsa Goold, daughter of Madeline Goold, daughter of Buddy Goold, son of Elliot Goold, son of Cori Goold, daughter of Elvin Goold
+Garland Donnel, son of Lee Donnel
+Angeline Poisso, daughter of Cordie Poisso, daughter of Morris Poisso, son of Richard Poisso, son of Beau Poisso, son of Jerrie Poisso, daughter of Rayford Poisso, son of Numbers Poisso, son of Jae Poisso
+Sang Fouhy, son of Lajuana Fouhy
+Erin Cackett
+Kizzy Luzuriaga
+Lianne Velega
+Eddie Salvia

@@ -56,7 +56,7 @@ wrangler.poolFromFile("mainGenePool.json",function (pool){
         
         if(i%10 == 0){
             console.log((250 + i) + "/" + 500 + " test rounds complete");
-            console.log("Running percentage (Round 2): " + (wins*100.0/i) + "%");
+            console.log("Running percentage (Round 2): " + (wins2*100.0/i) + "%");
         }
     }
     var goingSecondRate = (wins2/250.0)*100;

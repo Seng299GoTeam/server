@@ -224,15 +224,16 @@ function reproduce(parentA,parentB){
     //The important part - combine the actual neural networks.
     for(var i = 0; i < parentA.layers.length; i++){
         //combine each row by random midpoint selection.
-        var mutationRate = 0.01; //1% mutation rate
+        var mutationRate = 0.001; //1% mutation rate
         var A = parentA.layers[i];
         var B = parentB.layers[i];
+        
+        //Choose a random midpoint:
+        var mid = Math.floor(Math.random()*A.length);
         
         var curLayer = [];
         for (var j = 0; j < A.length; j++){
             curLayer[j] = [];
-            //Choose a random midpoint:
-            var mid = Math.floor(Math.random()*A.length);
             for(var k = 0; k < A[0].length; k++){
                 //Choose which parent's genome to use
                 curLayer[j][k] = (k < mid? A[j][k] : B[j][k]);

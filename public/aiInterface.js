@@ -55,7 +55,7 @@ var aiInterface = function aiInterface(host, path, port){
                     var parsedMove = JSON.parse(response);
                     var move = new go.Move(parsedMove["x"],parsedMove["y"],parsedMove["c"],parsedMove["pass"]);
                     //ensure it's a valid move
-                    if(game.board.validateMove(move)[0]){
+                    if(game.board.validateMove(move,game.previousBoard.grid)[0]){
                         cb(move);
                     }else{
 						//console.log("DEBUG: calling for " + n + "th time");
