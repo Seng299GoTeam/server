@@ -1,5 +1,42 @@
+
+
+
+.board_boxes {
+    fill: #2F80ED;
+}
+.board_lines {
+    stroke: #012B4B;
+}
+
+
 body {
       font-family: 'Fira sans', sans-serif;  
+      margin:0px;
+}
+
+#first_menu{
+    background-color: #0C203B;         /* dark color */
+    margin-top:0px;
+    height: 60px;
+}
+
+#second_menu{
+    background-color: #2F80ED;         /* medium color */
+    margin-top:0px;
+    height: 60px;
+}
+
+.small_container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 30px;
+}
+
+.circle_chooser{
+    margin-top: 13px;
+    margin-right:15px;
+    float:left;
+
 }
 
 /*****************************************/
@@ -12,25 +49,27 @@ body {
 }
 
 #canvas{
-
     margin:0 auto;
 }
 body{
-    background-color:#012B4B;
+    background-color:#C3D8F0;          /* light color */
 }
 h1{
-    color:white;
+    color:#C3D8F0;                     /* light color */
     font-family: 'Fira sans', sans-serif;
     font-weight: 300;
-    margin:20px;
+    margin:0px;
 }
 #go-word{
     font-weight: 700;
     display:inline;
 }
 #logo{
-    width: 200px;
-    margin:40px auto 40px auto;
+    padding-top: 11px;
+    padding-bottom: 10px;
+    width: 121px;
+    float: left ;
+    margin-right: 290px;
 }
 #pass{
     margin:10px auto;
@@ -42,18 +81,19 @@ h1{
 /*****************************************/
 
 #start_page{
-    margin:0 auto;
+    margin:50 auto;
     width: 500px;
     display: none;
 }
 
-.board-size {
+.board-size, .game-type {
      list-style-type:none;
-     margin:25px 0 0 0;
+     margin: 0 0 0 0;
      padding:0;
 }
 
-.board-size li {
+
+.board-size li, .game-type li {
     float:left;
     margin:0 5px 0 0;
     width:150px;
@@ -61,36 +101,48 @@ h1{
     position:relative;
 }
 
-.board-size label, .board-size input {
+.game-type{
+    padding-top:120px;
+}
+
+
+
+.board_size , .game_type{
     display:block;
     position:absolute;
     top:0;
     left:0;
     right:0;
     bottom:0;
-}
-
-.board-size input[type="radio"] {
-    opacity:0.011;
-    z-index:100;
-}
-
-.board-size input[type="radio"]:checked + label {
-    background:#2F80ED;
-    color:#012B4B;
-}
-
-.board-size label {
+    
     text-align: center;
-    color: #2F80ED;
+    color: #2F80ED;               /* medium color */
     font-size: 40px;
     font-family: 'Fira sans', sans-serif;
     font-weight: 400;
     padding-top: 20px;
-    border:3px solid #2F80ED; 
+    border:3px solid;     /* medium color */
+    border-color: #2F80ED;
     border-radius:4px;
     cursor:pointer;
     z-index:90;
+}
+
+
+.game_type svg{
+    fill: #2F80ED;
+}
+.game_type_clicked svg{
+    fill: #C3D8F0;
+}
+
+.board_size_clicked{
+    background-color: #2F80ED;     /* medium color */
+    color:#C3D8F0;                 /* light color */
+}
+.game_type_clicked {
+    background-color: #2F80ED;     /* medium color */
+    color:#C3D8F0;                 /* light color */
 }
 
 /*
@@ -112,11 +164,11 @@ h1{
     margin-top: 80px;
     cursor: pointer;
     
-    border: 3px solid #2F80ED;
+    border: 3px solid;    
+    border-color:  #2F80ED;  /* medium color */
     border-radius: 4px;
     
-    background-color: #012B4B;
-    color:#2F80ED;
+    color:#2F80ED;                /* medium color */
     text-align: center;
 
     font-size: 24px;
@@ -126,6 +178,40 @@ h1{
     
 }
 #start_game_button:hover{
-    background-color: #2F80ED; 
-    color:#012B4B;
+    background-color: #2F80ED;     /* medium color */
+    color:#C3D8F0;                 /* light color */
+}
+
+/*****************************************/
+/* Start game button of the first page */
+/*****************************************/
+
+.upper_menu_item {
+    float: left;
+    padding-top: 18px;
+    color: #E3EFFF;
+    font-size: 20px;
+    padding-left: 50px;
+
+}
+
+.second_menu_item {
+    float: left;
+    color: #E3EFFF;
+    font-size: 20px;
+    padding-left: 5px;
+    margin-right: 30px;
+    padding-top: 16px;
+}
+
+
+.color_text{
+    padding-left: 210px;
+}
+
+
+.theme_chooser{
+    margin-top: 13px;
+    margin-right:15px;
+    float:left;
 }
