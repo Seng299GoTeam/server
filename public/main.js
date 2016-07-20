@@ -134,7 +134,7 @@ function pass(){
 		if(game.gameType == "ai"){
 			ai.getMove(game,10,aiMoveTemp,function(){});
 		}
-		if(game.gameType = "network") {
+		if(game.gameType == "network") {
 			network.setAndCheckGame(game, networkId, ui);
 		}
     }
