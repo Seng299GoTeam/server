@@ -210,16 +210,20 @@ function joinNetworkGame(id, player) {
 		networkId = id;
 		game.updateFromJSON(newGame);
 		
-		if(!game.previousMove) {
-		} else if(game.previousMove.pass){
+		if( game.previousMove && game.previousMove.pass){
 			alert("Other player passed");
 		}
 		
 		if(game.gameOver) {
 			alert("Game is over");
 		}
+		
 		ui.board(game.board.grid);
 		ui.show ( "boardPage" );
+		
+		if(game.currentPlayer != game.whichPlayer) {
+			network.setAndCheckGame(game, networkId, ui);
+		}
 	};
 	
 	var er = function(err) {
