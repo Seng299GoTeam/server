@@ -40,6 +40,18 @@ function makeCircle(x, y, r, c){
     return circ;
 }
 
+function makeUnfilledCircle(x, y, r, c, s){
+    var circ = document.createElementNS(SVGNameSpace, "circle"); 
+    circ.setAttribute("cx", x);
+    circ.setAttribute("cy", y);
+    circ.setAttribute("r", r);
+    circ.setAttribute("pointer-events", "none");
+    circ.style.stroke = c ;
+    circ.style.strokeWidth = s || 3;
+    circ.style.fillOpacity = "0.0";
+    return circ;
+}
+
 function makeMapCircle(x, y, r, i, j){
     var circ = document.createElementNS(SVGNameSpace, "circle"); 
     circ.setAttribute("cx", x);

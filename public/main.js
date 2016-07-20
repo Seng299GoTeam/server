@@ -9,9 +9,13 @@ console.log("Initalizing Page....");
 //key event handler
 document.onkeydown = function keyHandler(event){
     //alert(event.keyCode);
-    //"t" for territory
     if(event.keyCode == 84){
+        //"t" for territory
         showTerritory = !showTerritory;
+        ui.board(game.board.grid );
+    }else if(event.keyCode == 65 || event.keyCode == 83){
+        //"a" for advice or "s" for suggestion
+        showSuggestion = !showSuggestion;
         ui.board(game.board.grid );
     }
 }
@@ -42,7 +46,7 @@ var aiType = "simonAI";
 //A couple other important globals:
 var gameOver = false;
 var showTerritory = false;
-
+var showSuggestion = false;
 
 
 // Show the default Page

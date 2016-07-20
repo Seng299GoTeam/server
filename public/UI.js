@@ -69,7 +69,7 @@ this.board = function board(state){
     
     
 
-    //In case we want territory information
+    //Show territory, if turned on
     if(showTerritory){
         var board = new go.Board(state);
         board.parse();
@@ -95,6 +95,20 @@ this.board = function board(state){
                     svg.append(makeLinePure(x1,y1,x2,y2,colour,4));
                 }
             }
+        }
+    }
+    
+    //Show a suggested move, if that option is turned on
+    if(showSuggestion){
+        try{
+            var advisor = new aiInterface('localhost','/okai','3001');
+            //gonna use the global game object here, even though it might not be ideal.
+            advisor.getMove(game,10,function(move){
+                var x = (lw+bw)*move.y+loc;
+                var y = (lw+bw)*move.x+loc;
+                svg.append(makeUnfilledCircle(x,y,20,"#00FF00",3));
+            },function(){});
+        }catch(err){
         }
     }
     
