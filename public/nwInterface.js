@@ -48,6 +48,7 @@ var nwInterface = function nwInterface(){
 				console.log("Error occured: " + err);
 			}
 			
+			
 			network.checkGame(networkId, cbGetPlayer, erGetPlayer);
 			
 		}; // Set game callback
