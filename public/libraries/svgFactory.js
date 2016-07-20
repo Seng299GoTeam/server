@@ -53,6 +53,21 @@ function makeMapCircle(x, y, r, i, j){
     return circ;
 }
 
+//The other makeLine has gotten a bit domain-specific, so here's a more general oen
+function makeLinePure(x1, y1, x2, y2, color, stroke) {
+
+    var e = document.createElementNS(SVGNameSpace, "line");
+    e.setAttribute("x1", x1);
+    e.setAttribute("y1", y1);
+    e.setAttribute("x2", x2);
+    e.setAttribute("y2", y2);
+
+    e.style.stroke = color;
+    e.style.strokeWidth = stroke || 2;
+
+    return e;
+}
+
 function makeSVG(w, h){
     var s = document.createElementNS(SVGNameSpace, "svg"); 
     s.setAttribute("width", w); 

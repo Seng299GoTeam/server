@@ -56,14 +56,44 @@ this.board = function board(state){
     
     var loc = (frame+(lw/2));
     
-    
     for ( var i=0 ; i < nol;i++){
         for ( var j=0 ; j < nol ; j++ ){
             if ( state[i][j] == 1){
-                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"#FFFFFF"));
+                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"#000000"));
             }
             else if ( state[i][j] == 2){
-                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"#000000"));
+                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"#FFFFFF"));
+            }
+        }
+    }
+    
+    
+
+    //In case we want territory information
+    if(showTerritory){
+        var board = new go.Board(state);
+        board.parse();
+        board.score(); //causes it to count territories
+        for(var i = 0; i < board.territories.length; i++){
+            var territory = board.territories[i];
+            if(territory.colour() > 0){
+                //draw an X on each intersection
+                for(var j = 0; j < territory.intersections.length; j++){
+                    var intersection = territory.intersections[j];
+                    var colour = (territory.colour()==1?"#000000":"#FFFFFF");
+                    
+                    var x1 = (lw+bw)*(intersection.y)+loc - bw*0.5;
+                    var y1 = (lw+bw)*(intersection.x)+loc - bw*0.5;
+                    var x2 = (lw+bw)*(intersection.y)+loc + bw*0.5;
+                    var y2 = (lw+bw)*(intersection.x)+loc + bw*0.5;
+                    svg.append(makeLinePure(x1,y1,x2,y2,colour,4));
+                    
+                    x1 = (lw+bw)*(intersection.y)+loc - bw*0.5;
+                    y1 = (lw+bw)*(intersection.x)+loc + bw*0.5;
+                    x2 = (lw+bw)*(intersection.y)+loc + bw*0.5;
+                    y2 = (lw+bw)*(intersection.x)+loc - bw*0.5;
+                    svg.append(makeLinePure(x1,y1,x2,y2,colour,4));
+                }
             }
         }
     }
@@ -75,7 +105,6 @@ this.board = function board(state){
             //}
         }
     }
-    
     
     
     canvas.append(svg);

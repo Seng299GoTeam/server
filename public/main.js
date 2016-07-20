@@ -26,7 +26,10 @@ var ai = availableAIs[3];
 var boardSize = 9;
 var gameType = "hotseat";
 var aiType = "simonAI";
+
+//A couple other important globals:
 var gameOver = false;
+var showTerritory = true;
 
 
 
