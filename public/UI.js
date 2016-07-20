@@ -1,6 +1,6 @@
-class UI {
+var UI = function UI() {
 
-show( page ){
+this.show = function show( page ){
     
     if ( page == "startPage" ){
         $( "#board_page" ).hide();
@@ -18,7 +18,7 @@ Updates the board
 @parameters:
 state: A 2D array that has the 0,1,2 for empty, black, white respectively
 */
-board(state){
+this.board = function board(state){
 
     // If a previous board exist, delete the old one before appending a new one.
     if ($("#mainsvg").length === 1){
@@ -90,7 +90,7 @@ Ends the game and show score
 @parameters:
 state: A 2D array that has the 0,1,2 for empty, black, white respectively
 */
-invalid ( message ){
+this.invalid = function invalid ( message ){
      alert( message );
 }
 
@@ -101,11 +101,11 @@ Ends the game and show score
 @parameters:
 state: A 2D array that has the 0,1,2 for empty, black, white respectively
 */
-end(){
+this.end = function end(){
     alert("game over");
 }    
 
-updateSizeButton(boardSizeOption){
+this.updateSizeButton = function updateSizeButton(boardSizeOption){
     $("#size_" + boardSize).removeClass ( "board_size_clicked");
 
     boardSize = boardSizeOption;
@@ -113,7 +113,7 @@ updateSizeButton(boardSizeOption){
     theme.buttonSelectorUpdator();
 }
 
-updateTypeButton(gameTypeOption){
+this.updateTypeButton = function updateTypeButton(gameTypeOption){
 
     $("#type_" + gameType ).removeClass ( "game_type_clicked");
     gameType = gameTypeOption;
@@ -123,7 +123,7 @@ updateTypeButton(gameTypeOption){
     
 }
 
-showaiOptions(){
+this.showaiOptions = function showaiOptions(){
     
 }
 

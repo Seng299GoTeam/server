@@ -125,7 +125,7 @@ go.Board = function Board(grid){
                     }
                     
                     //delete any armies marked for deletion
-                    this.armies = this.armies.filter(a => !a.markedForDeletion);
+                    this.armies = this.armies.filter(function(a) {return !a.markedForDeletion});
                 }//if is a stone
             }//for j
         }//for i
@@ -217,7 +217,7 @@ go.Board = function Board(grid){
                     }
                     
                     //delete any territories marked for deletion
-                    this.territories = this.territories.filter(t => !t.markedForDeletion);
+                    this.territories = this.territories.filter(function(t) {return !t.markedForDeletion});
                 }
             }//inner for
         }//outer for
@@ -346,7 +346,7 @@ go.Board = function Board(grid){
         newBoard.parse();
         
         //Remove stones of captured armies of opposite colour & re-parse;
-        var opponentArmies = newBoard.armies.filter(x => x.colour != colour);
+        var opponentArmies = newBoard.armies.filter(function (x){return x.colour != colour});
         
         for (var i in opponentArmies){
             currArmy = opponentArmies[i];
@@ -361,7 +361,7 @@ go.Board = function Board(grid){
         newBoard.parse();
         
         //Remove stones of captured armies of same colour (should do nothing for legal moves):
-        var allyArmies = newBoard.armies.filter(x => x.colour == colour);
+        var allyArmies = newBoard.armies.filter(function(x) {return x.colour== colour});
         
         for (var i in allyArmies){
             currArmy = allyArmies[i];

@@ -16,7 +16,7 @@ availableAIs.push(new aiInterface('localhost','/okai','3001'));
 availableAIs.push(new aiInterface('localhost','/neuralnetwork','3001'));
 
 //var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
-var ai = availableAIs[4];
+var ai = availableAIs[3];
 
 
 // Used by startgame
