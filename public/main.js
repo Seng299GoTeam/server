@@ -20,6 +20,10 @@ document.onkeydown = function keyHandler(event){
     }
 }
 
+
+var host = "localhost";
+var port = "3000";
+
 var ui = new UI();
 var theme = new Theme();
 var game;
@@ -28,8 +32,8 @@ var availableAIs = [];
 availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/maxLibs','30000'));
 availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/attackEnemy','30000'));
 availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/formEyes','30000'));
-availableAIs.push(new aiInterface('localhost','/okai','3001'));
-availableAIs.push(new aiInterface('localhost','/neuralnetwork','3001'));
+availableAIs.push(new aiInterface(host,'/okai','3001'));
+availableAIs.push(new aiInterface(host,'/neuralnetwork','3001'));
 
 //var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
 
@@ -66,10 +70,11 @@ function startNewGame(){
 			networkId = _id;
 			game._id = _id;
 			// TODO: Implement pop up screen for this url
-			console.log("Send this url to a friend to play with them: " + "localhost:3000/?id=" + _id);
+			console.log("Send this url to a friend to play with them: " + host + ":" + port + "/?id=" + _id + "&player=2");
 		};
 		
 		var errback = function(err) {
+			// TODO: Implement pop up for this error (or just console.log it)
 			alert("Error: " + err);
 		}
 		network.createGame(game.toJSON(), callback, errback);
@@ -123,8 +128,15 @@ function gameEnds (){               // What should happen if the move results to
 
 function pass(){
 	
-	if(gameOver || game.gameType == "network" && game.currentPlayer != game.whichPlayer) {
-		console.log("Cannot pass when it's not your turn");
+	if(gameOver) {
+		// TODO: Display instead of alert
+		alert("Game is over");
+		return;
+	}
+	
+	if(game.gameType == "network" && game.currentPlayer != game.whichPlayer) {
+		// TODO: Display instead of alert
+		alert("Cannot pass when it's not your turn");
 		return;
 	}
 	
@@ -211,13 +223,15 @@ function joinNetworkGame(id, player) {
 		networkId = id;
 		game.updateFromJSON(newGame);
 		
-		if( game.previousMove && game.previousMove.pass){
+		if(game.gameOver) {
+			// TODO: Display instead of alert
+			alert("Game is over");
+			return;
+		} else if( game.previousMove && game.previousMove.pass){
+			// TODO: Display instead of alert
 			alert("Other player passed");
 		}
 		
-		if(game.gameOver) {
-			alert("Game is over");
-		}
 		
 		ui.board(game.board.grid);
 		ui.show ( "boardPage" );
@@ -228,15 +242,12 @@ function joinNetworkGame(id, player) {
 	};
 	
 	var er = function(err) {
-		// DISPLAY SOME SORT OF ERROR
-		console.log("Error occured: " + err);
+		// TODO: Display instead of alert
+		alert("Could not join new game because of error: " + err);
 	};
 	
-	try {
-		network.getGame(id, cb, er);
-	} catch (err) {
-		alert("Invalid ID");
-	}
+	network.getGame(id, cb, er);
+
 }
 
 function goHome() {
