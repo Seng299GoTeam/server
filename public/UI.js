@@ -104,9 +104,11 @@ this.board = function board(state){
             var advisor = new aiInterface('localhost','/okai','3001');
             //gonna use the global game object here, even though it might not be ideal.
             advisor.getMove(game,10,function(move){
-                var x = (lw+bw)*move.y+loc;
-                var y = (lw+bw)*move.x+loc;
-                svg.append(makeUnfilledCircle(x,y,20,"#00FF00",3));
+				if(!move.pass){
+					var x = (lw+bw)*move.y+loc;
+					var y = (lw+bw)*move.x+loc;
+					svg.append(makeUnfilledCircle(x,y,20,"#00FF00",3));
+				}
             },function(){});
         }catch(err){
         }
