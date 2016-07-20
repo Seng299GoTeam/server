@@ -91,7 +91,7 @@ var nwInterface = function nwInterface(){
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
                 //do some sort of error handling
-                alert("error: " + postXhr.status);
+                alert("Could not check game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//checkGame
@@ -124,7 +124,7 @@ var nwInterface = function nwInterface(){
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
                 //do some sort of error handling
-                alert("error: " + postXhr.status);
+				alert("Could not get game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//getGame
@@ -155,7 +155,7 @@ var nwInterface = function nwInterface(){
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
                 //do some sort of error handling
-                alert("error: " + postXhr.status);
+				alert("Could not set game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//setGame
@@ -182,7 +182,7 @@ var nwInterface = function nwInterface(){
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
                 //do some sort of error handling
-                alert("error: " + postXhr.status);
+                alert("Could not create game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//createGame
@@ -212,7 +212,7 @@ var nwInterface = function nwInterface(){
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
                 //do some sort of error handling
-                alert("error: " + postXhr.status);
+                alert("Could not end game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//createGame

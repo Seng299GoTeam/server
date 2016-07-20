@@ -211,7 +211,11 @@ function joinNetworkGame(id) {
 		console.log("Error occured: " + err);
 	};
 	
-	network.getGame(id, cb, er);
+	try {
+		network.getGame(id, cb, er);
+	} catch (err) {
+		alert("Invalid ID");
+	}
 }
 
 function goHome() {
