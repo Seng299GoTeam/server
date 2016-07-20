@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "body-parser": "^1.15.2",
+    "mongodb": "^2.2.4",
     "node-random-name": "^1.0.1",
     "numeric": "^1.2.6",
     "random-name": "^0.1.1"

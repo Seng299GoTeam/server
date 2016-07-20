@@ -1,0 +1,31 @@
+<svg class="drop_down" width="153" height="195" viewBox="0 0 153 195" version="2.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Canvas" transform="translate(2208 3269)" figma:type="canvas">
+    <g id="Group" style="mix-blend-mode:normal;" figma:type="group">
+    <g id="dropdown" style="mix-blend-mode:normal;" figma:type="group">
+    <g id="Line" style="mix-blend-mode:normal;" figma:type="vector">
+    <use xlink:href="#path20_stroke" transform="translate(-2206 -3211.5)"  style="mix-blend-mode:normal;"/>
+    </g>
+    <g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+    <use xlink:href="#path21_stroke" transform="translate(-2206 -3165)"  style="mix-blend-mode:normal;"/>
+    </g>
+    <g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+    <use xlink:href="#path21_stroke" transform="translate(-2206 -3119)" style="mix-blend-mode:normal;"/>
+    </g>
+    <g id="Rectangle 4" style="mix-blend-mode:normal;" figma:type="vector">
+    <mask id="mask0_outline_ins">
+    <use xlink:href="#path22_fill" fill="white" transform="translate(-2208 -3270)"/>
+    </mask>
+    <g mask="url(#mask0_outline_ins)">
+    <use xlink:href="#path23_stroke_2x" transform="translate(-2208 -3270)"  style="mix-blend-mode:normal;"/>
+    </g>
+    </g>
+    </g>
+    </g>
+    </g>
+    <defs>
+    <path id="path20_stroke" d="M 0 -1.5L -1.5 -1.5L -1.5 1.5L 0 1.5L 0 -1.5ZM 147 1.5L 148.5 1.5L 148.5 -1.5L 147 -1.5L 147 1.5ZM 0 1.5L 147 1.5L 147 -1.5L 0 -1.5L 0 1.5Z"/>
+    <path id="path21_stroke" d="M 1.5 -3L 0 -3L 0 0L 1.5 0L 1.5 -3ZM 146.5 0L 148 0L 148 -3L 146.5 -3L 146.5 0ZM 1.5 0L 146.5 0L 146.5 -3L 1.5 -3L 1.5 0Z"/>
+    <path id="path22_fill" d="M 153 15.0053L 153 192C 153 194.209 151.209 196 149 196L 4 196C 1.79086 196 0 194.209 0 192L 0 15.0053C 0 12.7962 1.79086 11.0053 4 11.0053L 64.6669 11.0053C 65.7604 11.0053 66.8062 10.5577 67.561 9.76655L 73.985 3.03338C 75.5609 1.38165 78.1973 1.38165 79.7732 3.03338L 86.1972 9.76655C 86.952 10.5577 87.9978 11.0053 89.0913 11.0053L 149 11.0053C 151.209 11.0053 153 12.7962 153 15.0053Z"/>
+    <path id="path23_stroke_2x" d="M 67.561 9.76655L 65.3904 7.69565L 67.561 9.76655ZM 79.7732 3.03338L 77.6026 5.10428L 79.7732 3.03338ZM 86.1972 9.76655L 88.3678 7.69565L 86.1972 9.76655ZM 150 15.0053L 150 192L 156 192L 156 15.0053L 150 15.0053ZM 149 193L 4 193L 4 199L 149 199L 149 193ZM 3 192L 3 15.0053L -3 15.0053L -3 192L 3 192ZM 4 14.0053L 64.6669 14.0053L 64.6669 8.00535L 4 8.00535L 4 14.0053ZM 69.7316 11.8374L 76.1556 5.10428L 71.8144 0.96248L 65.3904 7.69565L 69.7316 11.8374ZM 89.0913 14.0053L 149 14.0053L 149 8.00535L 89.0913 8.00535L 89.0913 14.0053ZM 77.6026 5.10428L 84.0266 11.8374L 88.3678 7.69565L 81.9438 0.96248L 77.6026 5.10428ZM 3 15.0053C 3 14.4531 3.44772 14.0053 4 14.0053L 4 8.00535C 0.134007 8.00535 -3 11.1394 -3 15.0053L 3 15.0053ZM 156 15.0053C 156 11.1394 152.866 8.00535 149 8.00535L 149 14.0053C 149.552 14.0053 150 14.4531 150 15.0053L 156 15.0053ZM 150 192C 150 192.552 149.552 193 149 193L 149 199C 152.866 199 156 195.866 156 192L 150 192ZM 4 193C 3.44772 193 3 192.552 3 192L -3 192C -3 195.866 0.134007 199 4 199L 4 193ZM 64.6669 14.0053C 66.5805 14.0053 68.4106 13.222 69.7316 11.8374L 65.3904 7.69565C 65.2017 7.89344 64.9403 8.00535 64.6669 8.00535L 64.6669 14.0053ZM 76.1556 5.10428C 76.5495 4.69135 77.2086 4.69135 77.6026 5.10428L 81.9438 0.96248C 79.186 -1.92805 74.5722 -1.92805 71.8144 0.96248L 76.1556 5.10428ZM 89.0913 8.00535C 88.8179 8.00535 88.5565 7.89344 88.3678 7.69565L 84.0266 11.8374C 85.3476 13.222 87.1777 14.0053 89.0913 14.0053L 89.0913 8.00535Z"/>
+    </defs>
+</svg>

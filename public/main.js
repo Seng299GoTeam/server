@@ -3,7 +3,23 @@ main.js is reponsible for handling all user's events of any page.
 */
 
 
-console.log("Initalizing Page...."); 
+console.log("Initalizing Page....");
+
+
+//key event handler
+document.onkeydown = function keyHandler(event){
+    //alert(event.keyCode);
+    if(event.keyCode == 84){
+        //"t" for territory
+        showTerritory = !showTerritory;
+        ui.board(game.board.grid );
+    }else if(event.keyCode == 65 || event.keyCode == 83){
+        //"a" for advice or "s" for suggestion
+        showSuggestion = !showSuggestion;
+        ui.board(game.board.grid );
+    }
+}
+
 var ui = new UI();
 var theme = new Theme();
 var game;
@@ -24,16 +40,26 @@ var ai = availableAIs[3];
 
 // Used by startgame
 var boardSize = 9;
+<<<<<<< HEAD
 var gameType = "network";
+=======
+var gameType = "hotseat";
+var aiType = "maxLibs";
+>>>>>>> 7e2dbb32e15e94d49c2904d8d8f6c9963e86bde4
 
+//A couple other important globals:
+var gameOver = false;
+var showTerritory = false;
+var showSuggestion = false;
 
 
 // Show the default Page
 ui.show ( "startPage");
 
 function startNewGame(){
-	console.log(document.location.href);
-    game = new Game ( "network", boardSize );
+	
+    game = new Game ( gameType, boardSize );
+    gameOver = false;
 	
     ui.board(game.board.grid );
     ui.show ( "boardPage" );
@@ -50,17 +76,32 @@ function startNewGame(){
 			alert("Error: " + err);
 		}
 		network.createGame(game.toJSON(), callback, errback);
+	}else if(gameType == "ai"){
+		//insert ai choosing stuff
+		switch(aiType){
+			case "maxLibs":
+				ai = availableAIs[0];
+				break;
+			case "attack":
+				ai = availableAIs[1];
+				break;
+			case "ANN":
+				ai = availableAIs[4];
+				break;
+			case "Gomega":
+				ai = availableAIs[3];
+				break;
+			default:
+				ai = availableAIs[3];
+		}
 	}
 }
 
 function boardClickHandler(x,y){
+	
+    if(gameOver || (gameType == "network" && game.whichPlayer != game.currentPlayer)) return; //Don't do anything if game is over
+    var move = new go.Move (x, y, (game.gameType=="hotseat"?game.currentPlayer:game.whichPlayer), false);
     
-	if(gameType == "network" && game.whichPlayer != game.currentPlayer) {
-		return;
-	}
-	
-	var move = new go.Move (x, y, game.currentPlayer , false);
-	
     game.attemptMove(move,successfulMove,invalidMove);
 }
 
@@ -79,7 +120,8 @@ function invalidMove ( message ){    // What should happen if a move is invalid
 }
 
 function gameEnds (){               // What should happen if the move results to end the game
-    ui.end()
+    ui.end();
+    gameOver = true;
 }
 
 function pass(){
@@ -110,7 +152,7 @@ function pass(){
 		ui.end()
     }
     
-    var move = new go.Move (-1, -1, game.currentPlayer , true);
+    var move = new go.Move (-1, -1,(game.gameType=="hotseat"?game.currentPlayer:game.whichPlayer), true);
     game.attemptMove(move,successfulMove,invalidMove, gameEnds);
 	
     if(game.gameType == "ai"){
@@ -188,14 +230,17 @@ function boardSizeChoser ( boardSizeOption ){
 function gameTypeChoser ( gameTypeOption ){
     ui.updateTypeButton( gameTypeOption );
     
-    /*
+    
     if  ( gameTypeOption == "ai" ){
-        ui.showUIoptions();
+        ui.showAIoptions();
     }
-    */
+    
 }
     
+function aiTypeChoser ( aiType ){
     
+    ui.updateAItype( aiType );
+}
 
 
 

@@ -1,6 +1,4 @@
 
-
-
 .board_boxes {
     fill: #2F80ED;
 }
@@ -102,7 +100,9 @@ h1{
 }
 
 .game-type{
-    padding-top:120px;
+
+    display:inline-block;
+    margin-top: 40px;
 }
 
 
@@ -215,3 +215,52 @@ h1{
     margin-right:15px;
     float:left;
 }
+
+.drop_down{
+    margin-top: 99.5px;
+    border-color: #2F80ED;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 3px;
+    display: none;
+    width: 146;
+    height: 190 ;
+}
+
+.drop_down_text_group{
+    position: absolute;
+    top: 102;
+    left: 2;
+    width: 147;
+    height: 200;
+    display: none;
+}
+.drop_down_item{
+    width: 146.5;
+    height: 30.5px;
+    padding-top: 15;
+    text-align: center;
+    color: #2F80ED;
+    display: none;
+    margin-left:0.5;
+    border-bottom: 3px solid #2F80ED;
+
+}
+.drop_down_chosen{
+    background-color: #2F80ED;
+    color: #E3EFFF;
+    display: none;
+}
+
+/*I'm sorry about this...*/
+
+.black{
+    color: #000000;
+}
+
+.white{
+    color: #FFFFFF;
+}
+
+
+

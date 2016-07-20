@@ -56,15 +56,59 @@ this.board = function board(state){
     
     var loc = (frame+(lw/2));
     
-    
     for ( var i=0 ; i < nol;i++){
         for ( var j=0 ; j < nol ; j++ ){
             if ( state[i][j] == 1){
-                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"#FFFFFF"));
-            }
-            else if ( state[i][j] == 2){
                 svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"#000000"));
             }
+            else if ( state[i][j] == 2){
+                svg.append ( makeCircle( (lw+bw)*j+loc, (lw+bw)*i+loc ,20,"#FFFFFF"));
+            }
+        }
+    }
+    
+    
+
+    //Show territory, if turned on
+    if(showTerritory){
+        var board = new go.Board(state);
+        board.parse();
+        board.score(); //causes it to count territories
+        for(var i = 0; i < board.territories.length; i++){
+            var territory = board.territories[i];
+            if(territory.colour() > 0){
+                //draw an X on each intersection
+                for(var j = 0; j < territory.intersections.length; j++){
+                    var intersection = territory.intersections[j];
+                    var colour = (territory.colour()==1?"#000000":"#FFFFFF");
+                    
+                    var x1 = (lw+bw)*(intersection.y)+loc - bw*0.5;
+                    var y1 = (lw+bw)*(intersection.x)+loc - bw*0.5;
+                    var x2 = (lw+bw)*(intersection.y)+loc + bw*0.5;
+                    var y2 = (lw+bw)*(intersection.x)+loc + bw*0.5;
+                    svg.append(makeLinePure(x1,y1,x2,y2,colour,4));
+                    
+                    x1 = (lw+bw)*(intersection.y)+loc - bw*0.5;
+                    y1 = (lw+bw)*(intersection.x)+loc + bw*0.5;
+                    x2 = (lw+bw)*(intersection.y)+loc + bw*0.5;
+                    y2 = (lw+bw)*(intersection.x)+loc - bw*0.5;
+                    svg.append(makeLinePure(x1,y1,x2,y2,colour,4));
+                }
+            }
+        }
+    }
+    
+    //Show a suggested move, if that option is turned on
+    if(showSuggestion){
+        try{
+            var advisor = new aiInterface('localhost','/okai','3001');
+            //gonna use the global game object here, even though it might not be ideal.
+            advisor.getMove(game,10,function(move){
+                var x = (lw+bw)*move.y+loc;
+                var y = (lw+bw)*move.x+loc;
+                svg.append(makeUnfilledCircle(x,y,20,"#00FF00",3));
+            },function(){});
+        }catch(err){
         }
     }
     
@@ -75,7 +119,6 @@ this.board = function board(state){
             //}
         }
     }
-    
     
     
     canvas.append(svg);
@@ -113,18 +156,34 @@ this.updateSizeButton = function updateSizeButton(boardSizeOption){
     theme.buttonSelectorUpdator();
 }
 
+
 this.updateTypeButton = function updateTypeButton(gameTypeOption){
+    $(".drop_down").css('display','none');
+    $(".drop_down_text_group").css('display','none');
+    $(".drop_down_item").css('display','none');
+    $(".drop_down_chosen").css('display','none');
 
     $("#type_" + gameType ).removeClass ( "game_type_clicked");
     gameType = gameTypeOption;
     $("#type_" + gameType ).addClass ( "game_type_clicked"  );
     
     theme.gameTypeUpdator();
-    
 }
 
-this.showaiOptions = function showaiOptions(){
-    
+this.showAIoptions = function showAIoptions(){
+    $(".drop_down").css('display','block');
+    $(".drop_down_text_group").css('display','block');
+    $(".drop_down_item").css('display','block');
+    $(".drop_down_chosen").css('display','block');
+
+}
+
+
+this.updateAItype = function updateAItype( aiTypeOption ){
+    $("#type_" + aiType ).removeClass ( "drop_down_chosen");
+    aiType = aiTypeOption;
+    $("#type_" + aiType ).addClass ( "drop_down_chosen"  );
+    theme.dropDownUpdator();
 }
 
 }
