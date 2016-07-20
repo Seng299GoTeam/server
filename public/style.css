@@ -100,7 +100,9 @@ h1{
 }
 
 .game-type{
-    padding-top:120px;
+
+    display:inline-block;
+    margin-top: 40px;
 }
 
 
@@ -234,7 +236,7 @@ h1{
     display: none;
 }
 .drop_down_item{
-    width: 146;
+    width: 146.5;
     height: 30.5px;
     padding-top: 15;
     text-align: center;
