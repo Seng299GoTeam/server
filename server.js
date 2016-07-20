@@ -29,53 +29,54 @@ app.get("/data", function (req, res) {
     res.json(generateBoard()); 
 });
 
-app.get("/checkGame", function(req, res) {
-	console.log("GET Request to: /checkGame");
+app.post("/checkGame", function(req, res) {
+	console.log("POST Request to: /checkGame");
 	// Will return the current player of a game
 	// given the game id
 	
-	var gameid = req.body.gameData._id;
+	var gameid = req.body._id;
 	
 	db.getGamePlayer(gameid, function(player, err) {
-		if(!err)
-			res.send(player);
-		else {
-			res.send(err);
+		if(err) {
+			res.send(JSON.stringify({err : err}));
+		} else {
+			res.send(JSON.stringify(player));
 		}
 	});
 });
 
-app.get("/getGame", function(req, res) {
-	console.log("GET Request to: /getGame");
+app.post("/getGame", function(req, res) {
+	console.log("POST Request to: /getGame");
 	// Will return the game associated with a game id
 	// as a JSON object or will return an error message
 	
-	var gameid = req.body.gameData.id;
+	console.log(req.body);
+	var id = req.body._id;
 	
 	
-	db.getGame(gameid, function(game, err) {
+	db.getGame(id, function(game, err) {
 		if(err)
-			res.send(JSON.stringify(game));
+			res.send(JSON.stringify({err : err}));
 		else {
-			res.send(err);
+			res.send(JSON.stringify(game));
 		}
 	});
 	
-	
 });
 
-app.get("/createGame", function(req, res) {
-	console.log("GET Request to: /createGame");
+app.post("/createGame", function(req, res) {
+	console.log("POST Request to: /createGame");
 	// Will create a game given a game object and will return
 	// an id (or an error)
 	
 	var game = JSON.parse(req.body.gameData);
 	
-	db.addGame(game, function(id, err) {
+	db.addGame(game, function(game, err) {
 		if(err) {
-			res.send(err);
+			res.send(JSON.stringify({err : err}));
 		} else {
-			res.send(id);
+			console.log(game._id);
+			res.send(JSON.stringify({message : game._id}));
 		}
 	});
 	
@@ -89,11 +90,11 @@ app.post("/updateGame", function(req, res) {
 	
 	var updatedGame = JSON.parse(req.body.gameData);
 	
-	db.updateGame(game, function(err) {
+	db.updateGame(updatedGame, function(err) {
 		if(err) {
-			res.send(err);
+			res.send(JSON.stringify( {err : err}));
 		} else {
-			res.send("Success");
+			res.send(JSON.stringify( {message : "Success"}));
 		}
 	});
 });
@@ -105,11 +106,12 @@ app.post("/endGame", function(req, res) {
 	
 	var id = req.body.gameData._id;
 	
-	deleteGame(id, function(err) {
-		if(err)
-			res.send(err);
-		else
-			res.send("Success");
+	endGame(id, function(err) {
+		if(err) {
+			res.send(JSON.stringify( {err : err}));
+		} else {
+			res.send(JSON.stringify( {message : "Success"}));
+		}
 	});
 });
 

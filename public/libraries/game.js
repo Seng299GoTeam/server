@@ -68,10 +68,10 @@ var Game = function Game(type, size){
         var jsonObj = {
             "board": this.board.grid,
             "previousBoard": (this.previousBoard?this.previousBoard.grid:-1),
-            "previousMove": this.board.previousMove,
-            "currentPlayer": this.board.currentPlayer
-        }
-        
+            "previousMove": this.previousMove,
+            "currentPlayer": this.currentPlayer
+        };
+		
         return JSON.stringify(jsonObj);
     }
     

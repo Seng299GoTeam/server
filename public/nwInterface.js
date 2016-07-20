@@ -8,20 +8,58 @@
 //  checkGame, takes id, returns current player
 //  getGame, takes id, returns current the updated board
 //  setGame, takes id and game, updates the game in the database
-var nwInterface = function nwInterface(host, path, port){
-    /*
-    //Example of valid options
-        host: 'localhost'
-        path: '/getGame','/updateGame','/checkGame','/createGame'
-        port: '3000'
-    */
-    this.options = {
-        "host": host,
-        "path": path,
-        "port": port,
-        "method": 'POST'
-    }
+var nwInterface = function nwInterface(){
     
+	
+	
+	this.setAndCheckGame = function(game, networkId, ui) {
+		
+		var cbSetGame = function(){
+			
+			var cbGetPlayer = function(player) {
+				if(JSON.parse(player).err) {
+					alert("Error accessing database: " + JSON.parse(player).err);
+				}
+				if (player != game.currentPlayer) {
+					
+					// callbacks for getting game
+					var cbGetGame = function(newGame) {
+						
+						game.updateFromJSON(newGame);
+						if(game.previousMove.pass) {
+							alert("Other user passed")
+						}
+						ui.board(game.board.grid);
+					};
+					var erGetGame = function(err) {
+						// DISPLAY SOME SORT OF ERROR
+						console.log("Error occured: " + err);
+					};
+					
+					network.getGame(networkId, cbGetGame, erGetGame);
+				} else {
+					setTimeout(cbSetGame, 2000);
+				}
+				
+			}; // callback of checking player
+			
+			var erGetPlayer = function (err) {
+				// DISPLAY SOME SORT OF ERROR
+				console.log("Error occured: " + err);
+			}
+			
+			network.checkGame(networkId, cbGetPlayer, erGetPlayer);
+			
+		}; // Set game callback
+		
+		var ebSetGame = function(err) {
+			// DISPLAY SOME SORT OF ERROR
+			console.log("Error occured: " + err);
+		};
+		
+		network.setGame(game.toJSON(), networkId, cbSetGame, ebSetGame);
+	}
+	
     //Takes a game id and returns a game state from the database
     this.checkGame = function(id,cb,eb){
        
@@ -29,24 +67,21 @@ var nwInterface = function nwInterface(host, path, port){
         var gameData = {
             "_id": id
         }//postData
-        
-        var postData = JSON.stringify({"options":options,"gameData":gameData});
-        
-        //send {options,postdata} to server.
+		
+        var postData = JSON.stringify(gameData);
+		
+        //send {postdata} to server.
         var postXhr = new XMLHttpRequest();
         postXhr.open("POST","http://localhost:3000/checkGame", true);
         postXhr.setRequestHeader("Content-Type", "application/json");
         postXhr.send(postData);
         
-        var thisAI = this;
-        
         postXhr.onreadystatechange = function(){
             if (postXhr.readyState == 4 && postXhr.status == 200){
                 var response = postXhr.responseText;
                 try{
-                    var parsedMove = JSON.parse(response);
-                    var turn = parsedMove["player"];
-                    cb(turn);
+                    var player = response;
+                    cb(player);
                 }catch(err){
                     eb(err);
                 }
@@ -64,9 +99,9 @@ var nwInterface = function nwInterface(host, path, port){
             "_id": id
         }//postData
         
-        var postData = JSON.stringify({"options":options,"gameData":gameData});
+        var postData = JSON.stringify(gameData);
         
-        //send {options,postdata} to server.
+        //send {postdata} to server.
         var postXhr = new XMLHttpRequest();
         postXhr.open("POST","http://localhost:3000/getGame", true);
         postXhr.setRequestHeader("Content-Type", "application/json");
@@ -77,8 +112,9 @@ var nwInterface = function nwInterface(host, path, port){
             if (postXhr.readyState == 4 && postXhr.status == 200){
                 var response = postXhr.responseText;
                 try{
-                    var parsedMove = JSON.parse(response);
-                    cb(parsedMove);
+                    // Don't need to parse because game has set game
+					// via json function
+                    cb(response);
                 }catch(err){
                     eb(err);
                 }
@@ -90,10 +126,14 @@ var nwInterface = function nwInterface(host, path, port){
     }//getGame
 
     this.setGame = function(gameData,id,cb,eb){
+		
+		gameData = JSON.parse(gameData);
+		gameData._id = id;
+		gameData = JSON.stringify(gameData);
+		
+        var postData = JSON.stringify({"gameData":gameData});
 
-        var postData = JSON.stringify({"options":options,"gameData":gameData});
-
-        //send {options,postdata} to server.
+        //send {postdata} to server.
         var postXhr = new XMLHttpRequest();
         postXhr.open("POST","http://localhost:3000/updateGame", true);
         postXhr.setRequestHeader("Content-Type", "application/json");
@@ -104,6 +144,7 @@ var nwInterface = function nwInterface(host, path, port){
                 var response = postXhr.responseText;
                 try{
                     var parsedRes = JSON.parse(response);
+					var message = parsedRes["message"];
                     cb(parsedRes);
                 }catch(err){
                     eb(err);
@@ -115,11 +156,11 @@ var nwInterface = function nwInterface(host, path, port){
         }//onreadystatechange
     }//setGame
     
-    this.createGame = function(gameData,id,cb,eb){
+    this.createGame = function(gameData,cb,eb){
 
-        var postData = JSON.stringify({"options":options,"gameData":gameData});
+        var postData = JSON.stringify({"gameData":gameData});
 
-        //send {options,postdata} to server.
+        //send {postdata} to server.
         var postXhr = new XMLHttpRequest();
         postXhr.open("POST","http://localhost:3000/createGame", true);
         postXhr.setRequestHeader("Content-Type", "application/json");
@@ -130,7 +171,7 @@ var nwInterface = function nwInterface(host, path, port){
                 var response = postXhr.responseText;
                 try{
                     var parsedRes = JSON.parse(response);
-                    var id = parsedRed["_id"];
+                    var id = parsedRes["message"];
                     cb(id);
                 }catch(err){
                     eb(err);
@@ -142,4 +183,35 @@ var nwInterface = function nwInterface(host, path, port){
         }//onreadystatechange
     }//createGame
     
+	this.endGame = function(gameData, id, cb,eb){
+		
+		gameData = JSON.parse(gameData);
+		gameData._id = id;
+		gameData = JSON.stringify(gameData);
+        var postData = JSON.stringify({"gameData":gameData});
+
+        //send {postdata} to server.
+        var postXhr = new XMLHttpRequest();
+        postXhr.open("POST","http://localhost:3000/createGame", true);
+        postXhr.setRequestHeader("Content-Type", "application/json");
+        postXhr.send(postData);
+        
+        postXhr.onreadystatechange = function(){
+            if (postXhr.readyState == 4 && postXhr.status == 200){
+                var response = postXhr.responseText;
+                try{
+                    var parsedRes = JSON.parse(response);
+                    var message = parsedRes["message"];
+                    cb(message);
+                }catch(err){
+                    eb(err);
+                }
+            }else if(postXhr.readyState == 4 && postXhr.status !== 200){
+                //do some sort of error handling
+                alert("error: " + postXhr.status);
+            }
+        }//onreadystatechange
+    }//createGame
+	
+	
 }//nwInterface
