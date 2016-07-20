@@ -146,8 +146,9 @@ function pass(){
 			var cb = function(){};
 			network.endGame(game.toJSON(), networkId, cb, cb);
 		}
-		ui.end();
 		gameOver = true;
+		game.board.score();
+		ui.end(game.board.scores )
     }
     
     var move = new go.Move (-1, -1,(game.gameType=="hotseat"?game.currentPlayer:game.whichPlayer), true);
