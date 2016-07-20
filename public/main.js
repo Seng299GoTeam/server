@@ -40,12 +40,9 @@ var ai = availableAIs[3];
 
 // Used by startgame
 var boardSize = 9;
-<<<<<<< HEAD
-var gameType = "network";
-=======
 var gameType = "hotseat";
 var aiType = "maxLibs";
->>>>>>> 7e2dbb32e15e94d49c2904d8d8f6c9963e86bde4
+
 
 //A couple other important globals:
 var gameOver = false;
@@ -194,7 +191,7 @@ function joinNetworkGame(id) {
 	var cb = function(newGame) {
 		var gameParsed = JSON.parse(newGame);
 		var boardsize = gameParsed.board.length;
-		
+		gameType = "network";
 		game = new Game("network", boardsize);
 		game.whichPlayer = 2;
 		game.gameID = id;
