@@ -173,7 +173,7 @@ class MongoDB {
      * @param callback {function} called when remove is completed.
      *		callback takes an error parameter
 	 */
-    endGame(id, callback) {
+    endGame(id, player, callback) {
 		
 		var collection = this._db.collection("Games");
 		
@@ -181,7 +181,7 @@ class MongoDB {
 		var o_id = new ObjectId(id);
 		
 		collection.updateOne({"_id": o_id}, 
-			{$set:{gameOver: true}}, function(err, result) {
+			{$set:{gameOver: true, currentPlayer: player}}, function(err, result) {
 			
 			if(result.result.ok == 1 && result.result.n == 1){
 				callback(null);

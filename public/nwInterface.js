@@ -24,10 +24,13 @@ var nwInterface = function nwInterface(){
 					
 					// callbacks for getting game
 					var cbGetGame = function(newGame) {
-						
+						var parsedGame = JSON.parse(newGame);
 						game.updateFromJSON(newGame);
 						if(game.previousMove.pass) {
-							alert("Other user passed")
+							alert("Other player passed")
+						}
+						if(parsedGame.gameOver) {
+							game.endGame();
 						}
 						ui.board(game.board.grid);
 					};
@@ -193,7 +196,7 @@ var nwInterface = function nwInterface(){
 
         //send {postdata} to server.
         var postXhr = new XMLHttpRequest();
-        postXhr.open("POST","http://localhost:3000/createGame", true);
+        postXhr.open("POST","http://localhost:3000/endGame", true);
         postXhr.setRequestHeader("Content-Type", "application/json");
         postXhr.send(postData);
         

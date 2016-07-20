@@ -142,7 +142,7 @@ function pass(){
         ui.invalid( message );
     }
     function gameEnds (){               // What should happen if the move results to end the game
-		if(gameType = "network") {
+		if(gameType == "network") {
 			var cb = function(){};
 			network.endGame(game.toJSON(), networkId, cb, cb);
 		}
@@ -176,8 +176,6 @@ document.body.onload = function() {
 	var url = document.location.href;
 	var result = url.match(re);
 	
-	console.log(result);
-	
 	if (result) {
 		var id = result[1];
 		joinNetworkGame(id);
@@ -201,7 +199,9 @@ function joinNetworkGame(id) {
 		if(game.previousMove.pass) {
 			alert("Other user passed")
 		}
-		
+		if(game.gameOver) {
+			alert("Game is over");
+		}
 		ui.board(game.board.grid);
 		ui.show ( "boardPage" );
 	};
@@ -214,6 +214,23 @@ function joinNetworkGame(id) {
 	network.getGame(id, cb, er);
 }
 
+function goHome() {
+	ui.show("startPage");
+	game = null;
+	networkId = -1;
+
+
+	// Used by startgame
+	boardSize = 9;
+	gameType = "hotseat";
+	aiType = "maxLibs";
+
+
+	//A couple other important globals:
+	gameOver = false;
+	showTerritory = false;
+	showSuggestion = false;
+}
 
 function colorChanger( themeName ){
     theme.update ( themeName );
