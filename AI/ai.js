@@ -87,7 +87,11 @@ ai.okAI.prototype.getMove = function(data){
 		var x = Math.floor(Math.random()*data.board.size);
 		var y = Math.floor(Math.random()*data.board.size);
 		return new go.Move(x,y,player,false);
-	}
+	}else if(data.last.pass){
+        if(board.scores[player-1] > board.scores[otherPlayer-1]){
+            return new go.Move(0,0,player,true); //pass, guaranteed win
+        }
+    }
 
 	//Look only at moves next to existing pieces,
 	//  choose one that maximizes weighted (own liberties)/(enemy liberties) ratio
@@ -149,8 +153,9 @@ ai.okAI.prototype.getMove = function(data){
 						//rough check for ko rule, 
 						//  though this will also rule out some valid moves.
 						var resultBoard = board.play(move);
-						//if the previously played stone is captured, assume the move violates ko rule
-						if(resultBoard.grid[data.last.x][data.last.y] == 0){
+                        resultBoard.score();
+						//if the previously played stone is captured, and no other stone is, assume the move violates ko rule
+						if(resultBoard.grid[data.last.x][data.last.y] == 0 && resultBoard.scores[player-1] - currentScore < 3){
 							isValid = false;
 						}
 					}
@@ -178,7 +183,8 @@ ai.okAI.prototype.getMove = function(data){
 							var c = (curArmy.colour == "black"? 1 : 2);
                             var stones = Math.min(curArmy.countStones(),1.5)//Small incentive to play in groups
 							liberties[c] += stones * curArmy.countLiberties();
-                            totalStones[c] += curArmy.countStones();
+                            //totalStones[c] += curArmy.countStones();
+                            totalStones[c] += stones;
 						}
 						
 						var ownLib = liberties[player]/(totalStones[otherPlayer] != 0 ? totalStones[otherPlayer] : 1);
