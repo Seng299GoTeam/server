@@ -156,8 +156,12 @@ class MongoDB {
 			if(err) {
 				console.log("ERROR: Could not get game player. " + err)
 				callback(null, err);
-			} else {
+			} else if(items[0] != null) {
+				console.log("Retrieved game with id: " + items[0]._id);
 				callback(items[0].currentPlayer, err);
+			} else {
+				console.log("Error: No games found with id: " + id);
+				callback(null, "No games found");
 			}
         });
 	}
