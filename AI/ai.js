@@ -64,4 +64,123 @@ ai.basicAI.prototype.getMove = function(data){
 }//basicAI.getMove
 
 
+ai.okAI = function(){}
+ai.okAI.prototype = new ai.AI();
+ai.okAI.prototype.getMove = function(data){
+	//no error checking yet
+	var board = new go.Board(data.board);
+	board.parse();
+	board.score();
+	
+	if(data.last != null){
+		var player = (data.last.c == 1 ? 2: 1);
+		var otherPlayer = data.last.c;
+	}else{
+		var player = 1;
+		var otherPlayer = 2;
+	}
+	
+	var currentScore = board.scores[player-1]; 
+	
+	if(data.last == null){
+		//if it's the first move, just play randomly.
+		var x = Math.floor(Math.random()*data.board.size);
+		var y = Math.floor(Math.random()*data.board.size);
+		return new go.Move(x,y,player,false);
+	}
+
+	//Look only at moves next to existing pieces,
+	//  choose one that maximizes weighted (own liberties)/(enemy liberties) ratio
+	var currentBest = {};
+	currentBest.ratio = -1;
+	currentBest.score = currentScore;
+	currentBest.ratioMove = null;
+	currentBest.scoreMove = null;
+	
+	for(var i = 0; i < board.size; i++){
+		for(var j = 0; j < board.size; j++){
+			if(board.grid[i][j] == 0){
+				var sumofneighbours = 0;
+				if(i>0){
+					sumofneighbours += board.grid[i-1][j];
+				}
+				if(j>0){
+					sumofneighbours += board.grid[i][j-1];
+				}
+				if(i<board.size - 1){
+					sumofneighbours += board.grid[i+1][j];
+				}
+				if(j<board.size - 1){
+					sumofneighbours += board.grid[i][j+1];
+				}
+				
+				if(sumofneighbours > 0){
+					var move = new go.Move(i,j,player,false);
+					
+					var isValid = board.validateMove(move)[0];
+					if(isValid){
+						//rough check for ko rule, 
+						//  though this will also rule out some valid moves.
+						var resultBoard = board.play(move);
+						//if the previously played stone is captured, assume the move violates ko rule
+						if(resultBoard.grid[data.last.x][data.last.y] == 0){
+							isValid = false;
+						}
+					}
+					
+					if(isValid){
+						//consider as a possible move
+						
+						//Check for highest scoring move and move with highest liberty ratio
+						//Score:
+						var resultBoard = board.play(move);
+						resultBoard.score();
+						var myScore = resultBoard.scores[player-1];
+						if(myScore > currentBest.score){
+							currentBest.score = myScore;
+							currentBest.scoreMove = new go.Move(i,j,player,false);
+						}
+						
+						//Ratio:
+						var liberties = [0,0,0]; // [0,p1,p2]
+						
+						for(var k in resultBoard.armies){
+							var curArmy = resultBoard.armies[k];
+							var c = (curArmy.colour == "black"? 1 : 2);
+							liberties[c] += curArmy.countLiberties();
+						}
+						
+						var ownLiberties = liberties[player];
+						var enemyLiberties = liberties[otherPlayer];
+						
+						var ratio = 0;
+						//avoid divide-by-zero
+						if(enemyLiberties > 0){
+							ratio = (ownLiberties*1.0)/(enemyLiberties*1.2);
+							if(ratio > currentBest.ratio){
+								currentBest.ratio = ratio;
+								currentBest.ratioMove = new go.Move(i,j,player,false);
+							}
+						}
+					}//if valid
+				}//if has neighbours		
+			}//if empty
+		}//for j
+	}//for i
+	
+	//check whether score difference was high enough to matter
+	if(currentBest.score - currentScore > 1 && currentBest.scoreMove != null){
+		return currentBest.scoreMove; //Perform the high-scoring move (i.e. capture)
+	}
+	
+	//otherwise, perfom a move that maximizes liberties
+	if(currentBest.ratioMove != null){
+		return currentBest.ratioMove;
+	}
+	
+	//Emergency fallback: just pass
+    return new go.Move(0,0,player,true); //just pass
+}//okAI.getMove
+
+
 module.exports = ai;

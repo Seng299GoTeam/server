@@ -75,6 +75,15 @@ app.post("/neuralnetwork",function (req,res){
 	res.send(JSON.stringify(move));
 });// post to ai
 
+app.post("/okai",function (req,res){
+    console.log("POST Request to: /okai");
+	
+	var okai = new ai.okAI();
+	var move = okai.getMove(req.body);
+	
+	res.send(JSON.stringify(move));
+});// post to ai
+
 
 app.listen(3001, function () {
     console.log("Listening on port 3001");

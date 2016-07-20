@@ -38,7 +38,7 @@ ANN.prototype.postConstructor = function(){
     this.generationsSurvived = 0;
     
     var layers = [];
-    for(var i = 0; i < 4; i++){
+    for(var i = 0; i < 2; i++){
         layers[i] = balancedRandomMatrix(83,81);
     }
     this.layers = layers;
@@ -111,9 +111,10 @@ ANN.prototype.getMove = function(data){
         //Look for highest-valued legal move:
         if(result[i] >= highest.value){
             var move = new go.Move(x,y,player,false);
-            if(board.validateMove(move)[0]){
-                highest.value = result[i];
-                highest.move = move;
+			highest.value = result[i];
+			highest.move = move;
+            if(!board.validateMove(move)[0]){
+                highest.move = new go.Move(0,0,player,true); //if invalid, pass instead
             }
         }//if higher than highest
     }//for i in result

@@ -10,9 +10,9 @@ var ANN = require("./ANN2.js");
 
 var wrangler = require("./evolution2.js");
 
-//saveNewPool("mainPool.json",30);
+//saveNewPool("mainPool2.json",30);
 //conductEvolutionGeneration(wrangler.createPool(10));
-wrangler.poolFromFile("mainGenePool.json",conductEvolutionGeneration); //Start running the evolution algorithm.
+wrangler.poolFromFile("mainPool2.json",conductEvolutionGeneration); //Start running the evolution algorithm.
 
 function saveNewPool(path,n){
     var pool = wrangler.createPool(n);
@@ -46,7 +46,7 @@ function conductEvolutionGeneration(pool){
     for(var i in results){
         var cur = results[i];
         // use wins as a fitness function (wins * ratio wasn't working great)
-        cur.fitness = cur.wins;
+        cur.fitness = cur.wins * cur.ratio;
         totalFitness += cur.fitness;
     }
     
@@ -137,7 +137,7 @@ function conductEvolutionGeneration(pool){
     //This should recurr infinitely, but the files get written intermittently
     //  so stopping execution manually doesn't result in data loss.
     fs.writeFile("Evolutioninformation.txt",data,function(){
-        wrangler.poolToFile(newGeneration,"mainGenePool.json",function(){
+        wrangler.poolToFile(newGeneration,"mainPool2.json",function(){
             conductEvolutionGeneration(newGeneration)
         });
     });
