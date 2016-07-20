@@ -25,7 +25,8 @@ var ai = availableAIs[3];
 // Used by startgame
 var boardSize = 9;
 var gameType = "hotseat";
-var aiType = "simonAI"
+var aiType = "simonAI";
+var gameOver = false;
 
 
 
@@ -35,6 +36,7 @@ ui.show ( "startPage");
 function startNewGame(){
 	
     game = new Game ( "ai", boardSize );
+    gameOver = false;
 	
     ui.board(game.board.grid );
     ui.show ( "boardPage" );
@@ -53,7 +55,8 @@ function startNewGame(){
 }
 
 function boardClickHandler(x,y){
-    var move = new go.Move (x, y, game.currentPlayer , false);
+    if(gameOver) return; //Don't do anything if game is over
+    var move = new go.Move (x, y, (game.gameType=="hotseat"?game.currentPlayer:game.whichPlayer), false);
     
     game.attemptMove(move,successfulMove,invalidMove);
 }
@@ -75,7 +78,8 @@ function invalidMove ( message ){    // What should happen if a move is invalid
 }
 
 function gameEnds (){               // What should happen if the move results to end the game
-    ui.end()
+    ui.end();
+    gameOver = true;
 }
 
 
@@ -98,7 +102,7 @@ function pass(){
 		ui.end()
     }
     
-    var move = new go.Move (-1, -1, game.currentPlayer , true);
+    var move = new go.Move (-1, -1,(game.gameType=="hotseat"?game.currentPlayer:game.whichPlayer), true);
     game.attemptMove(move,successfulMove,invalidMove, gameEnds);
 	
     if(game.gameType == "ai"){
