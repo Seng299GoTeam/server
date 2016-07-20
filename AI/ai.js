@@ -100,21 +100,48 @@ ai.okAI.prototype.getMove = function(data){
 	for(var i = 0; i < board.size; i++){
 		for(var j = 0; j < board.size; j++){
 			if(board.grid[i][j] == 0){
+                //Find neighbours
 				var sumofneighbours = 0;
+                var neighbours = [-1,-1,-1,-1];//So edges
 				if(i>0){
-					sumofneighbours += board.grid[i-1][j];
+                    //var val = board.grid[i-1][j];
+					//sumofneighbours += board.grid[i-1][j];
+                    sumofneighbours += val;
+                    neighbours[0] = board.grid[i-1][j];
 				}
 				if(j>0){
-					sumofneighbours += board.grid[i][j-1];
+                    //var val = board.grid[i][j-1];
+					//sumofneighbours += board.grid[i][j-1];
+                    sumofneighbours += val;
+                    neighbours[1] = val;
 				}
 				if(i<board.size - 1){
-					sumofneighbours += board.grid[i+1][j];
+                    var val = board.grid[i+1][j];
+					//sumofneighbours += board.grid[i+1][j];
+                    sumofneighbours += val;
+                    neighbours[2] = val;
 				}
 				if(j<board.size - 1){
-					sumofneighbours += board.grid[i][j+1];
+                    var val = board.grid[i][j+1];
+					//sumofneighbours += board.grid[i][j+1];
+                    sumofneighbours += val;
+                    neighbours[3] = val;
 				}
+                
+                //make note if it's an eye and if it borders another piece
+                
+                var isEye = true;
+                var isBordering = false;
+                for(var k = 0; k < neighbours.length; k++){
+                    if(neighbours[k] == 0){
+                        isEye = false;
+                    }else if(neighbours[k] > 0){
+                        isBordering = true;
+                    }
+                }
 				
-				if(sumofneighbours > 0){
+                //Only play in places bordering other pieces
+				if(isBordering){
 					var move = new go.Move(i,j,player,false);
 					
 					var isValid = board.validateMove(move)[0];
@@ -142,22 +169,27 @@ ai.okAI.prototype.getMove = function(data){
 						}
 						
 						//Ratio:
+                        // (Actually the ratio of avg# of liberties weighted)
 						var liberties = [0,0,0]; // [0,p1,p2]
+                        var totalStones = [0,0,0];
 						
 						for(var k in resultBoard.armies){
 							var curArmy = resultBoard.armies[k];
 							var c = (curArmy.colour == "black"? 1 : 2);
-							liberties[c] += curArmy.countLiberties();
+                            var stones = Math.min(curArmy.countStones(),1.5)//Small incentive to play in groups
+							liberties[c] += stones * curArmy.countLiberties();
+                            totalStones[c] += curArmy.countStones();
 						}
 						
-						var ownLiberties = liberties[player];
-						var enemyLiberties = liberties[otherPlayer];
+						var ownLib = liberties[player]/(totalStones[otherPlayer] != 0 ? totalStones[otherPlayer] : 1);
+						var enemyLib = liberties[otherPlayer]/(totalStones[player] != 0 ? totalStones[player] : 1);
 						
 						var ratio = 0;
 						//avoid divide-by-zero
-						if(enemyLiberties > 0){
-							ratio = (ownLiberties*1.0)/(enemyLiberties*1.2);
-							if(ratio > currentBest.ratio){
+						if(enemyLib > 0){
+							ratio = (ownLib*1.0)/(enemyLib*1.2);
+                            //if ratio is good AND the location is not an eye:
+							if(ratio > currentBest.ratio && !isEye){
 								currentBest.ratio = ratio;
 								currentBest.ratioMove = new go.Move(i,j,player,false);
 							}
@@ -169,6 +201,7 @@ ai.okAI.prototype.getMove = function(data){
 	}//for i
 	
 	//check whether score difference was high enough to matter
+    
 	if(currentBest.score - currentScore > 1 && currentBest.scoreMove != null){
 		return currentBest.scoreMove; //Perform the high-scoring move (i.e. capture)
 	}
