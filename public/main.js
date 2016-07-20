@@ -96,7 +96,7 @@ function startNewGame(){
 
 function boardClickHandler(x,y){
 	
-    if(gameOver || (gameType == "network" && game.whichPlayer != game.currentPlayer)) return; //Don't do anything if game is over
+    if(gameOver) return; //Don't do anything if game is over
     var move = new go.Move (x, y, (game.gameType=="hotseat"?game.currentPlayer:game.whichPlayer), false);
     
     game.attemptMove(move,successfulMove,invalidMove);
@@ -174,17 +174,29 @@ function successfulAiMove(){
 
 document.body.onload = function() {
 	
-	var re = /\?id=(.*)/;
+	var re = /\?id=(.*?)&player=(.*)/;
 	var url = document.location.href;
 	var result = url.match(re);
 	
-	if (result) {
+	if(result) {
 		var id = result[1];
-		joinNetworkGame(id);
+		var player = result[2];
+		joinNetworkGame(id, player);
+		return;
+	} else {
+		re = /\?id=(.*)/;
+		result = url.match(re);
+		if(result) {
+			var id = result[1];
+			var player = result[2];
+			joinNetworkGame(id, null);
+		}
 	}
+	
+	
 }
 
-function joinNetworkGame(id) {
+function joinNetworkGame(id, player) {
 	game = new Game ( "network", boardSize );
 	
 	// callbacks for getting game
@@ -193,14 +205,16 @@ function joinNetworkGame(id) {
 		var boardsize = gameParsed.board.length;
 		gameType = "network";
 		game = new Game("network", boardsize);
-		game.whichPlayer = 2;
+		game.whichPlayer = (player ? player : 2);
 		game.gameID = id;
 		networkId = id;
 		game.updateFromJSON(newGame);
 		
-		if(game.previousMove.pass) {
-			alert("Other user passed")
+		if(!game.previousMove) {
+		} else if(game.previousMove.pass){
+			alert("Other player passed");
 		}
+		
 		if(game.gameOver) {
 			alert("Game is over");
 		}
