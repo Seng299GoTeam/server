@@ -41,7 +41,7 @@ var ai = availableAIs[3];
 // Used by startgame
 var boardSize = 9;
 var gameType = "hotseat";
-var aiType = "simonAI";
+var aiType = "maxLibs";
 
 //A couple other important globals:
 var gameOver = false;
@@ -54,7 +54,7 @@ ui.show ( "startPage");
 
 function startNewGame(){
 	
-    game = new Game ( "ai", boardSize );
+    game = new Game ( gameType, boardSize );
     gameOver = false;
 	
     ui.board(game.board.grid );
@@ -70,6 +70,24 @@ function startNewGame(){
 			alert("Error: " + err);
 		}
 		network.createGame(game.toJSON(), callback, errback);
+	}else if(gameType == "ai"){
+		//insert ai choosing stuff
+		switch(aiType){
+			case "maxLibs":
+				ai = availableAIs[0];
+				break;
+			case "attack":
+				ai = availableAIs[1];
+				break;
+			case "ANN":
+				ai = availableAIs[4];
+				break;
+			case "Gomega":
+				ai = availableAIs[3];
+				break;
+			default:
+				ai = availableAIs[3];
+		}
 	}
 }
 

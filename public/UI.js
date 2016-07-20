@@ -170,7 +170,7 @@ this.updateTypeButton = function updateTypeButton(gameTypeOption){
     theme.gameTypeUpdator();
 }
 
-this.showaiOptions = function showaiOptions(){
+this.showAIoptions = function showAIoptions(){
     $(".drop_down").css('display','block');
     $(".drop_down_text_group").css('display','block');
     $(".drop_down_item").css('display','block');
