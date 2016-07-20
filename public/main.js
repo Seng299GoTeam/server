@@ -25,6 +25,7 @@ var ai = availableAIs[3];
 // Used by startgame
 var boardSize = 9;
 var gameType = "hotseat";
+var aiType = "simonAI"
 
 
 
@@ -53,7 +54,7 @@ function startNewGame(){
 
 function boardClickHandler(x,y){
     var move = new go.Move (x, y, game.currentPlayer , false);
-
+    
     game.attemptMove(move,successfulMove,invalidMove);
 }
 
@@ -136,14 +137,17 @@ function boardSizeChoser ( boardSizeOption ){
 function gameTypeChoser ( gameTypeOption ){
     ui.updateTypeButton( gameTypeOption );
     
-    /*
+    
     if  ( gameTypeOption == "ai" ){
-        ui.showUIoptions();
+        ui.showAIoptions();
     }
-    */
+    
 }
     
+function aiTypeChoser ( aiType ){
     
+    ui.updateAItype( aiType );
+}
 
 
 

@@ -173,15 +173,14 @@ ai.okAI.prototype.getMove = function(data){
 							currentBest.scoreMove = new go.Move(i,j,player,false);
 						}
 						
-						//Ratio:
-                        // (Actually the ratio of avg# of liberties weighted)
+						//Liberty ratio sort of thing (lots of fudging)
 						var liberties = [0,0,0]; // [0,p1,p2]
                         var totalStones = [0,0,0];
 						
 						for(var k in resultBoard.armies){
 							var curArmy = resultBoard.armies[k];
 							var c = (curArmy.colour == "black"? 1 : 2);
-                            var stones = Math.min(curArmy.countStones(),1.5)//Small incentive to play in groups
+                            var stones = Math.min(curArmy.countStones(),2)//Small incentive to play in groups
 							liberties[c] += stones * curArmy.countLiberties();
                             //totalStones[c] += curArmy.countStones();
                             totalStones[c] += stones;
