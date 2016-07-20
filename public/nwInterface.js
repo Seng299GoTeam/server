@@ -30,7 +30,7 @@ var nwInterface = function nwInterface(){
 							alert("Other player passed")
 						}
 						if(parsedGame.gameOver) {
-							game.endGame();
+							ui.end();
 						}
 						ui.board(game.board.grid);
 					};
