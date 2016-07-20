@@ -144,9 +144,24 @@ Ends the game and show score
 @parameters:
 state: A 2D array that has the 0,1,2 for empty, black, white respectively
 */
-this.end = function end(){
-    alert("game over");
+this.end = function end( scoreArray ){
+    $(".game_end_message").css('display','block');
+    
+    $("#game_end_number_black").text( scoreArray[0]);
+    $("#game_end_number_white").text( scoreArray[1]);
+    
+    
 }    
+
+
+
+this.message = function (){
+    
+    
+    
+    
+}
+
 
 this.updateSizeButton = function updateSizeButton(boardSizeOption){
     $("#size_" + boardSize).removeClass ( "board_size_clicked");
