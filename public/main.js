@@ -3,7 +3,19 @@ main.js is reponsible for handling all user's events of any page.
 */
 
 
-console.log("Initalizing Page...."); 
+console.log("Initalizing Page....");
+
+
+//key event handler
+document.onkeydown = function keyHandler(event){
+    //alert(event.keyCode);
+    //"t" for territory
+    if(event.keyCode == 84){
+        showTerritory = !showTerritory;
+        ui.board(game.board.grid );
+    }
+}
+
 var ui = new UI();
 var theme = new Theme();
 var game;
@@ -29,7 +41,7 @@ var aiType = "simonAI";
 
 //A couple other important globals:
 var gameOver = false;
-var showTerritory = true;
+var showTerritory = false;
 
 
 
