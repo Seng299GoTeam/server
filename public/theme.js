@@ -123,11 +123,13 @@ var Theme = function Theme(){
         });
         
         
-        $(".drop_down").css("fill", this.mediumColor);
+        $(".drop_down").css("border-color", this.mediumColor);
         $(".drop_down_item").css("color", this.mediumColor);
         $(".drop_down_item").css("background-color", this.lightColor);
+        $(".drop_down_item").css("border-bottom-color", this.mediumColor);
         $(".drop_down_chosen").css("background-color", this.mediumColor);
         $(".drop_down_chosen").css("color", this.lightColor);
+        
     }
     
 }

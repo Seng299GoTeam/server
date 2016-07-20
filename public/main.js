@@ -34,7 +34,7 @@ function startNewGame(){
 
 function boardClickHandler(x,y){
     var move = new go.Move (x, y, game.currentPlayer , false);
-
+    
     game.attemptMove(move,successfulMove,invalidMove);
 }
 
