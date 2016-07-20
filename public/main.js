@@ -16,6 +16,9 @@ availableAIs.push(new aiInterface('localhost','/okai','3001'));
 availableAIs.push(new aiInterface('localhost','/neuralnetwork','3001'));
 
 //var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
+
+var network = new nwInterface();
+var networkId = -1;
 var ai = availableAIs[3];
 
 
@@ -28,13 +31,24 @@ var gameType = "hotseat";
 // Show the default Page
 ui.show ( "startPage");
 
-
-
-
 function startNewGame(){
+	
     game = new Game ( "ai", boardSize );
+	
     ui.board(game.board.grid );
     ui.show ( "boardPage" );
+	
+	if ( gameType == "network") {
+		var callback = function(_id) {
+			networkId = _id;
+			game._id = _id;
+		};
+		
+		var errback = function(err) {
+			alert("Error: " + err);
+		}
+		network.createGame(game.toJSON(), callback, errback);
+	}
 }
 
 function boardClickHandler(x,y){
@@ -50,7 +64,9 @@ function successfulMove (){          // What should happen if a move is successf
     ui.board(game.board.grid);
     if(game.gameType == "ai"){
         ai.getMove(game,10,aiMoveTemp,function(){});
-    }
+    } else if( gameType == "network"){
+		network.setAndCheckGame(game, networkId, ui);
+	}
 }
 
 function invalidMove ( message ){    // What should happen if a move is invalid
@@ -74,7 +90,11 @@ function pass(){
         ui.invalid( message );
     }
     function gameEnds (){               // What should happen if the move results to end the game
-        ui.end()
+		if(gameType = "network") {
+			var cb = function(){};
+			network.endGame(game.toJSON(), networkId, cb, cb);
+		}
+		ui.end()
     }
     
     var move = new go.Move (-1, -1, game.currentPlayer , true);

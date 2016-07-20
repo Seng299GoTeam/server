@@ -73,8 +73,8 @@ class MongoDB {
 				console.log("ERROR adding game: " + err);
 				callback(null, err);
 			} else {
-				console.log("Create a game with an id equal to " + result.ops[0]._id);
-				callback(result.ops[0]._id, null);
+				console.log("Created a game with an id equal to " + result.ops[0]._id);
+				callback(result.ops[0], null);
 			}
 		});
     }
@@ -87,17 +87,28 @@ class MongoDB {
      *      callback takes an error parameter
      */
 	updateGame(game, callback){
-		var collection = this._db.collection("Games");
 		
-		collection.updateOne({_id:game._id}, 
-			{$set:{player:game.player, board:game.board}}, function(err, result) {
+		var collection = this._db.collection("Games");
+		var ObjectId = require('mongodb').ObjectId;
+		var o_id = new ObjectId(game._id);
+		
+		
+		collection.updateOne(
+			{"_id": o_id}, 
+			{
+				$set: { currentPlayer : game.currentPlayer, 
+					    board : game.board, 
+					    previousBoard : game.previousBoard, 
+					    previousMove : game.previousMove } 
+			},	
+			function(err, result) {
 			
-			if(result.result.ok == 1 && result.result.n == 1){
-				callback(null);
-			} else {
-				console.log("ERROR: Did not update any games");
-				callback("Did not update any games");
-			}
+				if(result.result.ok == 1 && result.result.n == 1){
+					callback(null);
+				} else {
+					console.log("ERROR: Did not update any games");
+					callback("Did not update any games");
+				}
 		});
 	}
 	
@@ -111,7 +122,10 @@ class MongoDB {
 	getGame(id, callback) {
 		var collection = this._db.collection("Games");
 		
-		collection.find({"_id": id}).toArray(function(err,items){
+		var ObjectId = require('mongodb').ObjectId;
+		var o_id = new ObjectId(id);
+		
+		collection.find({"_id": o_id}).toArray(function(err,items){
 			if(err) {
 				console.log("ERROR getting game: " + err);
 				callback(null, err);
@@ -135,13 +149,15 @@ class MongoDB {
 	getGamePlayer(id, callback) {
 		var collection = this._db.collection("Games");
 		
-		collection.find({"_id": id}).toArray(function(err,items){
+		var ObjectId = require('mongodb').ObjectId;
+		var o_id = new ObjectId(id);
+		
+		collection.find({"_id": o_id}).toArray(function(err,items){
 			if(err) {
 				console.log("ERROR: Could not get game player. " + err)
 				callback(null, err);
 			} else {
-				console.log("Items object: " + items);
-				callback(items[0].player, err);
+				callback(items[0].currentPlayer, err);
 			}
         });
 	}
@@ -153,24 +169,22 @@ class MongoDB {
      * @param callback {function} called when remove is completed.
      *		callback takes an error parameter
 	 */
-    deleteGame(id, callback) {
+    endGame(id, callback) {
 		
 		var collection = this._db.collection("Games");
 		
-		collection.deleteOne({ "_id" : id }, function(err, result) {
+		var ObjectId = require('mongodb').ObjectId;
+		var o_id = new ObjectId(id);
+		
+		collection.updateOne({"_id": o_id}, 
+			{$set:{gameOver: true}}, function(err, result) {
 			
-			if(!err && (result.result.ok !== 1 || result.result.n !== 1)){
-				console.log("ERROR: Did not remove any games");
-				callback("Did not remove any games");
-			} else if(err) {
-				console.log("ERROR removing games: " + err);
-				callback(err);
-			}else {
-				console.log("Removed the document with the field _id equal to " + id);
+			if(result.result.ok == 1 && result.result.n == 1){
 				callback(null);
+			} else {
+				console.log("ERROR: Did not update any games");
+				callback("Did not end any games");
 			}
-			
-			
 		});
     }
 }
