@@ -123,7 +123,7 @@ function gameEnds (){               // What should happen if the move results to
 
 function pass(){
 	
-	if(game.gameType == "network" && game.currentPlayer != game.whichPlayer) {
+	if(gameOver || game.gameType == "network" && game.currentPlayer != game.whichPlayer) {
 		console.log("Cannot pass when it's not your turn");
 		return;
 	}
@@ -146,15 +146,17 @@ function pass(){
 			var cb = function(){};
 			network.endGame(game.toJSON(), networkId, cb, cb);
 		}
-		ui.end()
+		ui.end();
+		gameOver = true;
     }
     
     var move = new go.Move (-1, -1,(game.gameType=="hotseat"?game.currentPlayer:game.whichPlayer), true);
     game.attemptMove(move,successfulMove,invalidMove, gameEnds);
 	
+	/*
     if(game.gameType == "ai"){
         ai.getMove(game,10,aiMoveTemp,function(){});
-    }
+    }*/
 }
 
 //TEMP: This is just for testing that we can deal with ai moves.
