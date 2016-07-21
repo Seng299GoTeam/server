@@ -272,6 +272,10 @@ function colorChanger( themeName ){
     theme.update ( themeName );
 }
 
+function callDarken( themeType ){
+    theme.darken ( themeType );
+}
+
 function boardSizeChoser ( boardSizeOption ){
     ui.updateSizeButton(boardSizeOption);
 
