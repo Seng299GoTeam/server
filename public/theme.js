@@ -16,6 +16,11 @@ var Theme = function Theme(){
             mediumColor: "#6D4F99",
             darkColor: "#36274C" , 
         },
+        orange: {
+            lightColor: "#FFDB99"  ,
+            mediumColor: "#FFA500",
+            darkColor: "#332100" , 
+        },
     }
     
     
