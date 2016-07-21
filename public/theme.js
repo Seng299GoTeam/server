@@ -24,25 +24,44 @@ var Theme = function Theme(){
     }
     
     
-    this.lightColor;
-    this.mediumColor;
-    this.darkColor;
-    this.mode;
-    
+    this.lightColor = "#C3D8F0" ;
+    this.mediumColor = "#2F80ED" ;
+    this.darkColor = "#0C203B" ;
+    this.mode = "light";
 
-
-    document.write("<style>")
-    
-    document.write("</style>")
-
+    this.darken = function(){
+        if (this.mode == "dark" ){
+            this.mode = "light";
+        }
+        else {
+            this.mode = "dark";
+        }
+        
+        
+        var temp = this.lightColor;
+        this.lightColor = this.darkColor;
+        this.darkColor = temp
+        
+        this.updateWorker();
+        this.buttonSelectorUpdator();
+        this.buttonStartGameUpdator();
+        this.gameTypeUpdator();
+        
+    }
     
     this.update= function( themeName ){
         var chosenTheme = this.availableThemes[themeName];
         
+        if (this.mode == "light"){
         this.lightColor = chosenTheme.lightColor;
-        this.mediumColor = chosenTheme.mediumColor;
         this.darkColor = chosenTheme.darkColor;
+        }else{
+        this.lightColor = chosenTheme.darkColor;
+        this.darkColor = chosenTheme.lightColor;            
+        }
         
+        
+        this.mediumColor = chosenTheme.mediumColor;
         this.updateWorker();
         this.buttonSelectorUpdator();
         this.buttonStartGameUpdator();
@@ -84,12 +103,13 @@ var Theme = function Theme(){
     }
     
     this.updateWorker= function( ){
+
         var light = this.lightColor; // #234243
         var medium = this.mediumColor;
         
         $("#first_menu").css("background-color", this.darkColor);
         $("#second_menu").css("background-color", this.mediumColor);
-         $("body").css("background-color", this.lightColor); 
+        $("body").css("background-color", this.lightColor); 
 
         $("h1").css("color", this.lightColor);
         
@@ -134,6 +154,8 @@ var Theme = function Theme(){
         $(".drop_down_item").css("border-bottom-color", this.mediumColor);
         $(".drop_down_chosen").css("background-color", this.mediumColor);
         $(".drop_down_chosen").css("color", this.lightColor);
+        
+        $(".upper_menu_item").css ("color", this.lightColor)
         
     }
     
