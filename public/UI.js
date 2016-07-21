@@ -104,9 +104,11 @@ this.board = function board(state){
             var advisor = new aiInterface('localhost','/okai','3001');
             //gonna use the global game object here, even though it might not be ideal.
             advisor.getMove(game,10,function(move){
-                var x = (lw+bw)*move.y+loc;
-                var y = (lw+bw)*move.x+loc;
-                svg.append(makeUnfilledCircle(x,y,20,"#00FF00",3));
+				if(!move.pass){
+					var x = (lw+bw)*move.y+loc;
+					var y = (lw+bw)*move.x+loc;
+					svg.append(makeUnfilledCircle(x,y,20,"#00FF00",3));
+				}
             },function(){});
         }catch(err){
         }
@@ -144,9 +146,24 @@ Ends the game and show score
 @parameters:
 state: A 2D array that has the 0,1,2 for empty, black, white respectively
 */
-this.end = function end(){
-    alert("game over");
+this.end = function end( scoreArray ){
+    $(".game_end_message").css('display','block');
+    
+    $("#game_end_number_black").text( scoreArray[0]);
+    $("#game_end_number_white").text( scoreArray[1]);
+    
+    
 }    
+
+
+
+this.message = function (){
+    
+    
+    
+    
+}
+
 
 this.updateSizeButton = function updateSizeButton(boardSizeOption){
     $("#size_" + boardSize).removeClass ( "board_size_clicked");

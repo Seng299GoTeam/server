@@ -24,10 +24,14 @@ var nwInterface = function nwInterface(){
 					
 					// callbacks for getting game
 					var cbGetGame = function(newGame) {
-						
+						var parsedGame = JSON.parse(newGame);
 						game.updateFromJSON(newGame);
 						if(game.previousMove.pass) {
-							alert("Other user passed")
+							// TODO: Display instead of alert
+							alert("Other player passed")
+						}
+						if(parsedGame.gameOver) {
+							ui.end();
 						}
 						ui.board(game.board.grid);
 					};
@@ -73,7 +77,7 @@ var nwInterface = function nwInterface(){
 		
         //send {postdata} to server.
         var postXhr = new XMLHttpRequest();
-        postXhr.open("POST","http://localhost:3000/checkGame", true);
+        postXhr.open("POST", "http://" + host + ":" + port + "/checkGame", true);
         postXhr.setRequestHeader("Content-Type", "application/json");
         postXhr.send(postData);
         
@@ -87,8 +91,8 @@ var nwInterface = function nwInterface(){
                     eb(err);
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
-                //do some sort of error handling
-                alert("error: " + postXhr.status);
+                // TODO: Display instead of alert
+                alert("Could not check game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//checkGame
@@ -104,7 +108,7 @@ var nwInterface = function nwInterface(){
         
         //send {postdata} to server.
         var postXhr = new XMLHttpRequest();
-        postXhr.open("POST","http://localhost:3000/getGame", true);
+        postXhr.open("POST", "http://" + host + ":" + port + "/getGame", true);
         postXhr.setRequestHeader("Content-Type", "application/json");
         postXhr.send(postData);
         
@@ -120,8 +124,8 @@ var nwInterface = function nwInterface(){
                     eb(err);
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
-                //do some sort of error handling
-                alert("error: " + postXhr.status);
+                //TODO: Display instead of alert
+				alert("Could not get game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//getGame
@@ -136,7 +140,7 @@ var nwInterface = function nwInterface(){
 
         //send {postdata} to server.
         var postXhr = new XMLHttpRequest();
-        postXhr.open("POST","http://localhost:3000/updateGame", true);
+        postXhr.open("POST", "http://" + host + ":" + port + "/updateGame", true);
         postXhr.setRequestHeader("Content-Type", "application/json");
         postXhr.send(postData);
         
@@ -152,7 +156,7 @@ var nwInterface = function nwInterface(){
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
                 //do some sort of error handling
-                alert("error: " + postXhr.status);
+				alert("Could not set game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//setGame
@@ -163,7 +167,7 @@ var nwInterface = function nwInterface(){
 
         //send {postdata} to server.
         var postXhr = new XMLHttpRequest();
-        postXhr.open("POST","http://localhost:3000/createGame", true);
+        postXhr.open("POST","http://" + host + ":" + port + "/createGame", true);
         postXhr.setRequestHeader("Content-Type", "application/json");
         postXhr.send(postData);
         
@@ -179,7 +183,7 @@ var nwInterface = function nwInterface(){
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
                 //do some sort of error handling
-                alert("error: " + postXhr.status);
+                alert("Could not create game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//createGame
@@ -193,7 +197,7 @@ var nwInterface = function nwInterface(){
 
         //send {postdata} to server.
         var postXhr = new XMLHttpRequest();
-        postXhr.open("POST","http://localhost:3000/createGame", true);
+        postXhr.open("POST","http://" + host + ":" + port + "/endGame", true);
         postXhr.setRequestHeader("Content-Type", "application/json");
         postXhr.send(postData);
         
@@ -209,7 +213,7 @@ var nwInterface = function nwInterface(){
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
                 //do some sort of error handling
-                alert("error: " + postXhr.status);
+                alert("Could not end game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//createGame

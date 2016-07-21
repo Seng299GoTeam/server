@@ -180,10 +180,10 @@ ai.okAI.prototype.getMove = function(data){
 						for(var k in resultBoard.armies){
 							var curArmy = resultBoard.armies[k];
 							var c = (curArmy.colour == "black"? 1 : 2);
-                            var stones = Math.min(curArmy.countStones(),2)//Small incentive to play in groups
+                            var stones = Math.min(curArmy.countStones(),3)//Small incentive to play in groups
 							liberties[c] += stones * curArmy.countLiberties();
-                            //totalStones[c] += curArmy.countStones();
-                            totalStones[c] += stones;
+                            totalStones[c] += curArmy.countStones();
+                           // totalStones[c] += stones;
 						}
 						
 						var ownLib = liberties[player]/(totalStones[otherPlayer] != 0 ? totalStones[otherPlayer] : 1);

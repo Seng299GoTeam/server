@@ -20,6 +20,10 @@ document.onkeydown = function keyHandler(event){
     }
 }
 
+
+var host = "localhost";
+var port = "3000";
+
 var ui = new UI();
 var theme = new Theme();
 var game;
@@ -28,8 +32,8 @@ var availableAIs = [];
 availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/maxLibs','30000'));
 availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/attackEnemy','30000'));
 availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/formEyes','30000'));
-availableAIs.push(new aiInterface('localhost','/okai','3001'));
-availableAIs.push(new aiInterface('localhost','/neuralnetwork','3001'));
+availableAIs.push(new aiInterface(host,'/okai','3001'));
+availableAIs.push(new aiInterface(host,'/neuralnetwork','3001'));
 
 //var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
 
@@ -66,10 +70,11 @@ function startNewGame(){
 			networkId = _id;
 			game._id = _id;
 			// TODO: Implement pop up screen for this url
-			console.log("Send this url to a friend to play with them: " + "localhost:3000/?id=" + _id);
+			console.log("Send this url to a friend to play with them: " + host + ":" + port + "/?id=" + _id + "&player=2");
 		};
 		
 		var errback = function(err) {
+			// TODO: Implement pop up for this error (or just console.log it)
 			alert("Error: " + err);
 		}
 		network.createGame(game.toJSON(), callback, errback);
@@ -96,7 +101,7 @@ function startNewGame(){
 
 function boardClickHandler(x,y){
 	
-    if(gameOver || (gameType == "network" && game.whichPlayer != game.currentPlayer)) return; //Don't do anything if game is over
+    if(gameOver) return; //Don't do anything if game is over
     var move = new go.Move (x, y, (game.gameType=="hotseat"?game.currentPlayer:game.whichPlayer), false);
     
     game.attemptMove(move,successfulMove,invalidMove);
@@ -123,8 +128,15 @@ function gameEnds (){               // What should happen if the move results to
 
 function pass(){
 	
+	if(gameOver) {
+		// TODO: Display instead of alert
+		alert("Game is over");
+		return;
+	}
+	
 	if(game.gameType == "network" && game.currentPlayer != game.whichPlayer) {
-		console.log("Cannot pass when it's not your turn");
+		// TODO: Display instead of alert
+		alert("Cannot pass when it's not your turn");
 		return;
 	}
 	
@@ -134,7 +146,7 @@ function pass(){
 		if(game.gameType == "ai"){
 			ai.getMove(game,10,aiMoveTemp,function(){});
 		}
-		if(game.gameType = "network") {
+		if(game.gameType == "network") {
 			network.setAndCheckGame(game, networkId, ui);
 		}
     }
@@ -142,19 +154,22 @@ function pass(){
         ui.invalid( message );
     }
     function gameEnds (){               // What should happen if the move results to end the game
-		if(gameType = "network") {
+		if(gameType == "network") {
 			var cb = function(){};
 			network.endGame(game.toJSON(), networkId, cb, cb);
 		}
-		ui.end()
+		gameOver = true;
+		game.board.score();
+		ui.end(game.board.scores )
     }
     
     var move = new go.Move (-1, -1,(game.gameType=="hotseat"?game.currentPlayer:game.whichPlayer), true);
     game.attemptMove(move,successfulMove,invalidMove, gameEnds);
 	
+	/*
     if(game.gameType == "ai"){
         ai.getMove(game,10,aiMoveTemp,function(){});
-    }
+    }*/
 }
 
 //TEMP: This is just for testing that we can deal with ai moves.
@@ -172,19 +187,29 @@ function successfulAiMove(){
 
 document.body.onload = function() {
 	
-	var re = /\?id=(.*)/;
+	var re = /\?id=(.*?)&player=(.*)/;
 	var url = document.location.href;
 	var result = url.match(re);
 	
-	console.log(result);
-	
-	if (result) {
+	if(result) {
 		var id = result[1];
-		joinNetworkGame(id);
+		var player = result[2];
+		joinNetworkGame(id, player);
+		return;
+	} else {
+		re = /\?id=(.*)/;
+		result = url.match(re);
+		if(result) {
+			var id = result[1];
+			var player = result[2];
+			joinNetworkGame(id, null);
+		}
 	}
+	
+	
 }
 
-function joinNetworkGame(id) {
+function joinNetworkGame(id, player) {
 	game = new Game ( "network", boardSize );
 	
 	// callbacks for getting game
@@ -193,27 +218,55 @@ function joinNetworkGame(id) {
 		var boardsize = gameParsed.board.length;
 		gameType = "network";
 		game = new Game("network", boardsize);
-		game.whichPlayer = 2;
+		game.whichPlayer = (player ? player : 2);
 		game.gameID = id;
 		networkId = id;
 		game.updateFromJSON(newGame);
 		
-		if(game.previousMove.pass) {
-			alert("Other user passed")
+		if(game.gameOver) {
+			// TODO: Display instead of alert
+			alert("Game is over");
+			return;
+		} else if( game.previousMove && game.previousMove.pass){
+			// TODO: Display instead of alert
+			alert("Other player passed");
 		}
+		
 		
 		ui.board(game.board.grid);
 		ui.show ( "boardPage" );
+		
+		if(game.currentPlayer != game.whichPlayer) {
+			network.setAndCheckGame(game, networkId, ui);
+		}
 	};
 	
 	var er = function(err) {
-		// DISPLAY SOME SORT OF ERROR
-		console.log("Error occured: " + err);
+		// TODO: Display instead of alert
+		alert("Could not join new game because of error: " + err);
 	};
 	
 	network.getGame(id, cb, er);
+
 }
 
+function goHome() {
+	ui.show("startPage");
+	game = null;
+	networkId = -1;
+
+
+	// Used by startgame
+	boardSize = 9;
+	gameType = "hotseat";
+	aiType = "maxLibs";
+
+
+	//A couple other important globals:
+	gameOver = false;
+	showTerritory = false;
+	showSuggestion = false;
+}
 
 function colorChanger( themeName ){
     theme.update ( themeName );

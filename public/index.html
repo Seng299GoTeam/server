@@ -12,9 +12,7 @@
                     <div id="logo">
                         <h1><div id="go-word">GO</div>GAME</h1>
                     </div>
-                    <div class="upper_menu_item"> Home </div>
-                    <div class="upper_menu_item"> Rules </div>
-                    <div class="upper_menu_item"> About </div>
+                    <div class="upper_menu_item" onclick="goHome()"> New Game </div>
                 </div>
             </div>
         </div>    
@@ -186,13 +184,35 @@
         
 
         <div id="board_page">
+            <div class = "game_end_message" > 
+                <div> Game Over</div>
+                    <div class="end_game_first"> 
+                        <img class="game_end_color" src="icons/orange.png"> 
+                        <div class= "midcontain">
+                            <div id="game_end_number_black" class="game_end_number" > 24</div>
+                        </div>
+                    </div>
+                    <div class="end_game_second">
+                        <img class="game_end_color" src="icons/orange.png" >
+                        <div class= "midcontain">
+                            <div id="game_end_number_white" class="game_end_number" > 28</div>
+                        </div>
+                   </div>
+            
+            </div>
             <button onclick="pass()"  id='pass' name="pass"> Pass </button>
             <div id='canvas'>
                 
             </div>
+            
         </div>
         
+        
+        
+        
+        
         <script src="libraries/jquery.min.js"></script>
+        
         <script src="libraries/svgFactory.js"></script>
         <script src="libraries/nodeadapter.js"></script>
         <script src="libraries/go.js"></script>

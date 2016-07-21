@@ -49,8 +49,8 @@ app.post("/getGame", function(req, res) {
 	console.log("POST Request to: /getGame");
 	// Will return the game associated with a game id
 	// as a JSON object or will return an error message
+
 	
-	console.log(req.body);
 	var id = req.body._id;
 	
 	
@@ -104,9 +104,13 @@ app.post("/endGame", function(req, res) {
 	// will end the game given an id and will return either 
 	// "Success" or an error message
 	
-	var id = req.body.gameData._id;
+	console.log(req.body);
+	var gameData = JSON.parse(req.body.gameData);
+	var id = gameData._id;
+	var player = ((gameData.currentPlayer == 1)? 2 : 1);
 	
-	endGame(id, function(err) {
+	
+	db.endGame(id, player, function(err) {
 		if(err) {
 			res.send(JSON.stringify( {err : err}));
 		} else {
