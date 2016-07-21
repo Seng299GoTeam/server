@@ -123,9 +123,27 @@ h1{
     z-index:90;
 }
 
+.game_type{
+    padding-top: 0px;
+}
+
+#type_hotseat svg{
+    margin-top: 17px;
+}
+
+#type_network svg{
+    margin-top: 12px;
+    height: 60px;
+}
+
+#type_ai svg{
+    margin-top: 6px;
+}
+
 
 .game_type svg{
     fill: #2F80ED;
+    
 }
 .game_type_clicked svg{
     fill: #C3D8F0;
