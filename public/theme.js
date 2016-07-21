@@ -29,23 +29,24 @@ var Theme = function Theme(){
     this.darkColor = "#0C203B" ;
     this.mode = "light";
 
-    this.darken = function(){
-        if (this.mode == "dark" ){
-            this.mode = "light";
+    this.darken = function( colorMode ){
+        if(colorMode != this.mode){
+            if (colorMode == "dark" ){
+                this.mode = "dark";
+            }
+            else if(colorMode == "light"){
+                this.mode = "light";
+            }        
+            
+            var temp = this.lightColor;
+            this.lightColor = this.darkColor;
+            this.darkColor = temp
+            
+            this.updateWorker();
+            this.buttonSelectorUpdator();
+            this.buttonStartGameUpdator();
+            this.gameTypeUpdator();
         }
-        else {
-            this.mode = "dark";
-        }
-        
-        
-        var temp = this.lightColor;
-        this.lightColor = this.darkColor;
-        this.darkColor = temp
-        
-        this.updateWorker();
-        this.buttonSelectorUpdator();
-        this.buttonStartGameUpdator();
-        this.gameTypeUpdator();
         
     }
     
