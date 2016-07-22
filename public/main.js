@@ -21,10 +21,12 @@ document.onkeydown = function keyHandler(event){
 }
 
 
-var host = "localhost";
-var port = "3000";
+var host = "some-work-khalidahmed.c9users.io";
+var port = "";
+var portForAI = port;
 var aihost = "localhost";
 var aiport = "3001";
+
 
 var ui = new UI();
 var theme = new Theme();
@@ -66,6 +68,7 @@ function startNewGame(){
 	
     ui.board(game.board.grid );
     ui.show ( "boardPage" );
+    
 	
 	if ( gameType == "network") {
 		var callback = function(_id) {
@@ -257,6 +260,7 @@ function joinNetworkGame(id, player) {
 }
 
 function goHome() {
+	
 	ui.show("startPage");
 	game = null;
 	networkId = -1;
@@ -264,8 +268,7 @@ function goHome() {
 
 	// Used by startgame
 	boardSize = 9;
-	gameType = "hotseat";
-	aiType = "maxLibs";
+	ui.close_url();
 
 
 	//A couple other important globals:
