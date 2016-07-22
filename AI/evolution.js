@@ -149,7 +149,8 @@ function tournament(players){
 function poolFromFile(path,callback){
     var contents = fs.readFile(path,'utf8', function(err,data) {
         if(err){
-            console.log("Error reading file");
+            console.log("Error reading file:");
+            console.log(err);
         }else{
             var parsedData = JSON.parse(data);
             var finalArray = [];
