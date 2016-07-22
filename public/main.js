@@ -267,7 +267,6 @@ function goHome() {
 
 
 	// Used by startgame
-	boardSize = 9;
 	ui.close_url();
 
 
