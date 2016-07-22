@@ -71,11 +71,15 @@ function startNewGame(){
 			game._id = _id;
 			// TODO: Implement pop up screen for this url
 			console.log("Send this url to a friend to play with them: " + host + ":" + port + "/?id=" + _id + "&player=2");
+			var Neturl = host + ":" + port + "/?id=" + _id + "&player=2" ;
+			
+			ui.showNetworkUrl ( Neturl );
+			
 		};
 		
 		var errback = function(err) {
 			// TODO: Implement pop up for this error (or just console.log it)
-			alert("Error: " + err);
+			ui.notify("Error: " + err);
 		}
 		network.createGame(game.toJSON(), callback, errback);
 	}else if(gameType == "ai"){
@@ -118,7 +122,7 @@ function successfulMove (){          // What should happen if a move is successf
 }
 
 function invalidMove ( message ){    // What should happen if a move is invalid
-    ui.invalid( message );
+    ui.notify( message );
 }
 
 function gameEnds (){               // What should happen if the move results to end the game
@@ -130,13 +134,13 @@ function pass(){
 	
 	if(gameOver) {
 		// TODO: Display instead of alert
-		alert("Game is over");
+		ui.end(game.board.scores);
 		return;
 	}
 	
 	if(game.gameType == "network" && game.currentPlayer != game.whichPlayer) {
 		// TODO: Display instead of alert
-		alert("Cannot pass when it's not your turn");
+		ui.notify("Cannot pass when it's not your turn");
 		return;
 	}
 	
@@ -151,7 +155,7 @@ function pass(){
 		}
     }
     function invalidMove ( message ){    // What should happen if a move is invalid
-        ui.invalid( message );
+        ui.notify( message );
     }
     function gameEnds (){               // What should happen if the move results to end the game
 		if(gameType == "network") {
@@ -160,7 +164,7 @@ function pass(){
 		}
 		gameOver = true;
 		game.board.score();
-		ui.end(game.board.scores )
+		ui.end(game.board.scores);
     }
     
     var move = new go.Move (-1, -1,(game.gameType=="hotseat"?game.currentPlayer:game.whichPlayer), true);
@@ -225,11 +229,11 @@ function joinNetworkGame(id, player) {
 		
 		if(game.gameOver) {
 			// TODO: Display instead of alert
-			alert("Game is over");
+			ui.end(game.board.scores);
 			return;
 		} else if( game.previousMove && game.previousMove.pass){
 			// TODO: Display instead of alert
-			alert("Other player passed");
+			ui.notify("Other player passed");
 		}
 		
 		
@@ -243,7 +247,7 @@ function joinNetworkGame(id, player) {
 	
 	var er = function(err) {
 		// TODO: Display instead of alert
-		alert("Could not join new game because of error: " + err);
+		ui.notify("Could not join new game because of error: " + err);
 	};
 	
 	network.getGame(id, cb, er);
@@ -297,4 +301,6 @@ function aiTypeChoser ( aiType ){
 }
 
 
-
+function close_url(){
+	ui.close_url();
+}

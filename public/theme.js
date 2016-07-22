@@ -71,6 +71,10 @@ var Theme = function Theme(){
     this.buttonStartGameUpdator = function(){
         $("#start_game_button").css("background-color", this.lightColor);
     }
+    
+
+    
+    
     this.buttonSelectorUpdator = function(){
         $(".board_size").css("color", this.mediumColor);
         $(".board_size").css("background-color", this.lightColor);
@@ -107,6 +111,7 @@ var Theme = function Theme(){
 
         var light = this.lightColor; // #234243
         var medium = this.mediumColor;
+        var dark = this.darkColor;
         
         $("#first_menu").css("background-color", this.darkColor);
         $("#second_menu").css("background-color", this.mediumColor);
@@ -156,8 +161,23 @@ var Theme = function Theme(){
         $(".drop_down_chosen").css("background-color", this.mediumColor);
         $(".drop_down_chosen").css("color", this.lightColor);
         
-        $(".upper_menu_item").css ("color", this.lightColor)
+        $(".upper_menu_item").css ("color", this.lightColor);
         
+        
+        $("#pass").css ("color", this.lightColor);
+        
+        $("#pass").css("background-color", this.mediumColor);
+        $(".game_end_message").css ("background-color", this.mediumColor);
+        
+        $("#pass").mouseenter(function(){ 
+            $(this).css("background-color", dark);
+        });
+
+        
+        $("#pass").mouseleave(function(){ 
+            $(this).css("background-color", medium);
+        });
+
     }
     
 }

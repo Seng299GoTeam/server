@@ -24,7 +24,8 @@ this.board = function board(state){
     if ($("#mainsvg").length === 1){
         $( "#mainsvg" ).remove();
     }
-    
+    $("#pass").css('display', 'block')
+    $(".game_end_message").css('display','none');
     
     var nol = state.length;       // How many lines are needed in the baord
     var lw = 5;                 // The width of lines in the board
@@ -74,6 +75,7 @@ this.board = function board(state){
         var board = new go.Board(state);
         board.parse();
         board.score(); //causes it to count territories
+        
         for(var i = 0; i < board.territories.length; i++){
             var territory = board.territories[i];
             if(territory.colour() > 0){
@@ -135,9 +137,7 @@ Ends the game and show score
 @parameters:
 state: A 2D array that has the 0,1,2 for empty, black, white respectively
 */
-this.invalid = function invalid ( message ){
-     alert( message );
-}
+
 
 
 /*
@@ -147,27 +147,40 @@ Ends the game and show score
 state: A 2D array that has the 0,1,2 for empty, black, white respectively
 */
 this.end = function end( scoreArray ){
+    $("#pass").css('display', 'none')
     $(".game_end_message").css('display','block');
     
     $("#game_end_number_black").text( scoreArray[0]);
     $("#game_end_number_white").text( scoreArray[1]);
     
     
+    
 }    
 
+this.notify = function( message ){
+    var notification = $('<div class="notification">' + message +'</div>');
 
+    $('body').append(notification);
 
-this.message = function (){
+    setTimeout(function(){
+        notification.fadeOut();
+        notification.remove();
+    },3000);
     
-    
-    
-    
+}
+
+this.showNetworkUrl = function ( NetUrl ){
+    $(".game_url").text( NetUrl );
+    $(".game_url").css( 'display','block' );
+
+}
+this.close_url = function(){
+    $(".game_url").css( 'display','none' );
 }
 
 
 this.updateSizeButton = function updateSizeButton(boardSizeOption){
     $("#size_" + boardSize).removeClass ( "board_size_clicked");
-
     boardSize = boardSizeOption;
     $("#size_" + boardSize).addClass ( "board_size_clicked"  );
     theme.buttonSelectorUpdator();

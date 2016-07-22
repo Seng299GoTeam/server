@@ -285,7 +285,7 @@ h1{
     background-color: #2F80ED;
     margin:20px auto;
     width: 360px;
-    border-radius: 5px;
+    border-radius: 3px;
     color: #E3EFFF ;
     padding: 10px;
     font-size: 18px;
@@ -321,6 +321,30 @@ h1{
 
 }
 
+.game_url{
+    display:none;
+    background-color: #0C203B;
+    margin:20px auto;
+    width: 500px;
+    border-radius: 3px;
+    color: #E3EFFF ;
+    padding: 10px;
+    font-size: 18px;
+    -webkit-box-shadow: 4px 4px 18px 0px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow:    4px 4px 18px 0px rgba(50, 50, 50, 0.3);
+    box-shadow:         4px 4px 18px 0px rgba(50, 50, 50, 0.3);
+    font-family: 'Fira sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.close_icon{
+    width:20px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+
 #pass{
     background-color:  #2F80ED; /* Green */
     border: 1px;
@@ -338,4 +362,19 @@ h1{
 }
 #pass:hover{
     background-color: #012B4B;
+}
+
+.notification{
+    padding:10px;
+    padding-right: 30px;
+    padding-left: 30px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background-color: #012B4B;
+    color: #E3EFFF ;
+    border: 3px;
+        -webkit-box-shadow: 4px 4px 18px 0px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow:    4px 4px 18px 0px rgba(50, 50, 50, 0.3);
+    box-shadow:         4px 4px 18px 0px rgba(50, 50, 50, 0.3);
 }
