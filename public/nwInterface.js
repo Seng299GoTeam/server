@@ -18,7 +18,7 @@ var nwInterface = function nwInterface(){
 			
 			var cbGetPlayer = function(player) {
 				if(JSON.parse(player).err) {
-					alert("Error accessing database: " + JSON.parse(player).err);
+					ui.notify("Error accessing database: " + JSON.parse(player).err);
 				}
 				if (player != game.currentPlayer) {
 					
@@ -27,8 +27,7 @@ var nwInterface = function nwInterface(){
 						var parsedGame = JSON.parse(newGame);
 						game.updateFromJSON(newGame);
 						if(game.previousMove.pass) {
-							// TODO: Display instead of alert
-							alert("Other player passed")
+							ui.notify("Other player passed")
 						}
 						if(parsedGame.gameOver) {
 							ui.end();
@@ -42,7 +41,7 @@ var nwInterface = function nwInterface(){
 					
 					network.getGame(networkId, cbGetGame, erGetGame);
 				} else {
-					setTimeout(cbSetGame, 2000);
+					setTimeout(cbSetGame, 500);
 				}
 				
 			}; // callback of checking player
@@ -91,8 +90,7 @@ var nwInterface = function nwInterface(){
                     eb(err);
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
-                // TODO: Display instead of alert
-                alert("Could not check game because of error: " + postXhr.status);
+                ui.notify("Could not check game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//checkGame
@@ -124,8 +122,7 @@ var nwInterface = function nwInterface(){
                     eb(err);
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
-                //TODO: Display instead of alert
-				alert("Could not get game because of error: " + postXhr.status);
+			    ui.notify("Could not get game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//getGame
@@ -156,7 +153,7 @@ var nwInterface = function nwInterface(){
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
                 //do some sort of error handling
-				alert("Could not set game because of error: " + postXhr.status);
+				ui.notify("Could not set game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//setGame
@@ -183,7 +180,7 @@ var nwInterface = function nwInterface(){
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
                 //do some sort of error handling
-                alert("Could not create game because of error: " + postXhr.status);
+                ui.notify("Could not create game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//createGame
@@ -213,7 +210,7 @@ var nwInterface = function nwInterface(){
                 }
             }else if(postXhr.readyState == 4 && postXhr.status !== 200){
                 //do some sort of error handling
-                alert("Could not end game because of error: " + postXhr.status);
+                ui.notify("Could not end game because of error: " + postXhr.status);
             }
         }//onreadystatechange
     }//createGame

@@ -13,9 +13,10 @@ app.use(bodyparser.json());
 // server static files from the public/ directory.
 app.use(express.static('public'));
 
-
 // Create database
 var db = new mongo(null, null, "testing"); 
+
+var port = 3000;
 
 db.connect(function(err) {
 	
@@ -153,6 +154,6 @@ app.post("/ai",function (req,res){
 });// post to ai
 
 
-app.listen(process.env.PORT || 3000, function () {
-    console.log("Listening on port 3000");
+app.listen(process.env.PORT || port, function () {
+    console.log("Listening on port " + port);
 });

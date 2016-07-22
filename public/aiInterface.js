@@ -42,7 +42,7 @@ var aiInterface = function aiInterface(host, path, port){
         var postData = JSON.stringify({"options":this.options,"moveData":moveData});
         
         var postXhr = new XMLHttpRequest();
-        postXhr.open("POST","http://localhost:3000/ai", true);
+        postXhr.open("POST","http://" + aihost + ":" + aiport + "/ai", true);
         postXhr.setRequestHeader("Content-Type", "application/json");
         postXhr.send(postData);
         

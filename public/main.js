@@ -23,6 +23,8 @@ document.onkeydown = function keyHandler(event){
 
 var host = "localhost";
 var port = "3000";
+var aihost = "localhost";
+var aiport = "3001";
 
 var ui = new UI();
 var theme = new Theme();
@@ -32,8 +34,8 @@ var availableAIs = [];
 availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/maxLibs','30000'));
 availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/attackEnemy','30000'));
 availableAIs.push(new aiInterface('roberts.seng.uvic.ca','/ai/formEyes','30000'));
-availableAIs.push(new aiInterface(host,'/okai','3001'));
-availableAIs.push(new aiInterface(host,'/neuralnetwork','3001'));
+availableAIs.push(new aiInterface(host,'/okai',aiport));
+availableAIs.push(new aiInterface(host,'/neuralnetwork',aiport));
 
 //var ai = new aiInterface('roberts.seng.uvic.ca','/ai/random','30000');
 
@@ -185,6 +187,9 @@ function aiMoveTemp(move){
 
 //TEMPORARY - still working out how AI will work.
 function successfulAiMove(){
+	if(game.previousMove.pass) {
+		ui.notify("AI has passed");
+	}
     ui.board(game.board.grid);
 }
 
@@ -228,11 +233,9 @@ function joinNetworkGame(id, player) {
 		game.updateFromJSON(newGame);
 		
 		if(game.gameOver) {
-			// TODO: Display instead of alert
 			ui.end(game.board.scores);
 			return;
 		} else if( game.previousMove && game.previousMove.pass){
-			// TODO: Display instead of alert
 			ui.notify("Other player passed");
 		}
 		
@@ -246,7 +249,6 @@ function joinNetworkGame(id, player) {
 	};
 	
 	var er = function(err) {
-		// TODO: Display instead of alert
 		ui.notify("Could not join new game because of error: " + err);
 	};
 	
