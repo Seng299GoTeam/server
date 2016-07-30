@@ -16,7 +16,7 @@ app.use(express.static('public'));
 // Create database
 var db = new mongo(null, null, "testing"); 
 
-var port = 8080;
+var port = 30088;
 
 db.connect(function(err) {
 	

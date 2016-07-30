@@ -21,11 +21,11 @@ document.onkeydown = function keyHandler(event){
 }
 
 
-var host = "some-work-khalidahmed.c9users.io";
-var port = "";
+var host = "roberts.seng.uvic.ca";
+var port = "30088";
 var portForAI = port;
-var aihost = "localhost";
-var aiport = "3001";
+var aihost = "roberts.seng.uvic.ca";
+var aiport = "30089";
 
 
 var ui = new UI();
@@ -267,7 +267,6 @@ function goHome() {
 
 
 	// Used by startgame
-	boardSize = 9;
 	ui.close_url();
 
 

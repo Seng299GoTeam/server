@@ -1,5 +1,5 @@
 var go = require("../public/libraries/go.js");
-var Game = require("../public/libraries/Game.js");
+var Game = require("../public/libraries/game.js");
 var numeric = require("numeric");
 
 /*Note to self: this is expected format of the input

@@ -21,7 +21,7 @@ app.use(express.static('public'));
 //Load up whatever the current best ANN AI is.
 var mainAI = new ANN();
 mainAI.postConstructor;
-AIwrangler.poolFromFile("mainGenePool.json",function(pool){
+AIwrangler.poolFromFile("AI/mainGenePool.json",function(pool){
     mainAI = pool[0];
 });
 
@@ -85,6 +85,6 @@ app.post("/okai",function (req,res){
 });// post to ai
 
 
-app.listen(3001, function () {
-    console.log("Listening on port 3001");
+app.listen(30089, function () {
+    console.log("Listening on port 30089");
 });

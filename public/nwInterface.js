@@ -10,12 +10,12 @@
 //  setGame, takes id and game, updates the game in the database
 var nwInterface = function nwInterface(){
     
+	var gameEnded = false;	
 	
-	
-	this.setAndCheckGame = function(game, networkId, ui) {
+	this.setAndCheckGame = function(game, networkId_fun, ui) {
 		
 		var cbSetGame = function(){
-			
+
 			var cbGetPlayer = function(player) {
 				if(JSON.parse(player).err) {
 					ui.notify("Error accessing database: " + JSON.parse(player).err);
@@ -39,9 +39,10 @@ var nwInterface = function nwInterface(){
 						console.log("Error occured: " + err);
 					};
 					
-					network.getGame(networkId, cbGetGame, erGetGame);
+					network.getGame(networkId_fun, cbGetGame, erGetGame);
 				} else {
-					setTimeout(cbSetGame, 500);
+					if(networkId !== -1)
+						setTimeout(cbSetGame, 500); 	
 				}
 				
 			}; // callback of checking player
@@ -52,7 +53,7 @@ var nwInterface = function nwInterface(){
 			}
 			
 			
-			network.checkGame(networkId, cbGetPlayer, erGetPlayer);
+			network.checkGame(networkId_fun, cbGetPlayer, erGetPlayer);
 			
 		}; // Set game callback
 		
@@ -60,8 +61,7 @@ var nwInterface = function nwInterface(){
 			// DISPLAY SOME SORT OF ERROR
 			console.log("Error occured: " + err);
 		};
-		
-		network.setGame(game.toJSON(), networkId, cbSetGame, ebSetGame);
+		network.setGame(game.toJSON(), networkId_fun, cbSetGame, ebSetGame);
 	}
 	
     //Takes a game id and returns a game state from the database
@@ -186,7 +186,7 @@ var nwInterface = function nwInterface(){
     }//createGame
     
 	this.endGame = function(gameData, id, cb,eb){
-		
+		gameEnded = true;
 		gameData = JSON.parse(gameData);
 		gameData._id = id;
 		gameData = JSON.stringify(gameData);
