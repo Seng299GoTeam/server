@@ -11,7 +11,7 @@ The following steps don't necessarily need to be done in exactly the following o
 * Install MongoDB and make sure that the mongod daemon is running (the correct way to do this will vary from system to system)
 * In the project's root directory, run "npm install"
 * If necessary, modify the port in server.js and AI/aiserver.js
-* If necessary, modify "port", "host", "aihost", and "aiport" listed at the top of public/main.js.  Not that the AI server is, in theory, entirely distinct from the game application's main server, but the "portForAI" should be the same as the port for the main server, not for the AI server.
+* If necessary, modify "port", "host", "aihost", and "aiport" listed at the top of public/main.js.  Note that the AI server is, in theory, entirely distinct from the game application's main server, but the "portForAI" should be the same as the port for the main server, not for the AI server.
 * If necessary, modify line 106 of public/UI.js to specify the correct host and port for the AI server.
 * If you wish to interact with Simon's AI, ensure that you are connected to the UVic engineering network.
 * Start the server ("node server.js")
