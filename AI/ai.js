@@ -173,7 +173,7 @@ ai.okAI.prototype.getMove = function(data){
 							currentBest.scoreMove = new go.Move(i,j,player,false);
 						}
 						
-						//Liberty ratio sort of thing (lots of fudging)
+						//Liberty ratio objective function (lots of fudging)
 						var liberties = [0,0,0]; // [0,p1,p2]
                         var totalStones = [0,0,0];
 						

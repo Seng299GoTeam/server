@@ -103,7 +103,7 @@ this.board = function board(state){
     //Show a suggested move, if that option is turned on
     if(showSuggestion){
         try{
-            var advisor = new aiInterface('localhost','/okai','3001');
+            var advisor = new aiInterface('localhost','/okai','30089');
             //gonna use the global game object here, even though it might not be ideal.
             advisor.getMove(game,10,function(move){
 				if(!move.pass){

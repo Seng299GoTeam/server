@@ -22,7 +22,7 @@ var Game = function Game(type, size){
     //  Errback is called if the move is invalid or something else goes wrong.
     //  Errback should take a string containing the error message
     //  Winback (optional) is called if a player wins.
-    this.attemptMove = function(move, callback, errback,winback){
+    this.attemptMove = function(move, callback, errback, winback){
         
         if(move.colour != this.currentPlayer){
             errback("Player attempted to play out of order");

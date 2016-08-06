@@ -21,10 +21,11 @@ document.onkeydown = function keyHandler(event){
 }
 
 
-var host = "roberts.seng.uvic.ca";
+var host = "localhost";
 var port = "30088";
+var hostForAI = host;
 var portForAI = port;
-var aihost = "roberts.seng.uvic.ca";
+var aihost = "localhost";
 var aiport = "30089";
 
 
@@ -136,21 +137,17 @@ function gameEnds (){               // What should happen if the move results to
 }
 
 function pass(){
-	
 	if(gameOver) {
-		// TODO: Display instead of alert
 		ui.end(game.board.scores);
 		return;
 	}
 	
 	if(game.gameType == "network" && game.currentPlayer != game.whichPlayer) {
-		// TODO: Display instead of alert
 		ui.notify("Cannot pass when it's not your turn");
 		return;
 	}
 	
     function successfulMove (){          // What should happen if a move is successfull
-
         ui.board(game.board.grid);
 		if(game.gameType == "ai"){
 			ai.getMove(game,10,aiMoveTemp,function(){});
@@ -174,21 +171,15 @@ function pass(){
     
     var move = new go.Move (-1, -1,(game.gameType=="hotseat"?game.currentPlayer:game.whichPlayer), true);
     game.attemptMove(move,successfulMove,invalidMove, gameEnds);
-	
-	/*
-    if(game.gameType == "ai"){
-        ai.getMove(game,10,aiMoveTemp,function(){});
-    }*/
 }
 
-//TEMP: This is just for testing that we can deal with ai moves.
+//Turned out not to be temporary
 //Takes a move
 function aiMoveTemp(move){
     game.attemptMove(move,successfulAiMove,invalidMove,gameEnds);
 }
 
 
-//TEMPORARY - still working out how AI will work.
 function successfulAiMove(){
 	if(game.previousMove.pass) {
 		ui.notify("AI has passed");
